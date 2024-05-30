@@ -85,9 +85,12 @@ summary {
 :root {
   /* Colors */
   --primary-bg-color: #f9fffe;
-  --secondary-bg-color: #99b4afbf;
+  --secondary-color-light: #99b4af;
+  --secondary-color-dark: #2e3634;
+
   --primary-text-color: #000000;
   --button-color: #bbbd96;
+  --button-color-hover: #969778;
 
   /* Fonts */
   --main-font: "Raleway", sans-serif;
@@ -127,12 +130,20 @@ p {
 /*---------*/
 
 .btn {
-  border-radius: 50px;
-  padding: 0.625rem 1.5rem 0.625rem 1.5rem;
+  min-width: 7.75rem;
+  max-width: 12.5rem;
+  border-radius: 25px;
+  padding: 0.625rem 2rem 0.625rem 2rem;
   border: none;
   background-color: var(--button-color);
-  font-weight: 500;
+  font-weight: 600;
+  box-shadow: var(--shadow-1);
   cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--button-color-hover);
+  box-shadow: var(--shadow-4);
 }
 
 /*--------*/
@@ -166,4 +177,8 @@ p {
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
+}
+
+.main-nav-links a:hover {
+  color: var(--secondary-color-dark);
 }

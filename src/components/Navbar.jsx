@@ -1,11 +1,12 @@
-// Box Icons:
+// BoxIcons:
 import { BiSolidHome, BiSolidUser, BiSolidBookmark } from "react-icons/bi";
+import Button from "./Button";
 
 const Navbar = () => {
   return (
     <nav className="main-nav">
       {/* Logo */}
-      <div>LOGO</div>
+      <div>LESEOASE</div>
 
       <div className="main-nav-container">
         {/* Links */}
@@ -30,9 +31,7 @@ const Navbar = () => {
           </li>
         </ul>
         {/* Login/Logout Button */}
-        <button className="btn" type="button">
-          Logout
-        </button>
+        <Button text="Login" />
       </div>
     </nav>
   );
