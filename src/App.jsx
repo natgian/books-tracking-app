@@ -3,9 +3,9 @@ import "./index.css";
 
 function App() {
   return (
-    <>
+    <main className="main-layout">
       <Navbar />
-    </>
+    </main>
   );
 }
 
