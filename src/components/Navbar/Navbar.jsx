@@ -1,3 +1,6 @@
+// Navbar CSS
+import "./Navbar.css";
+
 // BoxIcons
 import {
   BiSolidHome,
@@ -8,7 +11,7 @@ import {
 import { CgClose } from "react-icons/cg";
 
 // Components
-import Button from "./Button";
+import Button from "../Button";
 
 // React
 import { useState, useRef } from "react";
@@ -50,26 +53,20 @@ const Navbar = () => {
             <ul className="links">
               <li>
                 <a href="#">
-                  <span className="icon-text-wrapper">
-                    <BiSolidHome />
-                    Home
-                  </span>
+                  <BiSolidHome />
+                  Home
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span className="icon-text-wrapper">
-                    <BiSolidBookmark />
-                    Leseliste
-                  </span>
+                  <BiSolidBookmark />
+                  Leseliste
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span className="icon-text-wrapper">
-                    <BiSolidUser />
-                    Profil
-                  </span>
+                  <BiSolidUser />
+                  Profil
                 </a>
               </li>
             </ul>
