@@ -18,7 +18,8 @@
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
 ul[role="list"],
-ol[role="list"] {
+ol[role="list"],
+li {
   list-style: none;
 }
 
@@ -86,8 +87,8 @@ summary {
   /* Colors */
   --bg-color: #f9fffe;
   --text-color: #0f1211;
-  --secondary-color-light: #99b4af;
-  --secondary-color-dark: #2e3634;
+  --primary-color-100: #99b4af;
+  --primary-color-200: #5c6c69;
 
   --action-100: #bbbd96;
   --action-200: #969778;
@@ -166,7 +167,6 @@ p {
   min-height: 100dvh;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  margin: 1rem;
 }
 
 /*---------*/
