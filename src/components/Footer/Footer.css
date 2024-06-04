@@ -4,7 +4,6 @@
 
 footer {
   background: var(--primary-color-100);
-
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -19,6 +18,7 @@ footer {
 
 .footer-links a {
   font-size: 0.875rem;
+  transition: all 0.2s ease-in-out;
 }
 
 .footer-links a:hover,

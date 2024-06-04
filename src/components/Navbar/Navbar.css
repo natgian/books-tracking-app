@@ -33,7 +33,7 @@
 .links a {
   display: flex;
   align-items: center;
-  font-size: 1.25rem;
+
   text-transform: capitalize;
   text-decoration: none;
   padding: 1rem;
@@ -42,15 +42,12 @@
 
 .links a:hover {
   color: var(--action-300);
+  transform: scale(1.01);
 }
 
 .links a svg {
   font-size: 1.25rem;
   margin-right: 0.5rem;
-}
-
-.links a svg:hover {
-  color: var(--action-300);
 }
 
 .links-container {

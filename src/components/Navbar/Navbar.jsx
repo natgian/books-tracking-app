@@ -71,7 +71,7 @@ const Navbar = () => {
               </li>
             </ul>
             {/* Login/Logout-Button */}
-            <Button text="Login" />
+            <Button text="LOGIN" />
           </div>
         </div>
       </div>

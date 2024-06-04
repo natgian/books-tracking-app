@@ -107,6 +107,9 @@ summary {
   --shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
+  /* Border-radius */
+  --border-radius: 1.5rem;
+
   /* Transitions */
   --transition: 0.3s ease-in-out all;
 }
@@ -130,9 +133,9 @@ p {
   font-size: var(--main-font-size);
 }
 
-/*---------*/
-/* UTILITY */
-/*---------*/
+/*-----------*/
+/* UTILITIES */
+/*-----------*/
 
 .mb-1 {
   margin-bottom: 1em;
@@ -176,19 +179,21 @@ p {
 .btn {
   min-width: 7.75rem;
   max-width: 12.5rem;
-  border-radius: 25px;
-  padding: 0.625rem 2rem 0.625rem 2rem;
-  border: none;
+  border-radius: var(--border-radius);
+  border: transparent;
+  padding: 0.75rem 1.25rem;
+  border-color: transparent;
   background-color: var(--action-100);
-  font-weight: 500;
-  box-shadow: var(--shadow-1);
+
+  font-weight: 700;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
 .btn:hover {
   background-color: var(--action-200);
-  font-weight: 700;
-  box-shadow: var(--shadow-2);
+  box-shadow: var(--shadow-1);
+  transform: scale(1.02);
 }
 
 .btn:disabled {
