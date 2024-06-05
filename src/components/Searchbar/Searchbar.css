@@ -47,6 +47,19 @@
   border-top-right-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
   border: transparent;
-  background-color: var(--action-100);
+  font-size: 1.25rem;
+}
+
+.remove-input-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 30px;
+  top: 0;
+  width: 5rem;
+  height: 100%;
+  border: transparent;
+  background: transparent;
   font-size: 1.25rem;
 }

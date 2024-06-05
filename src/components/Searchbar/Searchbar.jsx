@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BiSearch } from "react-icons/bi";
+import { CgClose } from "react-icons/cg";
 import "./Searchbar.css";
 
 const Searchbar = () => {
@@ -23,7 +24,17 @@ const Searchbar = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
 
-        <button className="searchbar-icon">
+        {searchTerm && (
+          <button
+            type="button"
+            className="remove-input-btn"
+            onClick={() => setSearchTerm("")}
+          >
+            <CgClose />
+          </button>
+        )}
+
+        <button type="submit" className="searchbar-icon">
           <BiSearch />
         </button>
       </div>
