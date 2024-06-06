@@ -1,0 +1,61 @@
+.book-details {
+  display: flex;
+  gap: 5rem;
+}
+
+.book-details-container {
+  max-width: 800px;
+}
+
+.book-cover-container {
+  flex: 1 1 400px;
+  min-width: 300px;
+  max-width: 400px;
+  max-height: 600px;
+  overflow: hidden; /* Hide any overflow */
+  display: flex; /* Center the image */
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center; /* Center the image horizontally */
+  align-items: center; /* Center the image vertically */
+}
+
+.book-cover {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Cover the container without distortion */
+  display: block; /* Ensure the image is treated as a block-level element */
+}
+
+.book-header {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0 2rem 0;
+}
+
+.book-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+.book-text {
+  max-width: 46rem;
+}
+
+.book-details-table {
+  margin: 2rem 0;
+}
+
+.book-details-table table {
+  text-align: left;
+}
+
+.book-details-table th,
+.book-details-table tr {
+  padding: 0.5rem 0;
+}
+
+.book-details-table th {
+  font-weight: 600;
+  padding-right: 3rem;
+}
