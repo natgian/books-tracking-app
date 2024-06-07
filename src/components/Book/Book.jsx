@@ -1,4 +1,5 @@
 import "./Book.css";
+import { BiSolidDownArrow } from "react-icons/bi";
 
 const Book = () => {
   return (
@@ -9,7 +10,14 @@ const Book = () => {
           alt=""
           className="book-cover"
         />
-        <button>Gelesen</button>
+        <div className="custom-select">
+          <BiSolidDownArrow className="select-arrow" />
+          <select className="btn-select">
+            <option value="want to read">Will ich lesen</option>
+            <option value="read">Gelesen</option>
+            <option value="reading">Am Lesen</option>
+          </select>
+        </div>
       </div>
 
       <div className="book-details-container">
@@ -18,9 +26,14 @@ const Book = () => {
           <a href="#" className="book-author">
             Karin Slaughter
           </a>
-          <a href="#" className="book-genre">
-            Krimi
-          </a>
+          <div className="book-genre-container">
+            <a href="#" className="book-genre">
+              Krimi
+            </a>
+            <a href="#" className="book-genre">
+              Krimi
+            </a>
+          </div>
         </div>
 
         <p className="book-text">
