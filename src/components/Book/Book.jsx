@@ -1,7 +1,28 @@
+import { useState } from "react";
 import "./Book.css";
 import { BiSolidDownArrow } from "react-icons/bi";
+import Button from "../Button";
 
 const Book = () => {
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const handleSelectChange = (e) => {
+    setSelectedOption(e.target.value);
+    console.log(selectedOption);
+  };
+
+  const getBackgroundClass = () => {
+    if (selectedOption === "want to read") {
+      return "tbr";
+    }
+    if (selectedOption === "read") {
+      return "read";
+    }
+    if (selectedOption === "reading") {
+      return "reading";
+    }
+  };
+
   return (
     <section className="book-details section-container">
       <div className="book-cover-container">
@@ -12,10 +33,18 @@ const Book = () => {
         />
         <div className="custom-select">
           <BiSolidDownArrow className="select-arrow" />
-          <select className="btn-select">
+          <select
+            className={`btn-select ${getBackgroundClass()}`}
+            value={selectedOption}
+            onChange={handleSelectChange}
+          >
+            <option value="" disabled>
+              Leseliste
+            </option>
             <option value="want to read">Will ich lesen</option>
             <option value="read">Gelesen</option>
             <option value="reading">Am Lesen</option>
+            <option value="">Aus Listen entfernen</option>
           </select>
         </div>
       </div>

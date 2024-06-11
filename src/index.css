@@ -87,12 +87,18 @@ summary {
   /* Colors */
   --bg-color: #f9fffe;
   --text-color: #0f1211;
-  --primary-color-100: #99b4af;
-  --primary-color-200: #5c6c69;
+
+  --primary-color-100: #ccdad7;
+  --primary-color-200: #99b4af;
+  --primary-color-300: #5c6c69;
 
   --action-100: #bbbd96;
   --action-200: #969778;
   --action-300: #70715a;
+
+  --info: #f9e79f;
+  --error: #f1948a;
+  --success: #82e0aa;
 
   /* Fonts */
   --main-font: "Raleway", sans-serif;
@@ -220,19 +226,39 @@ p {
   appearance: none;
   /* safari */
   -webkit-appearance: none;
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 600;
-  padding: 0.75rem 3rem 0.75rem 1.25rem;
+  padding: 0.75rem 1.25rem 0.75rem 1.25rem;
   background-color: var(--action-100);
   border: transparent;
   border-radius: var(--border-radius);
   cursor: pointer;
 }
 
+.btn-select:hover {
+  border: 2px solid var(--text-color);
+}
+
+.read {
+  /* background-color: #ccdad7; */
+  background-color: #98c379;
+}
+
+.tbr {
+  /* background-color: var(--primary-color-200); */
+  background-color: #f4a460;
+}
+
+.reading {
+  /* background-color: var(--primary-color-300);
+  color: var(--bg-color); */
+  background-color: #7fb3d5;
+}
+
 .select-arrow {
   position: relative;
-  left: 9.5rem;
-  top: 2.25rem;
+  left: 10rem;
+  top: 2.125rem;
   font-size: 1.25rem;
   pointer-events: none;
 }
