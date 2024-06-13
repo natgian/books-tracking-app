@@ -5,10 +5,25 @@ import "./Searchbar.css";
 
 const Searchbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [isError, setIsError] = useState(false);
+
+  const fetchBooks = async () => {
+    const apiKey = import.meta.env.VITE_GOOGLE_BOOKS_API_KEY;
+    try {
+      const response = await fetch(
+        `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=${apiKey}`
+      );
+      const books = await response.json();
+      console.log(books);
+    } catch (err) {
+      setIsError(true);
+      console.log("Something went wrong", err);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(searchTerm);
+    fetchBooks();
     setSearchTerm("");
   };
 
@@ -28,6 +43,7 @@ const Searchbar = () => {
           <button
             type="button"
             className="remove-input-btn"
+            title="löschen"
             onClick={() => setSearchTerm("")}
           >
             <CgClose />
