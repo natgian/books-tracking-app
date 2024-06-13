@@ -224,10 +224,10 @@ p {
 
 .btn-select {
   appearance: none;
-  /* safari */
-  -webkit-appearance: none;
+  -webkit-appearance: none; /* safari */
   font-size: 1rem;
   font-weight: 600;
+  text-indent: 25px;
   padding: 0.75rem 1.25rem 0.75rem 1.25rem;
   background-color: var(--action-100);
   border: transparent;
@@ -236,29 +236,35 @@ p {
 }
 
 .btn-select:hover {
-  border: 2px solid var(--text-color);
+  outline: 2px solid var(--text-color);
+  box-shadow: var(--shadow-1);
+}
+
+.custom-select:hover {
+  transform: scale(1.02);
 }
 
 .read {
-  /* background-color: #ccdad7; */
   background-color: #98c379;
 }
 
 .tbr {
-  /* background-color: var(--primary-color-200); */
   background-color: #f4a460;
 }
 
 .reading {
-  /* background-color: var(--primary-color-300);
-  color: var(--bg-color); */
   background-color: #7fb3d5;
 }
 
-.select-arrow {
+.custom-select {
   position: relative;
+  margin: 1rem 0;
+}
+
+.select-arrow {
+  position: absolute;
   left: 10rem;
-  top: 2.125rem;
-  font-size: 1.25rem;
+  top: 1rem;
+  font-size: 1rem;
   pointer-events: none;
 }

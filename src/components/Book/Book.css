@@ -1,10 +1,11 @@
 .book-details {
   display: flex;
-  gap: 3rem;
+  justify-content: center;
+  gap: 6rem;
 }
 
 .book-details-container {
-  max-width: 800px;
+  max-width: 1200px;
 }
 
 .book-cover-container {
@@ -23,8 +24,8 @@
 .book-cover {
   width: 100%;
   height: auto;
-  object-fit: cover; /* Cover the container without distortion */
-  display: block; /* Ensure the image is treated as a block-level element */
+  object-fit: cover;
+  display: block;
 }
 
 .book-header {

@@ -1,14 +1,12 @@
 import { useState } from "react";
 import "./Book.css";
 import { BiSolidDownArrow } from "react-icons/bi";
-import Button from "../Button";
 
 const Book = () => {
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleSelectChange = (e) => {
     setSelectedOption(e.target.value);
-    console.log(selectedOption);
   };
 
   const getBackgroundClass = () => {
@@ -41,10 +39,10 @@ const Book = () => {
             <option value="" disabled>
               Leseliste
             </option>
-            <option value="want to read">Will ich lesen</option>
-            <option value="read">Gelesen</option>
-            <option value="reading">Am Lesen</option>
-            <option value="">Aus Listen entfernen</option>
+            <option value="want to read">will ich lesen</option>
+            <option value="read">gelesen</option>
+            <option value="reading">am Lesen</option>
+            <option value="">aus Listen entfernen</option>
           </select>
         </div>
       </div>
@@ -60,7 +58,7 @@ const Book = () => {
               Krimi
             </a>
             <a href="#" className="book-genre">
-              Krimi
+              Thriller
             </a>
           </div>
         </div>
