@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
+import axios from "axios";
 import "./Searchbar.css";
 
 const Searchbar = () => {
@@ -10,14 +11,17 @@ const Searchbar = () => {
   const fetchBooks = async () => {
     const apiKey = import.meta.env.VITE_GOOGLE_BOOKS_API_KEY;
     try {
-      const response = await fetch(
+      const response = await axios.get(
         `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=${apiKey}`
       );
-      const books = await response.json();
-      console.log(books);
-    } catch (err) {
+      const books = response.data.items;
+      books.forEach((book) => {
+        console.log(book.volumeInfo);
+        console.log(`${book.volumeInfo.title}, ${book.volumeInfo.authors}`);
+      });
+    } catch (error) {
       setIsError(true);
-      console.log("Something went wrong", err);
+      console.log(error.response);
     }
   };
 
