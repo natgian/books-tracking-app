@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./Book.css";
 import { BiSolidDownArrow } from "react-icons/bi";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
 
 const Book = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -29,30 +31,35 @@ const Book = () => {
           alt=""
           className="book-cover"
         />
-        <div className="custom-select">
-          <BiSolidDownArrow className="select-arrow" />
-          <select
-            className={`btn-select ${getBackgroundClass()}`}
-            value={selectedOption}
-            onChange={handleSelectChange}
-          >
-            <option value="" disabled>
-              Leseliste
-            </option>
-            <option value="want to read">will ich lesen</option>
-            <option value="read">gelesen</option>
-            <option value="reading">am Lesen</option>
-            <option value="">aus Listen entfernen</option>
-          </select>
-        </div>
+        <Tippy content="Leseliste bearbeiten">
+          <div className="custom-select">
+            <BiSolidDownArrow className="select-arrow" />
+            <select
+              className={`btn-select ${getBackgroundClass()}`}
+              aria-label="Leseliste bearbeiten"
+              value={selectedOption}
+              onChange={handleSelectChange}
+            >
+              <option value="" disabled>
+                Leseliste
+              </option>
+              <option value="want to read">will ich lesen</option>
+              <option value="read">gelesen</option>
+              <option value="reading">am Lesen</option>
+              <option value="">aus Listen entfernen</option>
+            </select>
+          </div>
+        </Tippy>
       </div>
 
       <div className="book-details-container">
         <div className="book-header">
           <h1 className="book-title">Die letzte Nacht</h1>
-          <a href="#" className="book-author">
-            Karin Slaughter
-          </a>
+          <div>
+            <a href="#" className="book-author">
+              Karin Slaughter
+            </a>
+          </div>
           <div className="book-genre-container">
             <a href="#" className="book-genre">
               Krimi

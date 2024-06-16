@@ -2,7 +2,9 @@ import { useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 import axios from "axios";
+import Tippy from "@tippyjs/react";
 import "./Searchbar.css";
+import "tippy.js/dist/tippy.css";
 
 const Searchbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -38,20 +40,23 @@ const Searchbar = () => {
           type="text"
           id="searchTerm"
           placeholder="Titel / Autor / ISBN ..."
+          aria-label="Suchbegriff eingeben"
           className="searchbar-input"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
 
         {searchTerm && (
-          <button
-            type="button"
-            className="remove-input-btn"
-            title="löschen"
-            onClick={() => setSearchTerm("")}
-          >
-            <CgClose />
-          </button>
+          <Tippy content="Suchbegriff löschen">
+            <button
+              type="button"
+              className="remove-input-btn"
+              aria-label="Suchbegriff löschen"
+              onClick={() => setSearchTerm("")}
+            >
+              <CgClose />
+            </button>
+          </Tippy>
         )}
 
         <button type="submit" className="searchbar-icon">

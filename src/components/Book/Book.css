@@ -45,6 +45,11 @@
   text-decoration: none;
 }
 
+.book-author:hover {
+  color: var(--action-300);
+  text-decoration: underline;
+}
+
 .book-genre-container {
   display: flex;
   gap: 1rem;
