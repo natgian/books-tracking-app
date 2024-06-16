@@ -236,8 +236,7 @@ p {
 }
 
 .btn-select:hover {
-  outline: 2px solid var(--text-color);
-  box-shadow: var(--shadow-1);
+  box-shadow: var(--shadow-3);
 }
 
 .custom-select:hover {
