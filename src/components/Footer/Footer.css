@@ -23,7 +23,7 @@ footer {
 
 .footer-links a:hover,
 .external-link:hover {
-  color: var(--primary-color-300);
+  color: var(--action-300);
 }
 
 .external-link {
