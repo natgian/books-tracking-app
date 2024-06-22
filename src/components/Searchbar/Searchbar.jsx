@@ -5,9 +5,10 @@ import axios from "axios";
 import Tippy from "@tippyjs/react";
 import "./Searchbar.css";
 import "tippy.js/dist/tippy.css";
+import { useGlobalContext } from "../../context";
 
 const Searchbar = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const { searchTerm, setSearchTerm } = useGlobalContext();
   const [isError, setIsError] = useState(false);
 
   const fetchBooks = async () => {
