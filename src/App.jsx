@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Searchbar from "./components/Searchbar/Searchbar";
 import Book from "./components/Book/Book";
 import "./index.css";
+import Searchresults from "./components/Seearchresults/Searchresults";
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
         <Searchbar />
       </header>
       <section className="container">
-        <Book />
+        <Searchresults />
       </section>
+
       <Footer />
     </main>
   );
