@@ -1,0 +1,40 @@
+.searchresults-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.searchresults-container a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.searchresults-container a:hover {
+  transform: scale(1.02);
+}
+
+.searchresult-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+}
+
+.searchresult-cover-wrapper {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  max-height: 250px;
+  max-width: 200px;
+}
+
+searchresult-cover-wrapper img {
+  object-fit: contain;
+}
+
+.searchresult-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
