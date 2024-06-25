@@ -97,7 +97,7 @@ summary {
   --action-300: #70715a;
 
   --info: #f9e79f;
-  --error: #f1948a;
+  --error: #f5b4ad;
   --success: #82e0aa;
 
   /* Fonts */
@@ -170,6 +170,21 @@ p {
 
 .text-center {
   text-align: center;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 2rem auto;
+  padding: 1rem;
+  max-width: 500px;
+  background-color: var(--error);
+}
+
+.error svg {
+  font-size: 2rem;
 }
 
 /*--------*/

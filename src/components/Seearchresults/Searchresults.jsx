@@ -3,11 +3,12 @@ import { useGlobalContext } from "../../context";
 import axios from "axios";
 import "./Searchresults.css";
 import defaultCover from "../../assets/no-cover.jpg";
+import { BiErrorCircle } from "react-icons/bi";
 
 const Searchresults = () => {
   const { searchTerm } = useGlobalContext();
 
-  const { isPending, isError, data } = useQuery({
+  const { isPending, isError, error, data } = useQuery({
     queryKey: ["books", searchTerm],
     queryFn: async () => {
       const apiKey = import.meta.env.VITE_GOOGLE_BOOKS_API_KEY;
@@ -25,14 +26,17 @@ const Searchresults = () => {
   }
 
   if (isPending) {
-    return <section className="text-center">Loading...</section>;
+    return <section className="text-center">Wird geladen...</section>;
   }
 
   if (isError) {
-    console.log(isError);
     return (
       <section className="text-center">
         Etwas ist schiefgelaufen. Bitte erneut versuchen.
+        <div className="error">
+          <BiErrorCircle />
+          {error.message}
+        </div>
       </section>
     );
   }
