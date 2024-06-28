@@ -1,25 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
 import { useGlobalContext } from "../../context";
-import axios from "axios";
+import { useBooks } from "../../hooks/useBooks";
 import "./Searchresults.css";
 import defaultCover from "../../assets/no-cover.jpg";
 import { BiErrorCircle } from "react-icons/bi";
 
 const Searchresults = () => {
   const { searchTerm } = useGlobalContext();
-
-  const { isPending, isError, error, data } = useQuery({
-    queryKey: ["books", searchTerm],
-    queryFn: async () => {
-      const apiKey = import.meta.env.VITE_GOOGLE_BOOKS_API_KEY;
-
-      const result = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=${apiKey}`
-      );
-      return result.data.items || [];
-    },
-    enabled: !!searchTerm, // Only run the query if searchTerm is not empty
-  });
+  const { data, isPending, isError, error } = useBooks(searchTerm);
 
   if (!searchTerm) {
     return null;
