@@ -32,6 +32,10 @@
   transition: all 0.2s ease-in-out;
 }
 
+.searchbar-input:focus {
+  outline: 1px solid var(--action-300);
+}
+
 .searchbar-icon {
   display: flex;
   align-items: center;

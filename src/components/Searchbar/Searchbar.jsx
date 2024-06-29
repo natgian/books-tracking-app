@@ -1,3 +1,5 @@
+import { useCallback, useState, useRef } from "react";
+import { debounce } from "lodash";
 import { BiSearch } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 import Tippy from "@tippyjs/react";
@@ -7,12 +9,27 @@ import { useGlobalContext } from "../../context";
 
 const Searchbar = () => {
   const { searchTerm, setSearchTerm } = useGlobalContext();
+  const [inputValue, setInputValue] = useState("");
+  const inputRef = useRef(null);
+
+  // Memoize the debounced function using useCallback
+  const debouncedSetSearchTerm = useCallback(
+    debounce((value) => {
+      setSearchTerm(value); // Set the search term after 500ms of debouncing
+    }, 500),
+    [] // The dependencies array is empty, so this function is only created once
+  );
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setInputValue(value);
+    debouncedSetSearchTerm(value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const searchValue = e.target.elements.search.value;
-    if (!searchValue) return;
-    setSearchTerm(searchValue);
+    if (!searchTerm) return;
+    setSearchTerm(inputValue);
   };
 
   return (
@@ -25,8 +42,9 @@ const Searchbar = () => {
           placeholder="Titel / Autor / ISBN ..."
           aria-label="Suchbegriff eingeben"
           className="searchbar-input"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          value={inputValue}
+          onChange={handleChange}
+          ref={inputRef}
         />
 
         {searchTerm && (
@@ -35,7 +53,11 @@ const Searchbar = () => {
               type="button"
               className="remove-input-btn"
               aria-label="Suchbegriff löschen"
-              onClick={() => setSearchTerm("")}
+              onClick={() => {
+                setInputValue("");
+                setSearchTerm("");
+                inputRef.current.focus();
+              }}
             >
               <CgClose />
             </button>
