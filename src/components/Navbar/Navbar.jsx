@@ -15,6 +15,7 @@ import Button from "../Button";
 
 // React
 import { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
@@ -52,22 +53,22 @@ const Navbar = () => {
             {/* Links */}
             <ul className="links">
               <li>
-                <a href="#">
+                <Link to="/">
                   <BiSolidHome />
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#">
+                <Link to="#">
                   <BiSolidBookmark />
                   Leseliste
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#">
+                <Link to="#">
                   <BiSolidUser />
                   Profil
-                </a>
+                </Link>
               </li>
             </ul>
             {/* Login/Logout-Button */}
