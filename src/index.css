@@ -172,6 +172,10 @@ p {
   text-align: center;
 }
 
+.active {
+  text-decoration: underline;
+}
+
 .error {
   display: flex;
   flex-direction: column;

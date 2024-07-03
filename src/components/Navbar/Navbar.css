@@ -33,17 +33,21 @@
 .links a {
   display: flex;
   align-items: center;
-
   text-transform: capitalize;
   text-decoration: none;
   padding: 1rem;
   transition: var(--transition);
 }
 
-.links a:hover {
+nav .active {
   color: var(--action-300);
   text-decoration: underline;
-  transform: scale(1.01);
+  text-underline-offset: 0.2rem;
+}
+
+.links a:hover {
+  color: var(--action-300);
+  transform: scale(1.05);
 }
 
 .links a svg {

@@ -15,7 +15,7 @@ import Button from "../Button";
 
 // React
 import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
@@ -53,22 +53,22 @@ const Navbar = () => {
             {/* Links */}
             <ul className="links">
               <li>
-                <Link to="/">
+                <NavLink to="/">
                   <BiSolidHome />
                   Home
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to="#">
+                <NavLink to="/leseliste">
                   <BiSolidBookmark />
                   Leseliste
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to="#">
+                <NavLink to="/profil">
                   <BiSolidUser />
                   Profil
-                </Link>
+                </NavLink>
               </li>
             </ul>
             {/* Login/Logout-Button */}
