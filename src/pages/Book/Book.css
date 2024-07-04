@@ -89,7 +89,7 @@
   padding-right: 3rem;
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 710px) {
   .book-details {
     flex-direction: column;
     align-items: center;

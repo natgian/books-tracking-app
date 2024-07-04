@@ -13,12 +13,16 @@ const Searchresults = () => {
   }
 
   if (isPending) {
-    return <section className="text-center">Wird geladen...</section>;
+    return (
+      <section className="text-center section-container">
+        Wird geladen...
+      </section>
+    );
   }
 
   if (isError) {
     return (
-      <section className="text-center">
+      <section className="text-center section-container">
         Etwas ist schiefgelaufen. Bitte erneut versuchen.
         <div className="error">
           <BiErrorCircle />
@@ -30,7 +34,7 @@ const Searchresults = () => {
 
   if (data.length < 1) {
     return (
-      <section className="text-center">
+      <section className="text-center section-container">
         Die Suche ergab leider keine Treffer.
       </section>
     );

@@ -6,11 +6,13 @@ import Tippy from "@tippyjs/react";
 import "./Searchbar.css";
 import "tippy.js/dist/tippy.css";
 import { useGlobalContext } from "../../context";
+import { useNavigate } from "react-router-dom";
 
 const Searchbar = () => {
   const { searchTerm, setSearchTerm } = useGlobalContext();
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef(null);
+  const navigate = useNavigate();
 
   // Memoize the debounced function using useCallback
   const debouncedSetSearchTerm = useCallback(
@@ -30,6 +32,9 @@ const Searchbar = () => {
     e.preventDefault();
     if (!searchTerm) return;
     setSearchTerm(inputValue);
+    if (searchTerm) {
+      navigate(`/suchresultate?query=${inputValue}`);
+    }
   };
 
   return (

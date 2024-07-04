@@ -10,7 +10,8 @@ const Homepage = () => {
         <Navbar />
         <Searchbar />
       </header>
-      <section className="container">
+
+      <section>
         <Outlet />
       </section>
 

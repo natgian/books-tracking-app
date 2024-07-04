@@ -1,8 +1,5 @@
-import Footer from "./components/Footer/Footer";
-import Navbar from "./components/Navbar/Navbar";
-import Searchbar from "./components/Searchbar/Searchbar";
 import "./index.css";
-import Searchresults from "./components/Seearchresults/Searchresults";
+import Searchresults from "./pages/Seearchresults/Searchresults";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { MainLayout, Homepage, Book } from "./pages";
 
@@ -16,8 +13,12 @@ const router = createBrowserRouter([
         element: <Homepage />,
       },
       {
-        path: "/book",
+        path: "/buch",
         element: <Book />,
+      },
+      {
+        path: "/suchresultate",
+        element: <Searchresults />,
       },
     ],
   },
