@@ -140,6 +140,10 @@ p {
   font-size: var(--main-font-size);
 }
 
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: searchfield-cancel-button;
+}
+
 /*-----------*/
 /* UTILITIES */
 /*-----------*/
@@ -225,18 +229,9 @@ p {
 }
 
 @media screen and (max-width: 768px) {
-  /* .home-container {
-    margin: 0 auto;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    align-items: center;
-  }  */
-
   .intro-text {
     max-width: 600px;
-    font-size: 1.25rem;
+    font-size: 1.75rem;
   }
 }
 

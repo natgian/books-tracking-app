@@ -6,7 +6,7 @@ import Tippy from "@tippyjs/react";
 import "./Searchbar.css";
 import "tippy.js/dist/tippy.css";
 import { useGlobalContext } from "../../context";
-import { useNavigate } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 
 const Searchbar = () => {
   const { searchTerm, setSearchTerm } = useGlobalContext();
@@ -38,42 +38,23 @@ const Searchbar = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="searchbar-form">
-      <div className="searchbar-container">
-        <input
-          type="text"
-          id="search"
-          name="search"
-          placeholder="Titel / Autor / ISBN ..."
-          aria-label="Suchbegriff eingeben"
-          className="searchbar-input"
-          value={inputValue}
-          onChange={handleChange}
-          ref={inputRef}
-        />
+    <Form onSubmit={handleSubmit} className="searchbar-form">
+      <input
+        type="search"
+        id="search"
+        name="search"
+        placeholder="Titel / Autor / ISBN ..."
+        aria-label="Suchbegriff eingeben"
+        className="searchbar-input"
+        value={inputValue}
+        onChange={handleChange}
+        ref={inputRef}
+      />
 
-        {searchTerm && (
-          <Tippy content="Suchbegriff löschen">
-            <button
-              type="button"
-              className="remove-input-btn"
-              aria-label="Suchbegriff löschen"
-              onClick={() => {
-                setInputValue("");
-                setSearchTerm("");
-                inputRef.current.focus();
-              }}
-            >
-              <CgClose />
-            </button>
-          </Tippy>
-        )}
-
-        <button type="submit" className="searchbar-icon">
-          <BiSearch />
-        </button>
-      </div>
-    </form>
+      <button type="submit" className="searchbar-btn">
+        <BiSearch className="searchbar-icon" />
+      </button>
+    </Form>
   );
 };
 export default Searchbar;
