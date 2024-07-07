@@ -4,15 +4,13 @@ import "./Searchresults.css";
 import { secureImageUrl } from "../../utilities/secureImageURL";
 
 const SearchresultCard = ({ book }) => {
+  const imageUrl = book.volumeInfo?.imageLinks?.smallThumbnail;
   return (
     <Link to={`/buch/${book.id}`}>
       <div className="searchresult-wrapper">
         <div className="searchresult-cover-wrapper">
           <img
-            src={
-              secureImageUrl(book.volumeInfo?.imageLinks?.smallThumbnail) ||
-              defaultCover
-            }
+            src={imageUrl ? secureImageUrl(imageUrl) : defaultCover}
             alt={book.volumeInfo.title}
           />
         </div>
