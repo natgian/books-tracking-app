@@ -1,23 +1,19 @@
-import { useCallback, useState, useRef } from "react";
+import { useCallback, useState } from "react";
 import { debounce } from "lodash";
 import { BiSearch } from "react-icons/bi";
-import { CgClose } from "react-icons/cg";
-import Tippy from "@tippyjs/react";
 import "./Searchbar.css";
 import "tippy.js/dist/tippy.css";
-import { useGlobalContext } from "../../context";
 import { Form, useNavigate } from "react-router-dom";
 
 const Searchbar = () => {
-  const { searchTerm, setSearchTerm } = useGlobalContext();
+  // const { searchTerm, setSearchTerm } = useGlobalContext();
   const [inputValue, setInputValue] = useState("");
-  const inputRef = useRef(null);
   const navigate = useNavigate();
 
   // Memoize the debounced function using useCallback
-  const debouncedSetSearchTerm = useCallback(
+  const debouncedNavigate = useCallback(
     debounce((value) => {
-      setSearchTerm(value); // Set the search term after 500ms of debouncing
+      navigate(`/suchresultate?q=${value}`);
     }, 500),
     [] // The dependencies array is empty, so this function is only created once
   );
@@ -25,16 +21,12 @@ const Searchbar = () => {
   const handleChange = (e) => {
     const value = e.target.value;
     setInputValue(value);
-    debouncedSetSearchTerm(value);
+    debouncedNavigate(value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!searchTerm) return;
-    setSearchTerm(inputValue);
-    if (searchTerm) {
-      navigate(`/suchresultate?query=${inputValue}`);
-    }
+    navigate(`/suchresultate?q=${inputValue}`);
   };
 
   return (
@@ -48,7 +40,6 @@ const Searchbar = () => {
         className="searchbar-input"
         value={inputValue}
         onChange={handleChange}
-        ref={inputRef}
       />
 
       <button type="submit" className="searchbar-btn">

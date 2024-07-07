@@ -1,16 +1,51 @@
-import { useGlobalContext } from "../../context";
-import { useBooks } from "../../hooks/useBooks";
-import "./Searchresults.css";
+import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { fetchBooks } from "../../api/books";
 import defaultCover from "../../assets/no-cover.jpg";
 import { BiErrorCircle } from "react-icons/bi";
+import { useLoaderData } from "react-router-dom";
+import "./Searchresults.css";
+
+export const searchresultsLoader =
+  (queryClient) =>
+  async ({ request }) => {
+    const url = new URL(request.url);
+    const searchTerm = url.searchParams.get("q");
+
+    if (!searchTerm) {
+      return [];
+    }
+
+    await queryClient.prefetchQuery({
+      queryKey: ["books", searchTerm],
+      queryFn: () => fetchBooks(searchTerm),
+    });
+
+    return queryClient.getQueryData(["books", searchTerm]);
+  };
 
 const Searchresults = () => {
-  const { searchTerm } = useGlobalContext();
-  const { data, isPending, isError, error } = useBooks(searchTerm);
+  const initialData = useLoaderData();
+  const [lastSearchTerm, setLastSearchTerm] = useState("");
+  const searchTerm = new URLSearchParams(window.location.search).get("q");
 
-  if (!searchTerm) {
-    return null;
-  }
+  useEffect(() => {
+    if (searchTerm) {
+      setLastSearchTerm(searchTerm);
+    }
+  }, [searchTerm]);
+
+  const {
+    data: books = [],
+    isPending,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["books", lastSearchTerm],
+    queryFn: () => fetchBooks(lastSearchTerm),
+    initialData,
+    enabled: !!searchTerm, // Only run the query if searchTerm is not empty
+  });
 
   if (isPending) {
     return (
@@ -32,7 +67,7 @@ const Searchresults = () => {
     );
   }
 
-  if (data.length < 1) {
+  if (books.length < 1) {
     return (
       <section className="text-center section-container">
         Die Suche ergab leider keine Treffer.
@@ -40,11 +75,9 @@ const Searchresults = () => {
     );
   }
 
-  console.log(data);
-
   return (
     <section className="section-container searchresults-container">
-      {data.map((book) => {
+      {books.map((book) => {
         return (
           <a href="#" key={book.id}>
             <div className="searchresult-wrapper">
