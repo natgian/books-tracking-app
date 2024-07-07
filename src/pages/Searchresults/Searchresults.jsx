@@ -1,16 +1,17 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchBooks } from "../../api/books";
-import defaultCover from "../../assets/no-cover.jpg";
+import { fetchBooks } from "../../api/fetchBooks";
 import { BiErrorCircle } from "react-icons/bi";
 import { useLoaderData } from "react-router-dom";
 import "./Searchresults.css";
+import SearchresultCard from "./SearchresultCard";
 
-export const searchresultsLoader =
+// LOADER //
+export const searchResultsLoader =
   (queryClient) =>
   async ({ request }) => {
-    const url = new URL(request.url);
-    const searchTerm = url.searchParams.get("q");
+    const url = new URL(request.url); // creating a new URL object from request.url
+    const searchTerm = url.searchParams.get("q"); // extracts the searchTerm parameter ("q") from the URL query string
 
     if (!searchTerm) {
       return [];
@@ -24,6 +25,7 @@ export const searchresultsLoader =
     return queryClient.getQueryData(["books", searchTerm]);
   };
 
+// SEARCHRESULTS //
 const Searchresults = () => {
   const initialData = useLoaderData();
   const [lastSearchTerm, setLastSearchTerm] = useState("");
@@ -47,6 +49,7 @@ const Searchresults = () => {
     enabled: !!searchTerm, // Only run the query if searchTerm is not empty
   });
 
+  // LOADING STATE //
   if (isPending) {
     return (
       <section className="text-center section-container">
@@ -55,6 +58,7 @@ const Searchresults = () => {
     );
   }
 
+  // ERROR STATE //
   if (isError) {
     return (
       <section className="text-center section-container">
@@ -67,6 +71,7 @@ const Searchresults = () => {
     );
   }
 
+  // NO SEARCH RESULTS //
   if (books.length < 1) {
     return (
       <section className="text-center section-container">
@@ -78,29 +83,7 @@ const Searchresults = () => {
   return (
     <section className="section-container searchresults-container">
       {books.map((book) => {
-        return (
-          <a href="#" key={book.id}>
-            <div className="searchresult-wrapper">
-              <div className="searchresult-cover-wrapper">
-                <img
-                  src={
-                    book.volumeInfo?.imageLinks?.smallThumbnail || defaultCover
-                  }
-                  alt={book.volumeInfo.title}
-                />
-              </div>
-              <div className="searchresult-details-wrapper">
-                <p className="searchresult-title">{book.volumeInfo.title}</p>
-                <p className="searchresult-author">
-                  {book.volumeInfo.authors &&
-                    (book.volumeInfo.authors.length > 1
-                      ? book.volumeInfo.authors.join(", ")
-                      : book.volumeInfo.authors)}
-                </p>
-              </div>
-            </div>
-          </a>
-        );
+        return <SearchresultCard key={book.id} book={book} />;
       })}
     </section>
   );

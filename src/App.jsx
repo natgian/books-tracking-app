@@ -1,13 +1,12 @@
 import "./index.css";
-import Searchresults, {
-  searchresultsLoader,
-} from "./pages/Searchresults/Searchresults";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { MainLayout, Homepage, Book } from "./pages";
-
-// import { loader as searchresultsLoader } from "./pages/Searchresults/Searchresults";
+import { singleBookLoader } from "./pages/Book/Book";
+import Searchresults, {
+  searchResultsLoader,
+} from "./pages/Searchresults/Searchresults";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,13 +26,14 @@ const router = createBrowserRouter([
         element: <Homepage />,
       },
       {
-        path: "/buch",
+        path: "/buch/:id",
         element: <Book />,
+        loader: singleBookLoader(queryClient),
       },
       {
         path: "/suchresultate",
         element: <Searchresults />,
-        loader: searchresultsLoader(queryClient),
+        loader: searchResultsLoader(queryClient),
       },
     ],
   },

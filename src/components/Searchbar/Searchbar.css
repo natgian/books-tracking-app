@@ -10,7 +10,8 @@
 
 .searchbar-input {
   height: 3rem;
-  width: 70%;
+  width: 80%;
+  max-width: 600px;
   padding: 0.5rem 1rem;
   border: transparent;
   border-top-left-radius: var(--border-radius);

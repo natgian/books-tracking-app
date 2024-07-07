@@ -1,10 +1,47 @@
-import { useState } from "react";
 import "./Book.css";
-import { BiSolidDownArrow } from "react-icons/bi";
-import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
+import Tippy from "@tippyjs/react";
+import { BiSolidDownArrow } from "react-icons/bi";
+import { BiErrorCircle } from "react-icons/bi";
+import { useState } from "react";
+import { fetchSingleBook } from "../../api/fetchSingleBook";
+import { useLoaderData } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { secureImageUrl } from "../../utilities/secureImageURL";
+import { stripHTMLtags } from "../../utilities/stripHTMLtags";
+import { getBestImage } from "../../utilities/getBestImage";
 
+// LOADER //
+export const singleBookLoader =
+  (queryClient) =>
+  async ({ params }) => {
+    const { id } = params;
+
+    await queryClient.prefetchQuery({
+      queryKey: ["book", id],
+      queryFn: () => fetchSingleBook(id),
+    });
+
+    return queryClient.getQueryData(["book", id]);
+  };
+
+// BOOK //
 const Book = () => {
+  const initialData = useLoaderData();
+  const { id } = initialData;
+  const {
+    data: book,
+    isPending,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["book", id],
+    queryFn: () => fetchSingleBook(id),
+    initialData,
+  });
+
+  const imageURL = getBestImage(book.volumeInfo.imageLinks);
+
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleSelectChange = (e) => {
@@ -23,14 +60,38 @@ const Book = () => {
     }
   };
 
+  // LOADING STATE //
+  if (isPending) {
+    return (
+      <section className="text-center section-container">
+        Wird geladen...
+      </section>
+    );
+  }
+
+  // ERROR STATE //
+  if (isError) {
+    return (
+      <section className="text-center section-container">
+        Etwas ist schiefgelaufen. Bitte erneut versuchen.
+        <div className="error">
+          <BiErrorCircle />
+          {error.message}
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="book-details section-container">
       <div className="book-cover-container">
+        {/* COVER */}
         <img
-          src="https://images.thalia.media/00/-/6ca5129269624803a37091db8624a685/die-letzte-nacht-gebundene-ausgabe-karin-slaughter.jpeg"
-          alt=""
+          src={secureImageUrl(imageURL)}
+          alt={book.volumeInfo.title}
           className="book-cover"
         />
+        {/* READING LIST */}
         <Tippy content="Leseliste bearbeiten">
           <div className="custom-select">
             <BiSolidDownArrow className="select-arrow" />
@@ -52,56 +113,62 @@ const Book = () => {
         </Tippy>
       </div>
 
+      {/* BOOK DETAILS */}
       <div className="book-details-container">
         <div className="book-header">
-          <h1 className="book-title">Die letzte Nacht</h1>
-          <div>
-            <a href="#" className="book-author">
-              Karin Slaughter
-            </a>
+          <h1 className="book-title">{book.volumeInfo.title}</h1>
+          <div className="book-author-container">
+            {book.volumeInfo.authors &&
+              book.volumeInfo.authors.map((author, index) => (
+                <span key={index}>
+                  <a href="#" className="book-author">
+                    {author}
+                  </a>
+                  {index < book.volumeInfo.authors.length - 1 && ","}
+                </span>
+              ))}
           </div>
           <div className="book-genre-container">
-            <a href="#" className="book-genre">
-              Krimi
-            </a>
-            <a href="#" className="book-genre">
-              Thriller
-            </a>
+            {book.volumeInfo.categories &&
+              book.volumeInfo.categories.slice(0, 4).map((category, index) => (
+                <p key={index} className="book-genre">
+                  {category}
+                </p>
+              ))}
           </div>
         </div>
 
-        <p className="book-text">
-          Vor fünfzehn Jahren veränderte sich Sara Lintons Leben schlagartig,
-          als sie nach einem Barbesuch brutal überfallen wurde. Mittlerweile hat
-          sie es geschafft, das Trauma hinter sich zu lassen: Sara ist
-          erfolgreiche Ärztin und mit einem Mann verlobt, den sie liebt...
-        </p>
+        {book.volumeInfo.description && (
+          <p className="book-text">
+            {stripHTMLtags(book.volumeInfo.description)}
+          </p>
+        )}
         <div className="book-details-table">
           <table>
             <tbody>
               <tr>
                 <th>ISBN:</th>
-                <td>978-3-365-00370-1</td>
+                <td>
+                  {book.volumeInfo.industryIdentifiers.find(
+                    (id) => id.type === "ISBN_13"
+                  )?.identifier || "ISBN nicht gefunden"}
+                </td>
               </tr>
               <tr>
                 <th>Verlag:</th>
-                <td>Haper Collins</td>
+                <td>{book.volumeInfo.publisher}</td>
               </tr>
               <tr>
                 <th>Erscheinungsdatum:</th>
-                <td>21.07.2023</td>
+                <td>{book.volumeInfo.publishedDate}</td>
               </tr>
               <tr>
                 <th>Seitenzah:</th>
-                <td>560</td>
+                <td>{book.volumeInfo.pageCount}</td>
               </tr>
               <tr>
                 <th>Sprache:</th>
-                <td>Deutsch</td>
-              </tr>
-              <tr>
-                <th>Einband:</th>
-                <td>Fester Einband</td>
+                <td>{book.volumeInfo.language.toUpperCase()}</td>
               </tr>
             </tbody>
           </table>

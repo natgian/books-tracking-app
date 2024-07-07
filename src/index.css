@@ -254,7 +254,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 @media screen and (max-width: 1000px) {
   .section-container {
-    width: min(1800px, 100% - 2em * 2);
+    width: min(1800px, 100% - 2em * 3);
   }
 }
 
