@@ -22,11 +22,11 @@ const BookDetails = ({
         <div className="book-author-container">
           {authors &&
             authors.map((author, index) => (
-              <span key={index}>
+              <span key={index} className="book-author">
                 <a href="#" className="book-author">
                   {author}
                 </a>
-                {index < authors.length - 1 && ","}
+                {index < authors.length - 1 && ", "}
               </span>
             ))}
         </div>
