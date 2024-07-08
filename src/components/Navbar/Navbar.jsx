@@ -15,15 +15,19 @@ import Button from "../Button";
 
 // React
 import { useState, useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 const Navbar = () => {
   const [showLinks, setShowLinks] = useState(false);
   const menuContainerRef = useRef(null);
   const menuRef = useRef(null);
 
-  const toggleLinks = () => {
+  const toggleMenu = () => {
     setShowLinks(!showLinks);
+  };
+
+  const closeMenu = () => {
+    setShowLinks(false);
   };
 
   const linkStyles = {
@@ -37,9 +41,11 @@ const Navbar = () => {
       <div className="nav-center">
         <div className="nav-header">
           {/* Logo */}
-          <div className="logo">LESEOASE</div>
+          <div className="logo">
+            <Link className="logo">LESEOASE</Link>
+          </div>
           {/* Menu-Button */}
-          <button type="button" className="nav-toggle" onClick={toggleLinks}>
+          <button type="button" className="nav-toggle" onClick={toggleMenu}>
             {showLinks ? <CgClose /> : <BiMenu />}
           </button>
         </div>
@@ -53,19 +59,19 @@ const Navbar = () => {
             {/* Links */}
             <ul className="links">
               <li>
-                <NavLink to="/">
+                <NavLink to="/" onClick={closeMenu}>
                   <BiSolidHome />
                   Home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/leseliste">
+                <NavLink to="/leseliste" onClick={closeMenu}>
                   <BiSolidBookmark />
                   Leseliste
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/profil">
+                <NavLink to="/profil" onClick={closeMenu}>
                   <BiSolidUser />
                   Profil
                 </NavLink>
