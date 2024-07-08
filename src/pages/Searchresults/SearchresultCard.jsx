@@ -1,7 +1,7 @@
 import defaultCover from "../../assets/no-cover.jpg";
 import { Link } from "react-router-dom";
 import "./Searchresults.css";
-import { secureImageUrl } from "../../utilities/secureImageURL";
+import { secureImageURL } from "../../utilities/secureImageURL";
 
 const SearchresultCard = ({ book }) => {
   const imageUrl = book.volumeInfo?.imageLinks?.smallThumbnail;
@@ -10,7 +10,7 @@ const SearchresultCard = ({ book }) => {
       <div className="searchresult-wrapper">
         <div className="searchresult-cover-wrapper">
           <img
-            src={imageUrl ? secureImageUrl(imageUrl) : defaultCover}
+            src={imageUrl ? secureImageURL(imageUrl) : defaultCover}
             alt={book.volumeInfo.title}
           />
         </div>

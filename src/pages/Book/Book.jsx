@@ -7,7 +7,7 @@ import { useState } from "react";
 import { fetchSingleBook } from "../../api/fetchSingleBook";
 import { useLoaderData } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { secureImageUrl } from "../../utilities/secureImageURL";
+import { secureImageURL } from "../../utilities/secureImageURL";
 import { stripHTMLtags } from "../../utilities/stripHTMLtags";
 import { getBestImage } from "../../utilities/getBestImage";
 
@@ -87,7 +87,7 @@ const Book = () => {
       <div className="book-cover-container">
         {/* COVER */}
         <img
-          src={secureImageUrl(imageURL)}
+          src={secureImageURL(imageURL)}
           alt={book.volumeInfo.title}
           className="book-cover"
         />
