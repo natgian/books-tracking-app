@@ -3,10 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { MainLayout, Homepage, Book } from "./pages";
-import { singleBookLoader } from "./pages/Book/Book";
-import Searchresults, {
-  searchResultsLoader,
-} from "./pages/Searchresults/Searchresults";
+import Searchresults from "./pages/Searchresults/Searchresults";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,6 +12,9 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+import { loader as searchResultsLoader } from "./pages/Searchresults/Searchresults";
+import { loader as singleBookLoader } from "./pages/Book/Book";
 
 const router = createBrowserRouter([
   {

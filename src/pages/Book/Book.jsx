@@ -9,7 +9,7 @@ import SelectedReadingOption from "./SelectedReadingOption";
 import BookDetails from "./BookDetails";
 
 // LOADER //
-export const singleBookLoader =
+export const loader =
   (queryClient) =>
   async ({ params }) => {
     const { id } = params;

@@ -7,7 +7,7 @@ import "./Searchresults.css";
 import SearchresultCard from "./SearchresultCard";
 
 // LOADER //
-export const searchResultsLoader =
+export const loader =
   (queryClient) =>
   async ({ request }) => {
     const url = new URL(request.url); // creating a new URL object from request.url

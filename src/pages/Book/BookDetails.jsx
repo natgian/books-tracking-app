@@ -60,25 +60,26 @@ const BookDetails = ({
             <tr>
               <th>ISBN:</th>
               <td>
-                {isbn.find((id) => id.type === "ISBN_13")?.identifier ||
-                  "ISBN nicht gefunden"}
+                {(isbn &&
+                  isbn.find((id) => id.type === "ISBN_13")?.identifier) ||
+                  "-"}
               </td>
             </tr>
             <tr>
               <th>Verlag:</th>
-              <td>{publisher}</td>
+              <td>{publisher || "-"}</td>
             </tr>
             <tr>
               <th>Erscheinungsdatum:</th>
-              <td>{publishedDate}</td>
+              <td>{publishedDate || "-"}</td>
             </tr>
             <tr>
               <th>Seitenzah:</th>
-              <td>{pageCount}</td>
+              <td>{pageCount || "-"}</td>
             </tr>
             <tr>
               <th>Sprache:</th>
-              <td>{language.toUpperCase()}</td>
+              <td>{language.toUpperCase() || "-"}</td>
             </tr>
           </tbody>
         </table>
