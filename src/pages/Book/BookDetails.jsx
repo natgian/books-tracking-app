@@ -47,7 +47,7 @@ const BookDetails = ({
             : `${cleanedDescription.substring(0, 500)}... `}
           <button
             type="button"
-            className="show-text-btn"
+            className="show-more-btn"
             onClick={() => setShowText(!showText)}
           >
             {showText ? "weniger anzeigen" : "mehr anzeigen"}
@@ -74,7 +74,7 @@ const BookDetails = ({
               <td>{publishedDate || "-"}</td>
             </tr>
             <tr>
-              <th>Seitenzah:</th>
+              <th>Seitenzahl:</th>
               <td>{pageCount || "-"}</td>
             </tr>
             <tr>

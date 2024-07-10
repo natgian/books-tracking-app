@@ -79,15 +79,6 @@
   line-height: 1.6;
 }
 
-.show-text-btn {
-  border: none;
-  background: none;
-  text-decoration: underline;
-  color: var(--action-300);
-  font-weight: 600;
-  margin-left: 0.2rem;
-}
-
 .book-details-table {
   margin: 2rem 0;
 }

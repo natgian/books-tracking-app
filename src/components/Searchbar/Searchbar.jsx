@@ -6,14 +6,15 @@ import "tippy.js/dist/tippy.css";
 import { Form, useNavigate } from "react-router-dom";
 
 const Searchbar = () => {
-  // const { searchTerm, setSearchTerm } = useGlobalContext();
   const [inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
 
   // Memoize the debounced function using useCallback
   const debouncedNavigate = useCallback(
     debounce((value) => {
-      navigate(`/suchresultate?q=${value}`);
+      if (value) {
+        navigate(`/suchresultate?q=${value}`);
+      }
     }, 500),
     [] // The dependencies array is empty, so this function is only created once
   );
@@ -21,12 +22,16 @@ const Searchbar = () => {
   const handleChange = (e) => {
     const value = e.target.value;
     setInputValue(value);
-    debouncedNavigate(value);
+    if (value) {
+      debouncedNavigate(value);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/suchresultate?q=${inputValue}`);
+    if (inputValue) {
+      navigate(`/suchresultate?q=${inputValue}`);
+    }
   };
 
   return (

@@ -1,8 +1,6 @@
-import axios from "axios";
+import axiosConfig from "./axiosConfig";
 
 export const fetchSingleBook = async (id) => {
-  const result = await axios.get(
-    `https://www.googleapis.com/books/v1/volumes/${id}`
-  );
+  const result = await axiosConfig.get(`/volumes/${id}`);
   return result.data;
 };

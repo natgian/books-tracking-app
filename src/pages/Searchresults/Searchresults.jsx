@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { fetchBooks } from "../../api/fetchBooks";
 import { BiErrorCircle } from "react-icons/bi";
 import { useLoaderData } from "react-router-dom";
@@ -18,36 +18,46 @@ export const loader =
     }
 
     await queryClient.prefetchQuery({
-      queryKey: ["books", searchTerm],
-      queryFn: () => fetchBooks(searchTerm),
+      queryKey: ["books", searchTerm, 0],
+      queryFn: () => fetchBooks(searchTerm, 0),
     });
 
-    return queryClient.getQueryData(["books", searchTerm]);
+    return queryClient.getQueryData(["books", searchTerm, 0]);
   };
 
-// SEARCHRESULTS //
+// SEARCHRESULTS COMPONENT //
 const Searchresults = () => {
   const initialData = useLoaderData();
-  const [lastSearchTerm, setLastSearchTerm] = useState("");
+  const [page, setPage] = useState(0);
   const searchTerm = new URLSearchParams(window.location.search).get("q");
-
-  useEffect(() => {
-    if (searchTerm) {
-      setLastSearchTerm(searchTerm);
-    }
-  }, [searchTerm]);
+  const maxResultsPerPage = 10;
 
   const {
-    data: books = [],
-    isPending,
-    isError,
+    data,
     error,
-  } = useQuery({
-    queryKey: ["books", lastSearchTerm],
-    queryFn: () => fetchBooks(lastSearchTerm),
-    initialData,
-    enabled: !!searchTerm, // Only run the query if searchTerm is not empty
+    isError,
+    isPending,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
+    queryKey: ["books", searchTerm],
+    queryFn: ({ pageParam = 0 }) =>
+      fetchBooks(searchTerm, pageParam * maxResultsPerPage, maxResultsPerPage),
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.length === maxResultsPerPage
+        ? allPages.length
+        : undefined;
+    },
+    initialData: {
+      pages: [initialData],
+      pageParams: [0],
+    },
+    enabled: !!searchTerm,
   });
+
+  // Flatten the pages to get the list of books
+  const books = data?.pages.flat() || [];
 
   // LOADING STATE //
   if (isPending) {
@@ -81,10 +91,23 @@ const Searchresults = () => {
   }
 
   return (
-    <section className="section-container searchresults-container">
-      {books.map((book) => {
-        return <SearchresultCard key={book.id} book={book} />;
-      })}
+    <section className="section-container">
+      <div className="searchresults-container">
+        {books.map((book) => {
+          return <SearchresultCard key={book.id} book={book} />;
+        })}
+      </div>
+      {hasNextPage && (
+        <div className="flex-center mt-2 mb-4">
+          <button
+            onClick={() => fetchNextPage()}
+            disabled={!hasNextPage || isFetchingNextPage}
+            className="show-more-btn flex-center"
+          >
+            {isFetchingNextPage ? "Werden geladen..." : "Mehr laden"}
+          </button>
+        </div>
+      )}
     </section>
   );
 };

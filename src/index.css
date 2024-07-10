@@ -176,6 +176,11 @@ input[type="search"]::-webkit-search-cancel-button {
   text-align: center;
 }
 
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
 .error {
   display: flex;
   flex-direction: column;
@@ -288,6 +293,15 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .btn-block {
   width: 100%;
+}
+
+.show-more-btn {
+  border: none;
+  background: none;
+  text-decoration: underline;
+  color: var(--action-300);
+  font-weight: 600;
+  margin-left: 0.2rem;
 }
 
 .btn-select {
