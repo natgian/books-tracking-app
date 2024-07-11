@@ -5,7 +5,6 @@ export const fetchAuthorBooks = async (
   startIndex = 0,
   maxResults = 10
 ) => {
-  console.log("Fetching books for author:");
   const result = await axiosConfig.get("/volumes", {
     params: {
       q: `inauthor:${author}`,
@@ -13,6 +12,5 @@ export const fetchAuthorBooks = async (
       maxResults,
     },
   });
-  console.log("fetchAuthorBooks", result);
   return result.data.items || [];
 };

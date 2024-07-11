@@ -57,6 +57,11 @@ const Searchresults = () => {
   // Flatten the pages to get the list of books
   const books = data?.pages.flat() || [];
 
+  // Check for duplicates and create a new array without duplicates
+  const uniqueBooks = books.filter(
+    (book, index, self) => index === self.findIndex((b) => b.id === book.id)
+  );
+
   // LOADING STATE //
   if (isPending) {
     return (
@@ -80,7 +85,7 @@ const Searchresults = () => {
   }
 
   // NO SEARCH RESULTS //
-  if (books.length < 1) {
+  if (uniqueBooks.length < 1) {
     return (
       <section className="text-center section-container">
         Die Suche ergab leider keine Treffer.
@@ -91,7 +96,7 @@ const Searchresults = () => {
   return (
     <section className="section-container">
       <div className="searchresults-container">
-        {books.map((book) => {
+        {uniqueBooks.map((book) => {
           return <SearchresultCard key={book.id} book={book} />;
         })}
       </div>
