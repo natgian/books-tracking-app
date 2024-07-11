@@ -1,6 +1,5 @@
 // Navbar CSS
 import "./Navbar.css";
-
 // BoxIcons
 import {
   BiSolidHome,
@@ -9,12 +8,10 @@ import {
   BiMenu,
 } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
-
 // Components
 import Button from "../Button";
-
 // React
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback, memo, useMemo } from "react";
 import { NavLink, Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -22,19 +19,22 @@ const Navbar = () => {
   const menuContainerRef = useRef(null);
   const menuRef = useRef(null);
 
-  const toggleMenu = () => {
-    setShowLinks(!showLinks);
-  };
+  const toggleMenu = useCallback(() => {
+    setShowLinks((prev) => !prev);
+  }, []);
 
-  const closeMenu = () => {
+  const closeMenu = useCallback(() => {
     setShowLinks(false);
-  };
+  }, []);
 
-  const linkStyles = {
-    height: showLinks
-      ? `${menuRef.current.getBoundingClientRect().height}px`
-      : "0px",
-  };
+  const linkStyles = useMemo(
+    () => ({
+      height: showLinks
+        ? `${menuRef.current.getBoundingClientRect().height}px`
+        : "0px",
+    }),
+    [showLinks]
+  );
 
   return (
     <nav>
@@ -87,4 +87,4 @@ const Navbar = () => {
     </nav>
   );
 };
-export default Navbar;
+export default memo(Navbar);

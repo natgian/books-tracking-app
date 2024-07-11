@@ -16,6 +16,7 @@ const Homepage = () => {
             src={smallHomeImage}
             alt="a woman sitting in a corner, in front of a window, reading a book"
             className="home-img"
+            loading="lazy"
           />
         </picture>
       </div>
