@@ -1,33 +1,13 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { fetchBooks } from "../../api/fetchBooks";
+import { fetchAuthorBooks } from "../../api/fetchAuthorBooks";
 import { BiErrorCircle } from "react-icons/bi";
-import { useLoaderData } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./Searchresults.css";
 import SearchresultCard from "./SearchresultCard";
 
-// LOADER //
-export const loader =
-  (queryClient) =>
-  async ({ request }) => {
-    const url = new URL(request.url); // creating a new URL object from request.url
-    const searchTerm = url.searchParams.get("q"); // extracts the searchTerm parameter ("q") from the URL query string
-
-    if (!searchTerm) {
-      return [];
-    }
-
-    await queryClient.prefetchQuery({
-      queryKey: ["books", searchTerm, 0],
-      queryFn: () => fetchBooks(searchTerm, 0),
-    });
-
-    return queryClient.getQueryData(["books", searchTerm, 0]);
-  };
-
 // SEARCHRESULTS COMPONENT //
-const Searchresults = () => {
-  const initialData = useLoaderData();
-  const searchTerm = new URLSearchParams(window.location.search).get("q");
+const AuthorSearchresults = () => {
+  const { author } = useParams();
   const maxResultsPerPage = 10;
 
   const {
@@ -39,19 +19,19 @@ const Searchresults = () => {
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQuery({
-    queryKey: ["books", searchTerm],
+    queryKey: ["authorBooks", author],
     queryFn: ({ pageParam = 0 }) =>
-      fetchBooks(searchTerm, pageParam * maxResultsPerPage, maxResultsPerPage),
+      fetchAuthorBooks(
+        author,
+        pageParam * maxResultsPerPage,
+        maxResultsPerPage
+      ),
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.length === maxResultsPerPage
         ? allPages.length
         : undefined;
     },
-    initialData: {
-      pages: [initialData],
-      pageParams: [0],
-    },
-    enabled: !!searchTerm,
+    enabled: !!author,
   });
 
   // Flatten the pages to get the list of books
@@ -111,4 +91,4 @@ const Searchresults = () => {
     </section>
   );
 };
-export default Searchresults;
+export default AuthorSearchresults;

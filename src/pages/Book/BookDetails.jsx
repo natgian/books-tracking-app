@@ -1,5 +1,6 @@
 import { stripHTMLtags } from "../../utilities/stripHTMLtags";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const BookDetails = ({
   title,
@@ -23,9 +24,12 @@ const BookDetails = ({
           {authors &&
             authors.map((author, index) => (
               <span key={index} className="book-author">
-                <a href="#" className="book-author">
+                <Link
+                  to={`/suchresultate/autor/${author}`}
+                  className="book-author"
+                >
                   {author}
-                </a>
+                </Link>
                 {index < authors.length - 1 && ", "}
               </span>
             ))}

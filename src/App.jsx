@@ -4,6 +4,7 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { MainLayout, Homepage, Book } from "./pages";
 import Searchresults from "./pages/Searchresults/Searchresults";
+import AuthorSearchresults from "./pages/Searchresults/SearchresultsAuthor";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
         path: "/suchresultate",
         element: <Searchresults />,
         loader: searchResultsLoader(queryClient),
+      },
+      {
+        path: "/suchresultate/autor/:author",
+        element: <AuthorSearchresults />,
       },
     ],
   },

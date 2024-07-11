@@ -42,7 +42,9 @@ const Navbar = () => {
         <div className="nav-header">
           {/* Logo */}
           <div className="logo">
-            <Link className="logo">LESEOASE</Link>
+            <Link to="/" className="logo">
+              LESEOASE
+            </Link>
           </div>
           {/* Menu-Button */}
           <button type="button" className="nav-toggle" onClick={toggleMenu}>
