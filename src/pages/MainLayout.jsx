@@ -15,7 +15,10 @@ const MainLayout = () => {
 
       <section>
         {isPageLoading ? (
-          <div className="text-center section-container">Wird geladen...</div>
+          <div className="text-center section-container">
+            <div className="loader"></div>
+            Wird geladen...
+          </div>
         ) : (
           <Outlet />
         )}

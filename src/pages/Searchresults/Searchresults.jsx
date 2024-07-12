@@ -66,6 +66,7 @@ const Searchresults = () => {
   if (isPending) {
     return (
       <section className="text-center section-container">
+        <div className="loader"></div>
         Wird geladen...
       </section>
     );
@@ -76,7 +77,7 @@ const Searchresults = () => {
     return (
       <section className="text-center section-container">
         Etwas ist schiefgelaufen. Bitte erneut versuchen.
-        <div className="error">
+        <div className="error-box">
           <BiErrorCircle />
           {error.message}
         </div>
@@ -107,9 +108,11 @@ const Searchresults = () => {
             disabled={!hasNextPage || isFetchingNextPage}
             className="show-more-btn flex-center"
           >
-            {isFetchingNextPage
-              ? "Werden geladen..."
-              : "Weitere Ergebnisse anzeigen"}
+            {isFetchingNextPage ? (
+              <div className="loader"></div>
+            ) : (
+              "Weitere Ergebnisse anzeigen"
+            )}
           </button>
         </div>
       )}

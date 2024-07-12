@@ -43,6 +43,7 @@ const Book = () => {
   if (isPending) {
     return (
       <section className="text-center section-container">
+        <div className="loader"></div>
         Wird geladen...
       </section>
     );
@@ -53,7 +54,7 @@ const Book = () => {
     return (
       <section className="text-center section-container">
         Etwas ist schiefgelaufen. Bitte erneut versuchen.
-        <div className="error">
+        <div className="error-box">
           <BiErrorCircle />
           {error.message}
         </div>

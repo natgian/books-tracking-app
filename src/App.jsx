@@ -2,9 +2,14 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { MainLayout, Homepage, Book } from "./pages";
-import Searchresults from "./pages/Searchresults/Searchresults";
-import AuthorSearchresults from "./pages/Searchresults/SearchresultsAuthor";
+import {
+  MainLayout,
+  Homepage,
+  Book,
+  Error,
+  Searchresults,
+  SearchresultsAuthor,
+} from "./pages";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,6 +26,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <Error />,
     children: [
       {
         index: true,
@@ -38,7 +44,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/suchresultate/autor/:author",
-        element: <AuthorSearchresults />,
+        element: <SearchresultsAuthor />,
       },
     ],
   },
