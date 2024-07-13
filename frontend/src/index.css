@@ -383,6 +383,7 @@ input[type="search"]::-webkit-search-cancel-button {
   border-radius: var(--border-radius);
   border: transparent;
   padding: 0.75rem 1.25rem;
+  margin: 0.5rem;
   border-color: transparent;
   background-color: var(--action-100);
   font-weight: 700;
@@ -413,6 +414,7 @@ input[type="search"]::-webkit-search-cancel-button {
   font-weight: 600;
   margin-left: 0.2rem;
 }
+
 .show-more-btn:hover {
   border: none;
   background: none;
@@ -427,7 +429,6 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none; /* safari */
   font-size: 1rem;
   font-weight: 600;
-  text-indent: 25px;
   padding: 0.75rem 1.25rem 0.75rem 1.25rem;
   background-color: var(--action-100);
   border: transparent;
@@ -436,11 +437,25 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .btn-select:hover {
-  box-shadow: var(--shadow-3);
+  box-shadow: var(--shadow-2);
+}
+
+.custom-select {
+  position: relative;
+  margin: 1rem 0;
+  padding: 0.5rem;
 }
 
 .custom-select:hover {
   transform: scale(1.02);
+}
+
+.select-arrow {
+  position: absolute;
+  left: 10rem;
+  top: 1.5rem;
+  font-size: 1rem;
+  pointer-events: none;
 }
 
 .read {
@@ -453,17 +468,4 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .reading {
   background-color: #7fb3d5;
-}
-
-.custom-select {
-  position: relative;
-  margin: 1rem 0;
-}
-
-.select-arrow {
-  position: absolute;
-  left: 10rem;
-  top: 1rem;
-  font-size: 1rem;
-  pointer-events: none;
 }
