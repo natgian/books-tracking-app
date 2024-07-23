@@ -424,6 +424,18 @@ input[type="search"]::-webkit-search-cancel-button {
   margin-left: 0.2rem;
 }
 
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 8.75rem;
+  right: 3rem;
+  font-size: 2rem;
+  background-color: var(--action-100);
+  border-radius: 50%;
+  border: none;
+  padding: 0.25rem;
+  color: var(--text-color);
+}
+
 .btn-select {
   appearance: none;
   -webkit-appearance: none; /* safari */

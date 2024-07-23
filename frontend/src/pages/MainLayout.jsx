@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import Searchbar from "../components/Searchbar/Searchbar";
+import ScrollToTopBtn from "../components/ScrollToTopBtn";
 import { Outlet, useNavigation } from "react-router-dom";
 
 const MainLayout = () => {
@@ -23,7 +24,7 @@ const MainLayout = () => {
           <Outlet />
         )}
       </section>
-
+      <ScrollToTopBtn />
       <Footer />
     </main>
   );
