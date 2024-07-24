@@ -19,10 +19,6 @@
   box-shadow: var(--shadow-3);
 }
 
-.searchbar-input:focus {
-  outline: 1px solid var(--action-300);
-}
-
 .searchbar-btn {
   min-width: 4rem;
   max-width: 4rem;
@@ -31,7 +27,6 @@
   border: transparent;
   padding: 0.75rem 1.25rem;
   border-color: transparent;
-  background-color: var(--action-100);
   box-shadow: var(--shadow-3);
   font-weight: 700;
   cursor: pointer;
@@ -39,14 +34,14 @@
 }
 
 .searchbar-btn:hover {
-  background-color: var(--action-200);
+  background-color: var(--primary-color-200);
   box-shadow: var(--shadow-1);
   transform: scale(1.02);
 }
 
 .searchbar-btn:disabled {
   pointer-events: none;
-  background: var(--action-300);
+  background-color: var(--primary-color-300);
 }
 
 .searchbar-icon {

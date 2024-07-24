@@ -3,19 +3,37 @@ import { BiUpArrowAlt } from "react-icons/bi";
 
 const ScrollToTopBtn = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [bottom, setBottom] = useState("1rem");
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 300) {
+      const scrollTop = window.scrollY;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const clientHeight = document.documentElement.clientHeight;
+
+      // Calculate the distance from the bottom of the page
+      const distanceFromBottom = scrollHeight - (scrollTop + clientHeight);
+
+      // Check if the user has scrolled past 300px or is close to the bottom
+      if (scrollTop > 300 || distanceFromBottom < 100) {
         setIsVisible(true);
+        if (distanceFromBottom < 100) {
+          setBottom("9rem");
+        } else {
+          setBottom("1rem");
+        }
       } else {
         setIsVisible(false);
       }
     };
 
+    // Initial check
+    handleScroll();
+
+    // Scroll event listener
     window.addEventListener("scroll", handleScroll);
 
-    // Entferne den Event-Listener bei der Bereinigung
+    // Cleanup function to remove the event listener
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -32,6 +50,7 @@ const ScrollToTopBtn = () => {
         type="button"
         className="scroll-to-top-btn"
         aria-label="Nach oben scrollen"
+        style={{ bottom }}
         onClick={scrollToTop}
       >
         <BiUpArrowAlt />
