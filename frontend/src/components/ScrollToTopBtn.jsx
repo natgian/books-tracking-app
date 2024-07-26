@@ -18,7 +18,7 @@ const ScrollToTopBtn = () => {
       if (scrollTop > 300 || distanceFromBottom < 100) {
         setIsVisible(true);
         if (distanceFromBottom < 100) {
-          setBottom("9rem");
+          setBottom("11rem");
         } else {
           setBottom("1rem");
         }
@@ -26,9 +26,6 @@ const ScrollToTopBtn = () => {
         setIsVisible(false);
       }
     };
-
-    // Initial check
-    handleScroll();
 
     // Scroll event listener
     window.addEventListener("scroll", handleScroll);
