@@ -140,10 +140,6 @@ p {
   font-size: var(--main-font-size);
 }
 
-input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: searchfield-cancel-button;
-}
-
 /*-----------*/
 /* UTILITIES */
 /*-----------*/

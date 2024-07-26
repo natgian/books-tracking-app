@@ -9,6 +9,8 @@ import {
   Error,
   Searchresults,
   SearchresultsAuthor,
+  Login,
+  Registration,
 } from "./pages";
 
 const queryClient = new QueryClient({
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
       {
         path: "/suchresultate/autor/:author",
         element: <SearchresultsAuthor />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/registration",
+        element: <Registration />,
       },
     ],
   },

@@ -4,3 +4,5 @@ export { default as Book } from "./Book/Book";
 export { default as Searchresults } from "./Searchresults/Searchresults";
 export { default as SearchresultsAuthor } from "./Searchresults/SearchresultsAuthor";
 export { default as Error } from "./Error";
+export { default as Login } from "./Login";
+export { default as Registration } from "./Registration";
