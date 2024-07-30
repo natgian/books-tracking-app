@@ -14,10 +14,11 @@ const Login = () => {
       <section className="section-container form-container">
         <Form method="POST" className="form">
           <h1 className="form-title">Login</h1>
+          <div className="underline-title"></div>
           <FormInput label="email" name="email" type="email" />
           <FormInput label="password" name="password" type="password" />
           <div className="flex-center mt-2">
-            <Button text="anmelden" block={true} />
+            <Button text="login" block={true} />
           </div>
           <div className="form-links-container">
             <Link to="/registration" className="form-link">

@@ -81,7 +81,7 @@ const Navbar = () => {
             </ul>
             {/* Login/Logout-Button */}
             <Link to="/login">
-              <Button text="LOGIN" />
+              <Button text="login" />
             </Link>
           </div>
         </div>
