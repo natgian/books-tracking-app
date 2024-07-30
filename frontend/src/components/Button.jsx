@@ -1,6 +1,9 @@
 const Button = (props) => {
   return (
-    <button className="btn" type="button">
+    <button
+      className={`btn capitalize ${props.block ? "btn-block" : ""}`}
+      type="button"
+    >
       {props.text}
     </button>
   );

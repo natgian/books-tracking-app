@@ -156,6 +156,9 @@ p {
   margin-bottom: 4em;
 }
 
+.mt-05 {
+  margin-top: 0.5em;
+}
 .mt-1 {
   margin-top: 1em;
 }
@@ -194,6 +197,10 @@ p {
   padding: 1rem;
   max-width: 500px;
   background-color: var(--error);
+}
+
+.capitalize {
+  text-transform: capitalize;
 }
 
 .error-box svg {
@@ -314,12 +321,9 @@ p {
   justify-content: center;
   gap: 4rem;
   margin: 3rem 0;
-  /* border: 1px solid red; */
 }
 
 .intro-text {
-  /* position: absolute;
-  left: 15%; */
   max-width: 800px;
   font-size: 2.75rem;
   font-weight: 300;
@@ -331,9 +335,6 @@ p {
 }
 
 .home-img {
-  /* position: absolute;
-  bottom: 0;
-  right: 15%; */
   opacity: 60%;
   width: 1200px;
   z-index: -1;

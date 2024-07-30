@@ -80,7 +80,9 @@ const Navbar = () => {
               </li>
             </ul>
             {/* Login/Logout-Button */}
-            <Button text="LOGIN" />
+            <Link to="/login">
+              <Button text="LOGIN" />
+            </Link>
           </div>
         </div>
       </div>

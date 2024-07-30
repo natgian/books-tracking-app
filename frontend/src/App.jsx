@@ -48,15 +48,15 @@ const router = createBrowserRouter([
         path: "/suchresultate/autor/:author",
         element: <SearchresultsAuthor />,
       },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/registration",
-        element: <Registration />,
-      },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/registration",
+    element: <Registration />,
   },
 ]);
 
