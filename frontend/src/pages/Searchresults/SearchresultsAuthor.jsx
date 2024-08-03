@@ -84,6 +84,7 @@ const AuthorSearchresults = () => {
       {hasNextPage && (
         <div className="flex-center mt-2 mb-4">
           <button
+            type="button"
             onClick={() => fetchNextPage()}
             disabled={!hasNextPage || isFetchingNextPage}
             className="show-more-btn flex-center"

@@ -383,7 +383,6 @@ p {
   border-color: transparent;
   background-color: var(--action-100);
   font-weight: 700;
-  cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
 
