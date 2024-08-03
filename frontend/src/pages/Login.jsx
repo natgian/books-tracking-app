@@ -15,17 +15,26 @@ const Login = () => {
         <Form method="POST" className="form">
           <h1 className="form-title">Anmelden</h1>
           <div className="underline-title"></div>
-          <FormInput id="email" label="email" name="email" type="email" />
+          {/* INPUTS */}
+          <FormInput
+            id="email"
+            label="E-Mail Adresse:"
+            name="email"
+            type="email"
+            autocomplete="email"
+          />
           <FormInput
             id="password"
-            label="password"
+            label="Passwort:"
             name="password"
             type="password"
             autocomplete="current-password"
           />
+          {/* LOGIN BUTTON */}
           <div className="flex-center mt-2">
             <Button text="anmelden" block={true} />
           </div>
+          {/* LINKS */}
           <div className="form-links-container">
             <Link to="/registration" className="form-link">
               Noch nicht registriert?
