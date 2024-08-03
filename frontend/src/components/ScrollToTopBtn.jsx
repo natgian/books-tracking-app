@@ -15,7 +15,7 @@ const ScrollToTopBtn = () => {
       const distanceFromBottom = scrollHeight - (scrollTop + clientHeight);
 
       // Check if the user has scrolled past 300px or is close to the bottom
-      if (scrollTop > 300 || distanceFromBottom < 100) {
+      if (scrollTop > 300) {
         setIsVisible(true);
         if (distanceFromBottom < 100) {
           setBottom("11rem");
