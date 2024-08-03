@@ -28,7 +28,7 @@ export const loader =
 const Searchresults = () => {
   const initialData = useLoaderData();
   const searchTerm = new URLSearchParams(window.location.search).get("q");
-  const maxResultsPerPage = 10;
+  const maxResultsPerPage = 20;
 
   const {
     data,
@@ -43,9 +43,7 @@ const Searchresults = () => {
     queryFn: ({ pageParam = 0 }) =>
       fetchBooks(searchTerm, pageParam * maxResultsPerPage, maxResultsPerPage),
     getNextPageParam: (lastPage, allPages) => {
-      return lastPage.length === maxResultsPerPage
-        ? allPages.length
-        : undefined;
+      return lastPage.length > 0 ? allPages.length : undefined;
     },
     initialData: {
       pages: [initialData],
