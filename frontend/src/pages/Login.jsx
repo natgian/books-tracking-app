@@ -1,8 +1,5 @@
-import Navbar from "../components/Navbar/Navbar";
-import Footer from "../components/Footer/Footer";
+import { Navbar, Footer, FormInput, Button } from "../components";
 import { Form, Link } from "react-router-dom";
-import FormInput from "../components/Form/FormInput";
-import Button from "../components/Button";
 
 const Login = () => {
   return (

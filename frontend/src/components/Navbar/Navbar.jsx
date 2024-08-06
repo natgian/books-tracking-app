@@ -9,7 +9,7 @@ import {
 } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 // Components
-import Button from "../Button";
+import Button from "../Buttons/Button";
 // React
 import { useState, useRef, useCallback, memo, useMemo } from "react";
 import { NavLink, Link } from "react-router-dom";

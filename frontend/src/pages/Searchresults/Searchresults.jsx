@@ -4,6 +4,7 @@ import { BiErrorCircle } from "react-icons/bi";
 import { useLoaderData } from "react-router-dom";
 import "./Searchresults.css";
 import SearchresultCard from "./SearchresultCard";
+import { Loading } from "../../components";
 
 // LOADER //
 export const loader =
@@ -64,7 +65,7 @@ const Searchresults = () => {
   if (isPending) {
     return (
       <section className="text-center section-container">
-        <div className="loader"></div>
+        <Loading />
         Wird geladen...
       </section>
     );
@@ -107,11 +108,7 @@ const Searchresults = () => {
             disabled={!hasNextPage || isFetchingNextPage}
             className="show-more-btn flex-center"
           >
-            {isFetchingNextPage ? (
-              <div className="loader"></div>
-            ) : (
-              "Weitere Ergebnisse anzeigen"
-            )}
+            {isFetchingNextPage ? <Loading /> : "Weitere Ergebnisse anzeigen"}
           </button>
         </div>
       )}

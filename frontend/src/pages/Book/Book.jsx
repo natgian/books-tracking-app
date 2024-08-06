@@ -7,6 +7,7 @@ import { secureImageURL } from "../../utilities/secureImageURL";
 import { getBestImage } from "../../utilities/getBestImage";
 import SelectedReadingOption from "./SelectedReadingOption";
 import BookDetails from "./BookDetails";
+import { Loading } from "../../components";
 
 // LOADER //
 export const loader =
@@ -43,7 +44,7 @@ const Book = () => {
   if (isPending) {
     return (
       <section className="text-center section-container">
-        <div className="loader"></div>
+        <Loading />
         Wird geladen...
       </section>
     );

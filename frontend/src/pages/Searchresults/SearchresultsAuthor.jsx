@@ -4,6 +4,7 @@ import { BiErrorCircle } from "react-icons/bi";
 import { useParams } from "react-router-dom";
 import "./Searchresults.css";
 import SearchresultCard from "./SearchresultCard";
+import { Loading } from "../../components";
 
 // SEARCHRESULTS COMPONENT //
 const AuthorSearchresults = () => {
@@ -46,7 +47,7 @@ const AuthorSearchresults = () => {
   if (isPending) {
     return (
       <section className="text-center section-container">
-        <div className="loader"></div>
+        <Loading />
         Wird geladen...
       </section>
     );

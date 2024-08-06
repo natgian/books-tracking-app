@@ -1,8 +1,11 @@
-import Navbar from "../components/Navbar/Navbar";
-import Footer from "../components/Footer/Footer";
-import Searchbar from "../components/Searchbar/Searchbar";
-import ScrollToTopBtn from "../components/ScrollToTopBtn";
 import { Outlet, useNavigation } from "react-router-dom";
+import {
+  Navbar,
+  Footer,
+  Searchbar,
+  ScrollToTopBtn,
+  Loading,
+} from "../components";
 
 const MainLayout = () => {
   const navigation = useNavigation();
@@ -17,7 +20,7 @@ const MainLayout = () => {
       <section>
         {isPageLoading ? (
           <div className="text-center section-container">
-            <div className="loader"></div>
+            <Loading />
             Wird geladen...
           </div>
         ) : (

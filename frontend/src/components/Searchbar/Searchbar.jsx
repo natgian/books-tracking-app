@@ -1,9 +1,9 @@
 import { useCallback, useState } from "react";
+import { Form, useNavigate } from "react-router-dom";
 import { debounce } from "lodash";
 import { BiSearch } from "react-icons/bi";
 import "./Searchbar.css";
 import "tippy.js/dist/tippy.css";
-import { Form, useNavigate } from "react-router-dom";
 
 const Searchbar = () => {
   const [inputValue, setInputValue] = useState("");
