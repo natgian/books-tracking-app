@@ -1,4 +1,5 @@
 import { stripHTMLtags } from "../../utilities/stripHTMLtags";
+import { languageMap } from "../../utilities/languageMap";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -15,6 +16,7 @@ const BookDetails = ({
 }) => {
   const [showText, setShowText] = useState("");
   const cleanedDescription = stripHTMLtags(description);
+  const mapedLanguage = languageMap[language] || "-";
 
   return (
     <div className="book-details-container">
@@ -83,7 +85,7 @@ const BookDetails = ({
             </tr>
             <tr>
               <th>Sprache:</th>
-              <td>{language.toUpperCase() || "-"}</td>
+              <td>{mapedLanguage}</td>
             </tr>
           </tbody>
         </table>
