@@ -2,9 +2,11 @@ import defaultCover from "../../assets/no-cover.jpg";
 import { Link } from "react-router-dom";
 import "./Searchresults.css";
 import { secureImageURL } from "../../utilities/secureImageURL";
+import { languageMap } from "../../utilities/languageMap";
 
 const SearchresultCard = ({ book }) => {
   const imageUrl = book.volumeInfo?.imageLinks?.smallThumbnail;
+  const language = languageMap[book.volumeInfo?.language] || "-";
   return (
     <Link to={`/buch/${book.id}`}>
       <div className="searchresult-wrapper">
@@ -22,6 +24,7 @@ const SearchresultCard = ({ book }) => {
                 ? book.volumeInfo.authors.join(", ")
                 : book.volumeInfo.authors)}
           </p>
+          <p className="searchresult-language">{language}</p>
         </div>
       </div>
     </Link>

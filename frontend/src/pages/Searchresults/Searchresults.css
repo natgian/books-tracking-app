@@ -39,6 +39,11 @@ searchresult-cover-wrapper img {
   margin-top: 0.5rem;
 }
 
+.searchresult-language {
+  font-size: 0.875rem;
+  font-weight: 200;
+}
+
 .pagination {
   margin: 4rem 0;
   display: flex;
