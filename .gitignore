@@ -36,9 +36,6 @@ frontend/.env
 *.njsproj
 *.sln
 
-# Compiled JavaScript files
-*.js
-
 # Local files
 frontend/LOCAL
 
