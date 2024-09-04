@@ -38,6 +38,8 @@ const Book = () => {
     initialData,
   });
 
+  console.log(book);
+
   const imageURL = getBestImage(book.volumeInfo.imageLinks);
 
   // LOADING STATE //
@@ -84,6 +86,8 @@ const Book = () => {
         publishedDate={book.volumeInfo.publishedDate}
         pageCount={book.volumeInfo.pageCount}
         language={book.volumeInfo.language}
+        averageRating={book.volumeInfo.averageRating}
+        ratingsCount={book.volumeInfo.ratingsCount}
       />
     </section>
   );

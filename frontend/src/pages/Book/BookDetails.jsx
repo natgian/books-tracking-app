@@ -2,6 +2,7 @@ import { stripHTMLtags } from "../../utilities/stripHTMLtags";
 import { languageMap } from "../../utilities/languageMap";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { StarRating } from "../../components";
 
 const BookDetails = ({
   title,
@@ -13,6 +14,8 @@ const BookDetails = ({
   publishedDate,
   pageCount,
   language,
+  averageRating,
+  ratingsCount,
 }) => {
   const [showText, setShowText] = useState("");
   const cleanedDescription = stripHTMLtags(description);
@@ -36,6 +39,7 @@ const BookDetails = ({
               </span>
             ))}
         </div>
+        <StarRating averageRating={averageRating} ratingsCount={ratingsCount} />
         <div className="book-genre-container">
           {categories &&
             categories.slice(0, 4).map((category, index) => (

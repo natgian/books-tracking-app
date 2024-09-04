@@ -1,0 +1,19 @@
+.ratings-container {
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.stars-container {
+  display: flex;
+}
+
+.star {
+  font-size: 1.25rem;
+  color: #fec76f;
+}
+
+.ratings {
+  font-size: 0.75rem;
+}

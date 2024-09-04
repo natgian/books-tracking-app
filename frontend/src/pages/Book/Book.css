@@ -127,6 +127,7 @@
 
   .book-header {
     text-align: center;
+    align-items: center;
   }
 
   .book-genre-container {
