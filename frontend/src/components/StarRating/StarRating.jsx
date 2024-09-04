@@ -23,7 +23,8 @@ const StarRating = ({ averageRating, ratingsCount }) => {
         })}
       </div>
       <div className="ratings">
-        {averageRating} von 5 ({ratingsCount} Bewertungen)
+        {averageRating} von 5 ({ratingsCount}{" "}
+        {ratingsCount === 1 ? "Bewertung" : "Bewertungen"})
       </div>
     </div>
   );
