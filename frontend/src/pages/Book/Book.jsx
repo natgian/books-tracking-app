@@ -5,9 +5,8 @@ import { useLoaderData } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { secureImageURL } from "../../utilities/secureImageURL";
 import { getBestImage } from "../../utilities/getBestImage";
-import SelectedReadingOption from "./SelectedReadingOption";
 import BookDetails from "./BookDetails";
-import { Loading } from "../../components";
+import { Loading, SelectedReadingOption } from "../../components";
 
 // LOADER //
 export const loader =
@@ -67,15 +66,18 @@ const Book = () => {
 
   return (
     <section className="book-details section-container">
-      <div className="book-cover-container">
-        {/* COVER */}
-        <img
-          src={secureImageURL(imageURL)}
-          alt={book.volumeInfo.title}
-          className="book-cover"
-        />
+      <div>
+        <div className="book-cover-container">
+          {/* COVER */}
+          <img
+            src={secureImageURL(imageURL)}
+            alt={book.volumeInfo.title}
+            className="book-cover"
+          />
+        </div>
         <SelectedReadingOption />
       </div>
+
       <BookDetails
         title={book.volumeInfo.title}
         authors={book.volumeInfo.authors}

@@ -437,48 +437,11 @@ p {
   transform: scale(1.02);
 }
 
-.btn-select {
-  appearance: none;
-  -webkit-appearance: none; /* safari */
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 0.75rem 1.25rem 0.75rem 1.25rem;
-  background-color: var(--action-100);
-  border: transparent;
-  border-radius: var(--border-radius);
-  cursor: pointer;
+.select-option-container {
+  display: flex;
+  align-items: center;
 }
 
-.btn-select:hover {
-  box-shadow: var(--shadow-2);
-}
-
-.custom-select {
-  position: relative;
-  margin: 1rem 0;
-  padding: 0.5rem;
-}
-
-.custom-select:hover {
-  transform: scale(1.02);
-}
-
-.select-arrow {
-  position: absolute;
-  left: 10rem;
-  top: 1.5rem;
-  font-size: 1rem;
-  pointer-events: none;
-}
-
-.read {
-  background-color: #98c379;
-}
-
-.tbr {
-  background-color: #f4a460;
-}
-
-.reading {
-  background-color: #7fb3d5;
+.select-option-container span {
+  margin-left: 0.5rem;
 }

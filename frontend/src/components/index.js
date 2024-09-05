@@ -6,3 +6,4 @@ export { default as Navbar } from "./Navbar/Navbar";
 export { default as Searchbar } from "./Searchbar/Searchbar";
 export { default as Loading } from "./Loading";
 export { default as StarRating } from "./StarRating/StarRating";
+export { default as SelectedReadingOption } from "./Buttons/SelectedReadingOption";

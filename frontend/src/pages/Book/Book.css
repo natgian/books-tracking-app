@@ -115,6 +115,7 @@
     align-items: center;
     gap: 2rem;
     font-size: 1rem;
+    margin-top: 0;
   }
 
   .book-text {
@@ -141,6 +142,7 @@
     min-width: 200px;
     max-width: 300px;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     gap: 0.5rem;
     justify-content: flex-start;
