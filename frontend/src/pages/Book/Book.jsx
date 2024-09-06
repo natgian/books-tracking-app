@@ -37,8 +37,6 @@ const Book = () => {
     initialData,
   });
 
-  console.log(book);
-
   const imageURL = getBestImage(book.volumeInfo.imageLinks);
 
   // LOADING STATE //

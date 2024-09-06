@@ -77,6 +77,9 @@ const SelectedReadingOption = () => {
     dropdownIndicator: (baseStyles) => ({
       ...baseStyles,
       color: "var(--text-color)",
+      ":hover": {
+        color: "var(--text-color)",
+      },
     }),
     indicatorSeparator: (baseStyles) => ({
       ...baseStyles,
@@ -90,7 +93,7 @@ const SelectedReadingOption = () => {
         : "var(--bg-color)",
       cursor: "pointer",
       ":hover": {
-        backgroundColor: "var(--action-100)",
+        backgroundColor: "var(--primary-color-100)",
       },
     }),
   };

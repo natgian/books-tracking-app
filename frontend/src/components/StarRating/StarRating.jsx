@@ -4,7 +4,6 @@ import { BiSolidStarHalf } from "react-icons/bi";
 import { BiSolidStar } from "react-icons/bi";
 
 const StarRating = ({ averageRating, ratingsCount }) => {
-  console.log(ratingsCount);
   if (averageRating == null || isNaN(averageRating)) {
     return null;
   }

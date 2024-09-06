@@ -1,5 +1,6 @@
 import { stripHTMLtags } from "../../utilities/stripHTMLtags";
 import { languageMap } from "../../utilities/languageMap";
+import { formatDate } from "../../utilities/formatDate";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { StarRating } from "../../components";
@@ -81,7 +82,7 @@ const BookDetails = ({
             </tr>
             <tr>
               <th>Erscheinungsdatum:</th>
-              <td>{publishedDate || "-"}</td>
+              <td>{formatDate(publishedDate) || "-"}</td>
             </tr>
             <tr>
               <th>Seitenzahl:</th>
