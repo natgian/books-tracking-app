@@ -61,7 +61,7 @@ const SelectedReadingOption = () => {
     control: (baseStyles) => ({
       ...baseStyles,
       borderRadius: "0.75rem",
-      marginTop: "1rem",
+      marginTop: "1.25rem",
       paddingLeft: "1rem",
       backgroundColor: getBackgroundColor(selectedOption),
       color: "var(--text-color)",

@@ -24,7 +24,7 @@ const SearchresultCard = ({ book }) => {
                 ? book.volumeInfo.authors.join(", ")
                 : book.volumeInfo.authors)}
           </p>
-          <p className="searchresult-language">{language}</p>
+          <p className="searchresult-language">({language})</p>
         </div>
       </div>
     </Link>

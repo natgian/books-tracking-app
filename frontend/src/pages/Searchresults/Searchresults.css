@@ -40,14 +40,18 @@ searchresult-cover-wrapper img {
 }
 
 .searchresult-title {
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 700;
   margin-top: 0.5rem;
 }
 
+.searchresult-author {
+  font-size: 1.125rem;
+  font-weight: 300;
+}
+
 .searchresult-language {
   font-size: 0.875rem;
-  font-weight: 200;
 }
 
 .pagination {
