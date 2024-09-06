@@ -29,7 +29,7 @@ export const loader =
 const Searchresults = () => {
   const initialData = useLoaderData();
   const searchTerm = new URLSearchParams(window.location.search).get("q");
-  const maxResultsPerPage = 20;
+  const maxResultsPerPage = 12;
 
   const {
     data,
@@ -60,6 +60,8 @@ const Searchresults = () => {
   const uniqueBooks = books.filter(
     (book, index, self) => index === self.findIndex((b) => b.id === book.id)
   );
+
+  console.log(data);
 
   // LOADING STATE //
   if (isPending) {

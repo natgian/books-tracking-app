@@ -9,7 +9,7 @@ import { Loading } from "../../components";
 // SEARCHRESULTS COMPONENT //
 const AuthorSearchresults = () => {
   const { author } = useParams();
-  const maxResultsPerPage = 10;
+  const maxResultsPerPage = 12;
 
   const {
     data,

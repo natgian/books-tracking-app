@@ -3,7 +3,7 @@ import axiosConfig from "./axiosConfig";
 export const fetchAuthorBooks = async (
   author,
   startIndex = 0,
-  maxResults = 10
+  maxResults = 12
 ) => {
   const result = await axiosConfig.get("/volumes", {
     params: {

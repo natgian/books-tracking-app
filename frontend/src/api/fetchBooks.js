@@ -4,7 +4,7 @@ import { isValidISBN } from "../utilities/isValidISBN";
 export const fetchBooks = async (
   searchTerm,
   startIndex = 0,
-  maxResults = 10
+  maxResults = 12
 ) => {
   const isISBN = isValidISBN(searchTerm);
   const query = isISBN ? `isbn:${searchTerm}` : searchTerm;
