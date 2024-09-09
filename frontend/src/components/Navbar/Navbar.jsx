@@ -67,9 +67,9 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/leseliste" onClick={closeMenu}>
+                <NavLink to="/leselisten" onClick={closeMenu}>
                   <BiSolidBookmark />
-                  Leseliste
+                  Leselisten
                 </NavLink>
               </li>
               <li>

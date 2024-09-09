@@ -11,6 +11,8 @@ import {
   SearchresultsAuthor,
   Login,
   Registration,
+  Profile,
+  ReadingLists,
 } from "./pages";
 
 const queryClient = new QueryClient({
@@ -47,6 +49,14 @@ const router = createBrowserRouter([
       {
         path: "/suchresultate/autor/:author",
         element: <SearchresultsAuthor />,
+      },
+      {
+        path: "/leselisten",
+        element: <ReadingLists />,
+      },
+      {
+        path: "/profil",
+        element: <Profile />,
       },
     ],
   },

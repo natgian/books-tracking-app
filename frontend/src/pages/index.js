@@ -1,6 +1,8 @@
 export { default as MainLayout } from "./MainLayout";
 export { default as Homepage } from "./Homepage";
 export { default as Book } from "./Book/Book";
+export { default as ReadingLists } from "./ReadingLists/ReadingLists";
+export { default as Profile } from "./Profile/Profile";
 export { default as Searchresults } from "./Searchresults/Searchresults";
 export { default as SearchresultsAuthor } from "./Searchresults/SearchresultsAuthor";
 export { default as Error } from "./Error";
