@@ -1,0 +1,42 @@
+.reading-lists-nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.reading-lists-nav li {
+  flex-grow: 1;
+  background-color: #f0f0f0;
+}
+
+.reading-list-tab {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--primary-color-100);
+  background-color: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reading-list-tab:hover {
+  background-color: var(--action-100);
+}
+
+.active-tab {
+  background-color: var(--bg-color);
+  border-bottom: none;
+}
+
+.booklist-container {
+  border: 1px solid var(--primary-color-100);
+  border-top: none;
+}

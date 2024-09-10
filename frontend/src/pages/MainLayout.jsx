@@ -17,7 +17,7 @@ const MainLayout = () => {
         <Searchbar />
       </header>
 
-      <section>
+      <div>
         {isPageLoading ? (
           <div className="text-center section-container">
             <Loading />
@@ -26,7 +26,7 @@ const MainLayout = () => {
         ) : (
           <Outlet />
         )}
-      </section>
+      </div>
       <ScrollToTopBtn />
       <Footer />
     </main>
