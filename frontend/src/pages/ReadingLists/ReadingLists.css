@@ -18,7 +18,7 @@
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 0.75rem;
   align-items: center;
   border: 1px solid var(--primary-color-100);
   background-color: transparent;
@@ -28,12 +28,15 @@
 }
 
 .reading-list-tab:hover {
-  background-color: var(--action-100);
+  background-color: var(--secondary-color-200);
+  color: var(--action-200);
 }
 
-.active-tab {
+.active-tab,
+.active-tab:hover {
   background-color: var(--bg-color);
   border-bottom: none;
+  color: var(--action-300);
 }
 
 .booklist-container {
