@@ -449,3 +449,13 @@ p {
 .select-option-container span {
   margin-left: 0.5rem;
 }
+
+.sort-btn {
+  min-width: 7.75rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--text-color);
+  padding: 0.5rem 1.875rem;
+  margin: 0.5rem;
+  background-color: var(--secondary-color-200);
+  transition: all 0.2s ease-in-out;
+}

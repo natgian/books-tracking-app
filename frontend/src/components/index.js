@@ -1,10 +1,12 @@
-export { default as Button } from "./Buttons/Button";
-export { default as ScrollToTopBtn } from "./Buttons/ScrollToTopBtn";
-export { default as Footer } from "./Footer/Footer";
-export { default as FormInput } from "./Form/FormInput";
 export { default as Navbar } from "./Navbar/Navbar";
 export { default as ReadingListsNavbar } from "./ReadingListsNavbar/ReadingListsNavbar";
+export { default as Button } from "./Buttons/Button";
+export { default as ScrollToTopBtn } from "./Buttons/ScrollToTopBtn";
+export { default as SortBtn } from "./Buttons/SortBtn";
+export { default as SelectedReadingOption } from "./Buttons/SelectedReadingOption";
 export { default as Searchbar } from "./Searchbar/Searchbar";
+export { default as FormInput } from "./Form/FormInput";
 export { default as Loading } from "./Loading";
 export { default as StarRating } from "./StarRating/StarRating";
-export { default as SelectedReadingOption } from "./Buttons/SelectedReadingOption";
+export { default as BookList } from "./BookList/BookList";
+export { default as Footer } from "./Footer/Footer";

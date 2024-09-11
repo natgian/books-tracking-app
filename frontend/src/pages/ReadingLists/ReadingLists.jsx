@@ -1,12 +1,12 @@
 import "./ReadingLists.css";
 
-import { ReadingListsNavbar } from "../../components";
+import { ReadingListsNavbar, BookList } from "../../components";
 
 const ReadingLists = () => {
   return (
     <section className="section-container">
       <ReadingListsNavbar />
-      <div className="booklist-container">test</div>
+      <BookList />
     </section>
   );
 };
