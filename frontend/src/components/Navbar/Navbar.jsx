@@ -11,7 +11,7 @@ import { CgClose } from "react-icons/cg";
 // Components
 import Button from "../Buttons/Button";
 // React
-import { useState, useRef, useCallback, memo, useMemo } from "react";
+import { useState, useRef, useMemo } from "react";
 import { NavLink, Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -19,14 +19,16 @@ const Navbar = () => {
   const menuContainerRef = useRef(null);
   const menuRef = useRef(null);
 
-  const toggleMenu = useCallback(() => {
+  const toggleMenu = () => {
     setShowLinks((prev) => !prev);
-  }, []);
+  };
 
-  const closeMenu = useCallback(() => {
+  const closeMenu = () => {
     setShowLinks(false);
-  }, []);
+  };
 
+  // calculating the height of the menu container based on whether showLinks is true or false
+  // using "useMemo" to ensure that linkStyles is only recalculated when showLinks changes
   const linkStyles = useMemo(
     () => ({
       height: showLinks
@@ -47,7 +49,12 @@ const Navbar = () => {
             </Link>
           </div>
           {/* Menu-Button */}
-          <button type="button" className="nav-toggle" onClick={toggleMenu}>
+          <button
+            type="button"
+            className="nav-toggle"
+            aria-label="Menu"
+            onClick={toggleMenu}
+          >
             {showLinks ? <CgClose /> : <BiMenu />}
           </button>
         </div>
@@ -89,4 +96,4 @@ const Navbar = () => {
     </nav>
   );
 };
-export default memo(Navbar);
+export default Navbar;
