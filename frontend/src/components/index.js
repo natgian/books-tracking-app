@@ -9,4 +9,5 @@ export { default as FormInput } from "./Form/FormInput";
 export { default as Loading } from "./Loading";
 export { default as StarRating } from "./StarRating/StarRating";
 export { default as BookList } from "./BookList/BookList";
+export { default as BookListCard } from "./BookListCard/BookListCard";
 export { default as Footer } from "./Footer/Footer";
