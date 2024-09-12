@@ -1,5 +1,6 @@
 export { default as Navbar } from "./Navbar/Navbar";
 export { default as ReadingListsNavbar } from "./ReadingListsNavbar/ReadingListsNavbar";
+export { default as PageTitle } from "./PageTitle/PageTitle";
 export { default as Button } from "./Buttons/Button";
 export { default as ScrollToTopBtn } from "./Buttons/ScrollToTopBtn";
 export { default as SortBtn } from "./Buttons/SortBtn";

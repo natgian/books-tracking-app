@@ -1,4 +1,4 @@
-import { Navbar, Footer, FormInput, Button } from "../components";
+import { Navbar, Footer, FormInput, Button, PageTitle } from "../components";
 import { Form, Link } from "react-router-dom";
 
 const Registration = () => {
@@ -10,8 +10,7 @@ const Registration = () => {
 
       <section className="section-container form-container">
         <Form method="POST" className="form">
-          <h1 className="form-title">Registrieren</h1>
-          <div className="underline-title"></div>
+          <PageTitle text="Registrieren" lineWidth="10rem" />
           {/* INPUTS */}
           <FormInput
             id="username"

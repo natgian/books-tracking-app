@@ -1,0 +1,9 @@
+.booklist-card {
+  margin: 1rem 0;
+  padding: 1.5rem 2rem;
+  background-color: var(--primary-color-light);
+}
+
+.booklist-cover {
+  width: 5rem;
+}

@@ -15,23 +15,6 @@
   background-color: var(--bg-color);
 }
 
-.form-title {
-  font-size: 2rem;
-  text-align: center;
-  margin: 1rem 0;
-}
-
-.underline-title {
-  background: -webkit-linear-gradient(
-    right,
-    var(--primary-color-100),
-    var(--primary-color-300)
-  );
-  height: 2px;
-  margin: -1.1rem auto 1rem auto;
-  width: 10rem;
-}
-
 .form-control {
   display: flex;
   flex-direction: column;
