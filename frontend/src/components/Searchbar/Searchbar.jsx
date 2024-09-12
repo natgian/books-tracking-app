@@ -47,7 +47,7 @@ const Searchbar = () => {
         onChange={handleChange}
       />
 
-      <button type="submit" className="searchbar-btn">
+      <button type="submit" className="searchbar-btn" aria-label="suchen">
         <BiSearch className="searchbar-icon" />
       </button>
     </Form>
