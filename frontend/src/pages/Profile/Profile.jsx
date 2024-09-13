@@ -2,9 +2,9 @@ import { PageTitle } from "../../components";
 
 const Profile = () => {
   return (
-    <div>
+    <section className="section-container">
       <PageTitle text="Dein Profil" lineWidth="8rem" />
-    </div>
+    </section>
   );
 };
 export default Profile;
