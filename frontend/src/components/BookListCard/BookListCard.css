@@ -1,6 +1,7 @@
 .booklist-card {
-  margin: 1rem 0;
-  padding: 1.5rem 2rem;
+  display: flex;
+  margin: 2rem 0;
+  padding: 1rem;
   background-color: var(--primary-color-light);
 }
 
