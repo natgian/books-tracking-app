@@ -34,14 +34,14 @@
 }
 
 .searchbar-btn:hover {
-  background-color: var(--primary-color-200);
+  background-color: var(--secondary-color-200);
   box-shadow: var(--shadow-1);
   transform: scale(1.02);
 }
 
 .searchbar-btn:disabled {
   pointer-events: none;
-  background-color: var(--primary-color-300);
+  background-color: var(--secondary-color-300);
 }
 
 .searchbar-icon {

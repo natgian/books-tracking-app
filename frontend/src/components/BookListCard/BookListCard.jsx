@@ -1,3 +1,4 @@
+import ProgressBar from "../ProgressBar/ProgressBar";
 import StarRating from "../StarRating/StarRating";
 import "./BookListCard.css";
 
@@ -14,14 +15,21 @@ const BookListCard = () => {
       </div>
       {/* DETAILS */}
       <div>
-        <h2>The Final Gambit</h2>
-        <h3>Jennifer Lynn Barnes</h3>
+        <h2 className="booklist-title">Not Another Love Song</h2>
+        <h3 className="booklist-author">Jennifer Lynn Barnes</h3>
         <StarRating
           averageRating={3}
           ratingsCount={0}
           showRatingsCount={false}
         />
       </div>
+      {/* DATE ADDED */}
+      <div className="booklist-date">
+        <span>Hinzugefügt am:</span>
+        <p>08.08.2024</p>
+      </div>
+      {/* PROGRESS */}
+      <ProgressBar />
     </div>
   );
 };

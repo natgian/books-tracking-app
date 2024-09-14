@@ -33,7 +33,7 @@
   height: 3rem;
   padding-inline: 1rem;
   border-width: 1px;
-  border: 1px solid var(--primary-color-100);
+  border: 1px solid var(--secondary-color-100);
   background-color: var(--bg-color);
   border-radius: var(--border-radius);
 }
@@ -45,11 +45,11 @@
 
 .form-link {
   font-size: 0.875rem;
-  color: var(--action-300);
+  color: var(--primary-color-300);
   text-align: center;
   margin-bottom: 1rem;
 }
 
 .form-link:hover {
-  color: var(--action-200);
+  color: var(--primary-color-200);
 }

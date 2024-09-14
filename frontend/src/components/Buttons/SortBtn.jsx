@@ -28,7 +28,7 @@ const SortBtn = () => {
       paddingLeft: "1rem",
       cursor: "pointer",
       ":hover": {
-        backgroundColor: "var(--secondary-color-200)",
+        backgroundColor: "var(--secondary-color-200-light)",
       },
     }),
     placeholder: (baseStyles) => ({
@@ -53,11 +53,11 @@ const SortBtn = () => {
       ...baseStyles,
       paddingLeft: "1.85rem",
       backgroundColor: state.isSelected
-        ? "var(--primary-color-300)"
+        ? "var(--secondary-color-300)"
         : "var(--bg-color)",
       cursor: "pointer",
       ":hover": {
-        backgroundColor: "var(--primary-color-100)",
+        backgroundColor: "var(--secondary-color-100)",
       },
     }),
   };

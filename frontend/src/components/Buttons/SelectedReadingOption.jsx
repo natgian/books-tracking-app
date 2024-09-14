@@ -67,7 +67,7 @@ const SelectedReadingOption = () => {
       color: "var(--text-color)",
       cursor: "pointer",
       ":hover": {
-        backgroundColor: "var(--action-200)",
+        backgroundColor: "var(--secondary-color-200-light)",
       },
     }),
     placeholder: (baseStyles) => ({
@@ -89,11 +89,11 @@ const SelectedReadingOption = () => {
       ...baseStyles,
       paddingLeft: "1.85rem",
       backgroundColor: state.isSelected
-        ? "var(--action-300)"
+        ? "var(--secondary-color-300)"
         : "var(--bg-color)",
       cursor: "pointer",
       ":hover": {
-        backgroundColor: "var(--primary-color-100)",
+        backgroundColor: "var(--secondary-color-100)",
       },
     }),
   };
@@ -109,7 +109,7 @@ const SelectedReadingOption = () => {
       case "remove":
         return "#7fb3d5";
       default:
-        return "var(--action-100)";
+        return "hsl(0, 0%, 100%)";
     }
   };
 

@@ -20,7 +20,7 @@
   flex-direction: column;
   gap: 0.75rem;
   align-items: center;
-  border: 1px solid var(--primary-color-100);
+  border: 1px solid var(--secondary-color-100);
   background-color: transparent;
   font-size: 1rem;
   cursor: pointer;
@@ -28,13 +28,13 @@
 }
 
 .reading-list-tab:hover {
-  background-color: var(--secondary-color-200);
-  color: var(--action-200);
+  background-color: var(--secondary-color-200-light);
+  color: var(--primary-color-200);
 }
 
 .active-tab,
 .active-tab:hover {
   background-color: var(--bg-color);
   border-bottom: none;
-  color: var(--action-300);
+  color: var(--primary-color-300);
 }

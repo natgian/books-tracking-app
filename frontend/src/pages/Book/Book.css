@@ -54,7 +54,7 @@
 }
 
 .book-author:hover {
-  color: var(--action-300);
+  color: var(--primary-color-300);
   text-decoration: underline;
 }
 
@@ -69,7 +69,8 @@
   display: inline-block;
   padding: 0.5em 1em;
   font-size: 0.875rem;
-  background-color: #d9d9d9;
+  /* background-color: #d9d9d9; */
+  background-color: var(--secondary-color-200-light);
   border-radius: 0.75rem;
   text-decoration: none;
   white-space: nowrap;

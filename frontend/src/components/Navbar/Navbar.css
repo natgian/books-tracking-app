@@ -19,7 +19,7 @@
 }
 
 .nav-toggle:hover {
-  color: var(--action-300);
+  color: var(--primary-color-300);
 }
 
 .logo {
@@ -42,13 +42,13 @@
 }
 
 nav .active {
-  color: var(--action-300);
+  color: var(--primary-color-300);
   text-decoration: underline;
   text-underline-offset: 0.2rem;
 }
 
 .links a:hover {
-  color: var(--action-300);
+  color: var(--primary-color-300);
   transform: scale(1.05);
 }
 
@@ -81,7 +81,7 @@ nav .active {
   }
 
   .icon-text-wrapper:hover {
-    color: var(--action-300);
+    color: var(--primary-color-300);
   }
   .nav-toggle {
     display: none;

@@ -3,7 +3,7 @@
 /*--------*/
 
 footer {
-  background: var(--primary-color-200);
+  background: var(--secondary-color-200);
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@ footer {
 
 .footer-links a:hover,
 .external-link:hover {
-  color: var(--action-300);
+  color: var(--primary-color-300);
 }
 
 .external-link {

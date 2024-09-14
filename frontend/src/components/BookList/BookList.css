@@ -1,5 +1,5 @@
 .booklist-container {
   padding: 2rem;
-  border: 1px solid var(--primary-color-100);
+  border: 1px solid var(--secondary-color-100);
   border-top: none;
 }
