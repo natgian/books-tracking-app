@@ -1,0 +1,22 @@
+.progress-bar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.progress-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+
+.progress-bar {
+  width: 12rem;
+  height: 1.5rem;
+  background-color: var(--secondary-color-100);
+}
+
+.progress {
+  width: 5rem;
+  height: 1.5rem;
+  background-color: var(--secondary-color-300);
+}
