@@ -15,7 +15,7 @@
 }
 .empty-star {
   font-size: 1.25rem;
-  color: #808080;
+  color: var(--secondary-color-300);
 }
 
 .ratings {
