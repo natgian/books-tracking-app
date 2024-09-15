@@ -13,7 +13,7 @@ const options = [
     label: (
       <div className="select-option-container">
         <FaBookBookmark />
-        <span>will ich lesen</span>
+        <span>zum Lesen</span>
       </div>
     ),
   },
@@ -40,7 +40,7 @@ const options = [
     label: (
       <div className="select-option-container">
         <FaTrashCan />
-        <span>aus Liste löschen</span>
+        <span>aus Liste entfernen</span>
       </div>
     ),
   },
@@ -117,7 +117,7 @@ const SelectedReadingOption = () => {
     <Select
       options={options}
       styles={customStyles}
-      placeholder="Leseliste +"
+      placeholder="Zu Leseliste hinzufügen +"
       aria-label="Leseliste bearbeiten"
       onChange={handleSelectChange}
       value={options.find((opt) => opt.value === selectedOption) || null}
