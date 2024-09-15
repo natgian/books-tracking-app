@@ -10,14 +10,22 @@
 }
 
 .star {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   color: #fec76f;
 }
+
 .empty-star {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   color: var(--secondary-color-300);
 }
 
 .ratings {
   font-size: 0.75rem;
+}
+
+@media screen and (max-width: 600px) {
+  .star,
+  .empty-star {
+    font-size: 0.75rem;
+  }
 }

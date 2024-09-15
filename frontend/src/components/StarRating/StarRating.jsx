@@ -1,6 +1,7 @@
 import "./StarRating.css";
 import { BiSolidStarHalf } from "react-icons/bi";
 import { BiSolidStar } from "react-icons/bi";
+import { BiStar } from "react-icons/bi";
 
 const StarRating = ({
   averageRating,
@@ -20,7 +21,7 @@ const StarRating = ({
           } else if (averageRating >= index + 0.5) {
             return <BiSolidStarHalf key={index} className="star" />;
           } else {
-            return <BiSolidStar key={index} className="empty-star" />;
+            return <BiStar key={index} className="star" />;
           }
         })}
       </div>
