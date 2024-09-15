@@ -1,28 +1,72 @@
 .booklist-card {
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
   margin: 2rem 0;
   padding: 2rem;
   max-width: 1000px;
   background-color: var(--secondary-color-bg);
 }
 
-.booklist-cover {
+.booklist-card-cover {
   width: 5rem;
+  min-width: 5rem;
 }
 
-.booklist-title {
+.booklist-card-info-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 7rem;
+}
+
+.booklist-card-title {
   font-size: 1.125rem;
   font-weight: 700;
 }
 
-.booklist-author,
-.booklist-date p,
-.booklist-date span {
+.booklist-card-author,
+.booklist-card-date p,
+.booklist-card-date span {
   font-size: 0.875rem;
 }
 
-.booklist-date span {
+.booklist-card-date {
+  margin-top: 1rem;
+}
+
+.booklist-card-date span {
   font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+  .booklist-card {
+    padding: 1.5rem;
+    margin: 1rem;
+    gap: 0.875rem;
+  }
+  .booklist-card-info-wrapper {
+    flex-direction: row;
+    gap: 3rem;
+  }
+  .booklist-card-author,
+  .booklist-card-date p,
+  .booklist-card-date span {
+    font-size: 0.75rem;
+  }
+  .booklist-card-title {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 588px) {
+  .booklist-card {
+    margin: 2rem 0;
+    flex-direction: column;
+    align-items: center;
+  }
+  .booklist-card-info-wrapper {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }

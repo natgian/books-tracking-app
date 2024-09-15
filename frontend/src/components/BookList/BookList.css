@@ -1,5 +1,14 @@
 .booklist-container {
+  max-width: 1000px;
+  margin: 0 auto;
   padding: 2rem;
   border: 1px solid var(--secondary-color-100);
   border-top: none;
+}
+
+@media screen and (max-width: 525px) {
+  .booklist-container {
+    margin: 0;
+    padding: 1rem;
+  }
 }

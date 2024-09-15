@@ -8,28 +8,32 @@ const BookListCard = () => {
       {/* COVER */}
       <div>
         <img
-          className="booklist-cover"
+          className="booklist-card-cover"
           src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1482945930l/33597147._SY75_.jpg"
           alt="title"
         />
       </div>
-      {/* DETAILS */}
-      <div>
-        <h2 className="booklist-title">Not Another Love Song</h2>
-        <h3 className="booklist-author">Jennifer Lynn Barnes</h3>
-        <StarRating
-          averageRating={3}
-          ratingsCount={0}
-          showRatingsCount={false}
-        />
+
+      <div className="booklist-card-info-wrapper">
+        {/* DETAILS */}
+        <div>
+          <h2 className="booklist-card-title">Not Another Love Song</h2>
+          <h3 className="booklist-card-author">Jennifer Lynn Barnes</h3>
+          <StarRating
+            averageRating={3}
+            ratingsCount={0}
+            showRatingsCount={false}
+          />
+          {/* DATE ADDED */}
+          <div className="booklist-card-date">
+            <span>Hinzugefügt am:</span>
+            <p>08.08.2024</p>
+          </div>
+        </div>
+
+        {/* PROGRESS */}
+        <ProgressBar />
       </div>
-      {/* DATE ADDED */}
-      <div className="booklist-date">
-        <span>Hinzugefügt am:</span>
-        <p>08.08.2024</p>
-      </div>
-      {/* PROGRESS */}
-      <ProgressBar />
     </div>
   );
 };

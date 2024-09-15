@@ -1,22 +1,51 @@
 .progress-bar-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
+  margin-top: 0.4rem;
 }
 
 .progress-wrapper {
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .progress-bar {
   width: 12rem;
-  height: 1.5rem;
+  height: 1.25rem;
   background-color: var(--secondary-color-100);
 }
 
 .progress {
   width: 5rem;
-  height: 1.5rem;
+  height: 1.25rem;
   background-color: var(--secondary-color-300);
+}
+
+.progress-bar-pagecount,
+.progress-wrapper span {
+  font-size: 0.875rem;
+}
+.progress-wrapper span {
+  font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+  .progress-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .progress-wrapper span,
+  .progress-bar-pagecount {
+    font-size: 0.75rem;
+  }
+  .progress-bar,
+  .progress {
+    height: 1rem;
+  }
+  .progress-bar {
+    width: 10rem;
+  }
 }
