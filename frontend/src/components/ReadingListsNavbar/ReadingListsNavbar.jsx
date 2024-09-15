@@ -8,19 +8,19 @@ const ReadingListsNavbar = () => {
         <li>
           <button className="reading-list-tab active-tab">
             <FaBookOpenReader size={"3rem"} />
-            <span>Am Lesen</span>
+            <span>am Lesen</span>
           </button>
         </li>
         <li>
           <button className="reading-list-tab">
             <FaBookBookmark size={"3rem"} />
-            <span>Will ich lesen</span>
+            <span>zum Lesen</span>
           </button>
         </li>
         <li>
           <button className="reading-list-tab">
             <FaCheck size={"3rem"} />
-            <span>Gelesen</span>
+            <span>gelesen</span>
           </button>
         </li>
       </ul>
