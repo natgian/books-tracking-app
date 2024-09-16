@@ -23,6 +23,12 @@
   background-color: var(--secondary-color-300);
 }
 
+.progress-bar-count-wrapper {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
 .progress-bar-pagecount,
 .progress-wrapper span {
   font-size: 0.75rem;
@@ -47,5 +53,11 @@
   }
   .progress-bar {
     width: 10rem;
+  }
+  .progress-bar-count-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0;
   }
 }
