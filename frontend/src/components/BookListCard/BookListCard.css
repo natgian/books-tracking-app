@@ -1,7 +1,7 @@
 .booklist-card {
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  /* justify-content: center; */
   gap: 2rem;
   margin: 2rem 0;
   padding: 2rem;
@@ -17,7 +17,7 @@
 .booklist-card-info-wrapper {
   display: flex;
   justify-content: space-between;
-  gap: 7rem;
+  gap: 6rem;
 }
 
 .booklist-card-title {
@@ -25,10 +25,12 @@
   font-weight: 700;
 }
 
-.booklist-card-author,
+.booklist-card-author {
+  font-size: 0.875rem;
+}
 .booklist-card-date p,
 .booklist-card-date span {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
 }
 
 .booklist-card-date {
@@ -39,7 +41,7 @@
   font-weight: 600;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 815px) {
   .booklist-card {
     padding: 1.5rem;
     margin: 1rem;
@@ -59,14 +61,45 @@
   }
 }
 
-@media screen and (max-width: 588px) {
+@media screen and (max-width: 682px) {
   .booklist-card {
-    margin: 2rem 0;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .booklist-card-cover {
+    width: 6rem;
+    min-width: 6rem;
   }
   .booklist-card-info-wrapper {
     flex-direction: column;
     gap: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .booklist-card {
+    margin: 2rem 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .booklist-card-cover {
+    width: 5rem;
+    min-width: 5rem;
+  }
+
+  .booklist-card-info-wrapper {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .booklist-card {
+    padding-left: 5rem;
   }
 }
