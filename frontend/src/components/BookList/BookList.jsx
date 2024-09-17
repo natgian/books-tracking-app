@@ -6,6 +6,10 @@ const BookList = () => {
   return (
     <section className="booklist-container">
       <SortBtn />
+      <BookListCard showProgressBar={true} />
+      <BookListCard showProgressBar={false} showReadDate={true} />
+      <BookListCard />
+      <BookListCard />
       <BookListCard />
     </section>
   );
