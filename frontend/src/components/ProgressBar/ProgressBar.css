@@ -29,6 +29,10 @@
   margin-bottom: 0.5rem;
 }
 
+.progress-bar-pagecount {
+  white-space: nowrap;
+}
+
 .progress-bar-pagecount,
 .progress-wrapper span {
   font-size: 0.75rem;
