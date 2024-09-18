@@ -61,8 +61,6 @@ const Searchresults = () => {
     (book, index, self) => index === self.findIndex((b) => b.id === book.id)
   );
 
-  console.log(data);
-
   // LOADING STATE //
   if (isPending) {
     return (
