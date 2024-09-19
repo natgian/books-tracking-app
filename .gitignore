@@ -29,6 +29,7 @@ backend/dist-ssr
 
 # Environment variables
 frontend/.env
+backend/.env
 
 # Visual Studio specific files
 *.suo
