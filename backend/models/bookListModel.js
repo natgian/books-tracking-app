@@ -9,6 +9,7 @@ const bookListSchema = new mongoose.Schema(
     },
     listName: {
       type: String,
+      enum: ["tbr", "reading", "read"],
       required: true,
     },
     books: [
@@ -27,11 +28,11 @@ const bookListSchema = new mongoose.Schema(
           min: 1,
           max: 5,
         },
-        addedAt: {
+        addedToListAt: {
           type: Date,
           default: Date.now,
         },
-        finishedAt: {
+        finishedReadingAt: {
           type: Date,
         },
       },

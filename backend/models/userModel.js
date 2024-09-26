@@ -18,24 +18,6 @@ const userSchema = new mongoose.Schema(
     resetPasswordExpires: {
       type: Date,
     },
-    books: [
-      {
-        bookId: {
-          type: Schema.Types.ObjectId,
-          ref: "Book",
-        },
-        readingList: {
-          type: String,
-          enum: ["tbr", "reading", "read"],
-          required: true,
-        },
-        userRating: {
-          type: Number,
-          min: 1,
-          max: 5,
-        },
-      },
-    ],
   },
   { timestamps: true }
 );
