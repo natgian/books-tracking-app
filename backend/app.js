@@ -7,11 +7,6 @@ import { connectDB } from "./config/db.js";
 import mongoSanitize from "express-mongo-sanitize";
 import userRoutes from "./routes/userRoutes.js";
 import readinglistRoutes from "./routes/readinglistRoutes.js";
-import dotenv from "dotenv";
-
-if (process.env.NODE_ENV !== "production") {
-  dotenv.config();
-}
 
 const PORT = process.env.PORT;
 const SECRET = process.env.SECRET;
