@@ -25,7 +25,7 @@ app.use(
 // MIDDLEWARE SETUP
 app.use(express.json()); // parsing the body the get access to req.body
 app.use(express.urlencoded({ extended: true }));
-app.use(mongoSanitize);
+app.use(mongoSanitize());
 
 // Sessions
 app.use(session(sessionConfig(DB_URI, SECRET)));
