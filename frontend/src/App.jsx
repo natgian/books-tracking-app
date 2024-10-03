@@ -1,6 +1,7 @@
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { AuthContextProvider } from "./context/AuthContext";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
   MainLayout,
@@ -72,10 +73,12 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-      <ReactQueryDevtools initialIsOpen={true} />
-    </QueryClientProvider>
+    <AuthContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        <ReactQueryDevtools initialIsOpen={true} />
+      </QueryClientProvider>
+    </AuthContextProvider>
   );
 }
 
