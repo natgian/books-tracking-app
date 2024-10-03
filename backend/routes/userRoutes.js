@@ -1,4 +1,5 @@
 import express from "express";
+import { validateUser } from "../validations/validationsMiddleware.js";
 import {
   loginUser,
   registerUser,
@@ -11,7 +12,7 @@ const router = express.Router();
 router.post("/login", loginUser);
 
 // REGISTER ROUTE
-router.post("/register", registerUser);
+router.post("/register", validateUser, registerUser);
 
 // LOGOUT ROUTE
 router.get("/logout", logoutUser);
