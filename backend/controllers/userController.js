@@ -12,22 +12,41 @@ const registerUser = async (req, res, next) => {
     const { username, email, password } = req.body;
 
     // Check if the username already exists
-    const existingUser = await User.findOne({ username });
-    if (existingUser) {
+    const existingUsernameUser = await User.findOne({ username });
+    if (existingUsernameUser) {
       return res.status(400).json({
-        error: "Ein Benutzer mit diesem Benutzernamen existiert bereits.",
+        error:
+          "Ein Benutzer mit diesem Benutzernamen existiert bereits. Bitte einen anderen Benutzernamen verwenden.",
+      });
+    }
+    // Check if the email already exists
+    const existingEmailUser = await User.findOne({ email });
+    if (existingEmailUser) {
+      return res.status(400).json({
+        error:
+          "Ein Benutzer mit der angegebenen E-Mail-Adresse ist bereits registriert.",
       });
     }
 
+    // Create new user
     const newUser = new User({ email, username });
     const registeredUser = await User.register(newUser, password);
-    res.json({ message: "Neuer Benutzer wurde erfolgreich registriert." });
+
+    // Automatically log in the user
+    req.login(registeredUser, (err) => {
+      if (err) {
+        return next(err); // Handle any error that occurs during login
+      }
+      return res.json({
+        message: "Neuer Benutzer wurde erfolgreich registriert.",
+        registeredUser,
+      });
+    });
   } catch (error) {
     console.log(error);
 
     // Default error message
-    let errorMessage =
-      "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.";
+    let errorMessage = `Ein Fehler ist aufgetreten. Bitte erneut versuchen: ${error}`;
 
     // Username already exist error message
     if (error.name === "UserExistsError") {
@@ -61,15 +80,33 @@ const loginUser = (req, res, next) => {
   })(req, res, next);
 };
 
+// CHECK CURRENT USER
+const currentUser = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return res.json({ user: req.user });
+  } else {
+    return res.status(401).json({ message: "Nicht authentifiziert" });
+  }
+};
+
 // LOGOUT USER
-const logoutUser = async (req, res) => {
+const logoutUser = async (req, res, next) => {
   req.logout(function (error) {
     if (error) {
       return next(error);
     }
-    // res.redirect("/login");
+
+    // Destroy sessiond and clear the cookie
+    req.session.destroy(function (err) {
+      if (err) {
+        return next(err);
+      }
+
+      res.clearCookie("session");
+
+      return res.json({ message: "Erfolgreich abgemeldet" });
+    });
   });
-  res.json({ message: "Erfolgreich abgemeldet" });
 };
 
-export { loginUser, registerUser, logoutUser };
+export { loginUser, registerUser, logoutUser, currentUser };
