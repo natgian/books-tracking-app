@@ -11,10 +11,16 @@ import { CgClose } from "react-icons/cg";
 // Components
 import Button from "../Buttons/Button";
 // React
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
+// Context
+import { AuthContext } from "../../context/AuthContext";
+// Hooks
+import { useLogout } from "../../hooks/useLogout";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
+  const { logout } = useLogout();
   const [showLinks, setShowLinks] = useState(false);
   const menuContainerRef = useRef(null);
   const menuRef = useRef(null);
@@ -37,6 +43,10 @@ const Navbar = () => {
     }),
     [showLinks]
   );
+
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
     <nav>
@@ -87,9 +97,13 @@ const Navbar = () => {
               </li>
             </ul>
             {/* Login/Logout-Button */}
-            <Link to="/login">
-              <Button text="login" />
-            </Link>
+            {!user ? (
+              <Link to="/login">
+                <Button text="login" />
+              </Link>
+            ) : (
+              <Button text="logout" onClick={handleLogout} />
+            )}
           </div>
         </div>
       </div>
