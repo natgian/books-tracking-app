@@ -1,7 +1,27 @@
+import { useState } from "react";
 import { Navbar, Footer, FormInput, Button, PageTitle } from "../components";
-import { Form, Link } from "react-router-dom";
+import { Form, Link, useNavigate } from "react-router-dom";
+import { useLogin } from "../hooks/useLogin";
 
 const Login = () => {
+  const [errorMessage, setErrorMessage] = useState("");
+  const { login, error, isLoading } = useLogin();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+
+    const { success, error: loginError } = await login(formData);
+
+    if (success) {
+      navigate("/");
+    } else {
+      setErrorMessage(loginError);
+    }
+  };
+
   return (
     <main className="main-layout">
       <header>
@@ -9,8 +29,18 @@ const Login = () => {
       </header>
 
       <section className="section-container form-container">
-        <Form method="POST" className="form">
+        <Form method="POST" className="form" onSubmit={handleSubmit}>
           <PageTitle text="Anmelden" lineWidth="8rem" />
+
+          {/* ERROR MESSAGE */}
+          {errorMessage && (
+            <p
+              className="error-message text-center mt-1"
+              style={{ color: "red" }}
+            >
+              {errorMessage}
+            </p>
+          )}
           {/* INPUTS */}
           <FormInput
             id="email"
@@ -28,7 +58,7 @@ const Login = () => {
           />
           {/* LOGIN BUTTON */}
           <div className="flex-center mt-2">
-            <Button text="anmelden" block={true} />
+            <Button text="anmelden" block={true} type="submit" />
           </div>
           {/* LINKS */}
           <div className="form-links-container">
