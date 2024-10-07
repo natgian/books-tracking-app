@@ -4,6 +4,7 @@ import {
   loginUser,
   registerUser,
   logoutUser,
+  currentUser,
 } from "../controllers/userController.js";
 
 const router = express.Router();
@@ -14,7 +15,10 @@ router.post("/login", loginUser);
 // REGISTER ROUTE
 router.post("/register", validateUser, registerUser);
 
+// CHECK CURRENT USER ROUTE
+router.get("/currentUser", currentUser);
+
 // LOGOUT ROUTE
-router.get("/logout", logoutUser);
+router.post("/logout", logoutUser);
 
 export default router;
