@@ -1,11 +1,11 @@
-import axiosConfig from "./axiosConfig";
+import googleAxiosConfig from "./googleAxiosConfig";
 
 export const fetchAuthorBooks = async (
   author,
   startIndex = 0,
   maxResults = 12
 ) => {
-  const result = await axiosConfig.get("/volumes", {
+  const result = await googleAxiosConfig.get("/volumes", {
     params: {
       q: `inauthor:${author}`,
       startIndex,
