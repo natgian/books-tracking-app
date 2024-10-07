@@ -1,10 +1,11 @@
-const Button = (props) => {
+const Button = ({ text, block, onClick, type = "button" }) => {
   return (
     <button
-      className={`btn capitalize ${props.block ? "btn-block" : ""}`}
-      type="button"
+      className={`btn capitalize ${block ? "btn-block" : ""}`}
+      type={type}
+      onClick={onClick}
     >
-      {props.text}
+      {text}
     </button>
   );
 };
