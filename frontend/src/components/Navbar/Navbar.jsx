@@ -76,26 +76,32 @@ const Navbar = () => {
         >
           <div className="menu-wrapper" ref={menuRef}>
             {/* Links */}
-            <ul className="links">
-              <li>
-                <NavLink to="/" onClick={closeMenu}>
-                  <BiSolidHome />
-                  Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/leselisten" onClick={closeMenu}>
-                  <BiSolidBookmark />
-                  Leselisten
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/profil" onClick={closeMenu}>
-                  <BiSolidUser />
-                  Profil
-                </NavLink>
-              </li>
-            </ul>
+            {user && (
+              <>
+                <ul className="links">
+                  <li>
+                    <NavLink to="/" onClick={closeMenu}>
+                      <BiSolidHome />
+                      Home
+                    </NavLink>
+                  </li>
+
+                  <li>
+                    <NavLink to="/leselisten" onClick={closeMenu}>
+                      <BiSolidBookmark />
+                      Leselisten
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/profil" onClick={closeMenu}>
+                      <BiSolidUser />
+                      Profil
+                    </NavLink>
+                  </li>
+                </ul>
+              </>
+            )}
+
             {/* Login/Logout-Button */}
             {!user ? (
               <Link to="/login">
