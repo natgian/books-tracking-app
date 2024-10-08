@@ -85,7 +85,7 @@ const currentUser = (req, res, next) => {
   if (req.isAuthenticated()) {
     return res.json({ user: req.user });
   } else {
-    return res.status(401).json({ message: "Nicht authentifiziert" });
+    return res.status(200).json({ user: null });
   }
 };
 
