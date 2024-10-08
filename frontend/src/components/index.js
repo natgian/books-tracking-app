@@ -13,4 +13,5 @@ export { default as StarRating } from "./StarRating/StarRating";
 export { default as ProgressBar } from "./ProgressBar/ProgressBar";
 export { default as BookList } from "./BookList/BookList";
 export { default as BookListCard } from "./BookListCard/BookListCard";
+export { default as ProtectedRoute } from "./ProtectedRoute";
 export { default as Footer } from "./Footer/Footer";

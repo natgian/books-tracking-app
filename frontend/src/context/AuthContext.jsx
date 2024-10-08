@@ -19,25 +19,24 @@ export const AuthContextProvider = ({ children }) => {
     user: null,
   });
 
-  useEffect(() => {
-    const fetchCurrentUser = async () => {
-      try {
-        const response = await backendAxiosConfig.get("/user/currentUser");
-        if (response.data.user) {
-          dispatch({ type: "LOGIN", payload: response.data.user });
-        }
-      } catch (error) {
-        console.log("Benutzer ist nicht authentifiziert");
-      }
-    };
+  const fetchCurrentUser = async () => {
+    try {
+      const response = await backendAxiosConfig.get("/user/currentUser");
 
+      if (response.data?.user) {
+        dispatch({ type: "LOGIN", payload: response.data.user });
+      }
+    } catch (error) {
+      console.log("Benutzer ist nicht authentifiziert");
+    }
+  };
+
+  useEffect(() => {
     fetchCurrentUser();
   }, []);
 
-  console.log("AuthContext state: ", state);
-
   return (
-    <AuthContext.Provider value={{ ...state, dispatch }}>
+    <AuthContext.Provider value={{ ...state, dispatch, fetchCurrentUser }}>
       {children}
     </AuthContext.Provider>
   );

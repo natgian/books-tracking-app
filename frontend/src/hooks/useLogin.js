@@ -5,7 +5,7 @@ import { useAuthContext } from "./useAuthContext.js";
 export const useLogin = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
-  const { dispatch } = useAuthContext();
+  const { dispatch, fetchCurrentUser } = useAuthContext();
 
   const login = async (formData) => {
     setIsLoading(true);
@@ -13,12 +13,14 @@ export const useLogin = () => {
 
     try {
       const response = await backendAxiosConfig.post("/user/login", formData);
+      const user = response.data;
 
-      const user = response.data; // Assuming the response contains user data
+      // Update auth context state
 
-      dispatch({ type: "LOGIN", payload: user }); // Update auth context state, if applicable
+      dispatch({ type: "LOGIN", payload: user });
+      await fetchCurrentUser();
 
-      return { success: true, user }; // Return success state and user data
+      return { success: true, user };
     } catch (error) {
       console.log(error.response.data);
       const errorMessage =

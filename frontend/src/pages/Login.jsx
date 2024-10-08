@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Navbar, Footer, FormInput, Button, PageTitle } from "../components";
-import { Form, Link, useNavigate } from "react-router-dom";
+import { Form, Link, useLocation, useNavigate } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const { login, error, isLoading } = useLogin();
   const navigate = useNavigate();
+  const location = useLocation();
+  const message = location.state?.message;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -29,6 +31,12 @@ const Login = () => {
       </header>
 
       <section className="section-container form-container">
+        {message && (
+          <p className="mb-1" style={{ color: "red" }}>
+            {message}
+          </p>
+        )}
+
         <Form method="POST" className="form" onSubmit={handleSubmit}>
           <PageTitle text="Anmelden" lineWidth="8rem" />
 
@@ -41,6 +49,7 @@ const Login = () => {
               {errorMessage}
             </p>
           )}
+
           {/* INPUTS */}
           <FormInput
             id="email"
