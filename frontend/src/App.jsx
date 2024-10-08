@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { AuthContextProvider } from "./context/AuthContext";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ProtectedRoute } from "./components";
 import {
   MainLayout,
   Homepage,
@@ -53,11 +54,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/leselisten",
-        element: <ReadingLists />,
+        element: (
+          <ProtectedRoute>
+            <ReadingLists />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/profil",
-        element: <Profile />,
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
