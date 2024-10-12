@@ -61,9 +61,9 @@ const userSchema = Joi.object({
     .max(64)
     .escapeHTML()
     .messages({
-      "string.base": "Passwort muss eine Zeichenfolge sein.",
-      "string.min": "Passwort muss mindestens 8 Zeichen lang sein.",
-      "string.max": "Passwort darf nicht länger als 64 Zeichen sein.",
+      "string.base": "Das Passwort muss eine Zeichenfolge sein.",
+      "string.min": "Das Passwort muss mindestens 8 Zeichen lang sein.",
+      "string.max": "Das Passwort darf nicht länger als 64 Zeichen sein.",
     })
     .required(),
 });

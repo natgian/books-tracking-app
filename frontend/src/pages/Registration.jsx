@@ -4,34 +4,55 @@ import { Navbar, Footer, FormInput, Button, PageTitle } from "../components";
 import { Form, Link, useNavigate } from "react-router-dom";
 
 const Registration = () => {
-  const [errorMessage, setErrorMessage] = useState("");
-  const { register, error, isLoading } = useRegister();
+  const [frontendErrorMessage, setFrontendErrorMessage] = useState("");
+  const { register, backendError, setBackendError, isLoading } = useRegister();
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // prevents from refreshing the page
+    // prevents from refreshing the page
+    event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
+    const username = formData.get("username");
+    const email = formData.get("email");
     const password = formData.get("password");
     const confirmPassword = formData.get("confirm-password");
 
-    if (password !== confirmPassword) {
-      setErrorMessage("Passwörter stimmen nicht überein.");
+    // Reset any existing error messages
+    setFrontendErrorMessage("");
+    setBackendError(null);
+
+    // Frontend validation
+    if (!username || username.length < 2) {
+      setFrontendErrorMessage(
+        "Der Benutzername muss mindestens 2 Zeichen lang sein."
+      );
+      console.log("Username validation failed.");
       return;
     }
 
-    const newUser = {
-      username: formData.get("username"),
-      email: formData.get("email"),
-      password,
-    };
+    if (!password || password.length < 8) {
+      setFrontendErrorMessage(
+        "Das Passwort muss mindestens 8 Zeichen lang sein."
+      );
+      console.log("Password validation failed.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setFrontendErrorMessage("Passwörter stimmen nicht überein.");
+      console.log("Password validation failed.");
+      return;
+    }
+
+    const newUser = { username, email, password };
 
     const { success, error: registrationError } = await register(newUser);
 
     if (success) {
       navigate("/");
     } else {
-      setErrorMessage(registrationError);
+      setBackendError(registrationError);
     }
   };
 
@@ -51,6 +72,7 @@ const Registration = () => {
             name="username"
             type="text"
             autocomplete="username"
+            onChange={() => setFrontendErrorMessage("")}
           />
           <FormInput
             id="email"
@@ -58,6 +80,7 @@ const Registration = () => {
             name="email"
             type="email"
             autocomplete="email"
+            onChange={() => setFrontendErrorMessage("")}
           />
           <FormInput
             id="password"
@@ -65,6 +88,7 @@ const Registration = () => {
             name="password"
             type="password"
             autocomplete="new-password"
+            onChange={() => setFrontendErrorMessage("")}
           />
           <FormInput
             id="confirm-password"
@@ -72,12 +96,19 @@ const Registration = () => {
             name="confirm-password"
             type="password"
             autocomplete="new-password"
+            onChange={() => setFrontendErrorMessage("")}
           />
 
-          {/* ERROR MESSAGE */}
-          {errorMessage && (
-            <p className="error-message" style={{ color: "red" }}>
-              {errorMessage}
+          {/* DISPLAY FRONTEND OR BACKEND ERROR MESSAGE */}
+          {frontendErrorMessage && (
+            <p className="error-message mt-1" style={{ color: "red" }}>
+              {frontendErrorMessage}
+            </p>
+          )}
+          {/* BACKEND ERROR MESSAGE */}
+          {backendError && (
+            <p className="error-message mt-1" style={{ color: "red" }}>
+              {backendError}
             </p>
           )}
 

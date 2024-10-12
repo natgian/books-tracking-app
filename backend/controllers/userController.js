@@ -11,21 +11,25 @@ const registerUser = async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
 
-    // Check if the username already exists
-    const existingUsernameUser = await User.findOne({ username });
-    if (existingUsernameUser) {
-      return res.status(400).json({
-        error:
-          "Ein Benutzer mit diesem Benutzernamen existiert bereits. Bitte einen anderen Benutzernamen verwenden.",
-      });
-    }
-    // Check if the email already exists
-    const existingEmailUser = await User.findOne({ email });
-    if (existingEmailUser) {
-      return res.status(400).json({
-        error:
-          "Ein Benutzer mit der angegebenen E-Mail-Adresse ist bereits registriert.",
-      });
+    // Check if the username or email already exists
+    const existingUser = await User.findOne({
+      $or: [{ username }, { email }],
+    });
+
+    // If a user exists, determine which field is already taken
+    if (existingUser) {
+      if (existingUser.username === username) {
+        return res.status(400).json({
+          message:
+            "Ein Benutzer mit diesem Benutzernamen existiert bereits. Bitte einen anderen Benutzernamen verwenden.",
+        });
+      }
+      if (existingUser.email === email) {
+        return res.status(400).json({
+          message:
+            "Ein Benutzer mit der angegebenen E-Mail-Adresse ist bereits registriert.",
+        });
+      }
     }
 
     // Create new user
@@ -33,9 +37,9 @@ const registerUser = async (req, res, next) => {
     const registeredUser = await User.register(newUser, password);
 
     // Automatically log in the user
-    req.login(registeredUser, (err) => {
-      if (err) {
-        return next(err); // Handle any error that occurs during login
+    req.login(registeredUser, (error) => {
+      if (error) {
+        return next(error); // Handle any error that occurs during login
       }
       return res.json({
         message: "Neuer Benutzer wurde erfolgreich registriert.",
