@@ -13,13 +13,12 @@ import Button from "../Buttons/Button";
 // React
 import { useState, useRef, useMemo, useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
-// Context
-import { AuthContext } from "../../context/AuthContext";
 // Hooks
 import { useLogout } from "../../hooks/useLogout";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuthContext();
   const { logout } = useLogout();
   const [showLinks, setShowLinks] = useState(false);
   const menuContainerRef = useRef(null);
