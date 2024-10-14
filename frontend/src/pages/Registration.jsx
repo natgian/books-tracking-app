@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useRegister } from "../hooks/useRegister";
 import { Navbar, Footer, FormInput, Button, PageTitle } from "../components";
-import { Form, Link, useNavigate } from "react-router-dom";
+import { Form, Link, useNavigate, useLocation } from "react-router-dom";
 
 const Registration = () => {
   const [frontendErrorMessage, setFrontendErrorMessage] = useState("");
   const { register, backendError, setBackendError, isLoading } = useRegister();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = async (event) => {
     // prevents from refreshing the page
@@ -50,7 +52,7 @@ const Registration = () => {
     const { success, error: registrationError } = await register(newUser);
 
     if (success) {
-      navigate("/");
+      navigate(from);
     } else {
       setBackendError(registrationError);
     }

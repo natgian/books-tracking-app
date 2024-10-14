@@ -8,6 +8,7 @@ const Login = () => {
   const { login, error, isLoading } = useLogin();
   const navigate = useNavigate();
   const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const message = location.state?.message;
 
   const handleSubmit = async (event) => {
@@ -18,7 +19,7 @@ const Login = () => {
     const { success, error: loginError } = await login(formData);
 
     if (success) {
-      navigate("/");
+      navigate(from);
     } else {
       setErrorMessage(loginError);
     }
@@ -31,6 +32,7 @@ const Login = () => {
       </header>
 
       <section className="section-container form-container">
+        {/* ERROR MESSAGE FROM LOCATION STATE */}
         {message && (
           <p className="mb-1" style={{ color: "red" }}>
             {message}
@@ -40,7 +42,7 @@ const Login = () => {
         <Form method="POST" className="form" onSubmit={handleSubmit}>
           <PageTitle text="Anmelden" lineWidth="8rem" />
 
-          {/* ERROR MESSAGE */}
+          {/* LOGIN ERROR MESSAGE */}
           {errorMessage && (
             <p
               className="error-message text-center mt-1"
@@ -71,7 +73,11 @@ const Login = () => {
           </div>
           {/* LINKS */}
           <div className="form-links-container">
-            <Link to="/registration" className="form-link">
+            <Link
+              to="/registration"
+              state={{ from: location.state?.from }}
+              className="form-link"
+            >
               Noch nicht registriert?
             </Link>
             <Link to="#" className="form-link">

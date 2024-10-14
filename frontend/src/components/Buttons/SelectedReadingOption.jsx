@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuthContext } from "../../hooks/useAuthContext";
+import backendAxiosConfig from "../../api/backendAxiosConfig.js";
 import Select from "react-select";
 import {
   FaBookOpenReader,
@@ -46,14 +49,39 @@ const options = [
   },
 ];
 
-const SelectedReadingOption = () => {
+const SelectedReadingOption = ({ bookId }) => {
+  const { user } = useAuthContext();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [selectedOption, setSelectedOption] = useState(null);
 
-  const handleSelectChange = (option) => {
-    if (option.value === "remove") {
-      setSelectedOption(null);
-    } else {
-      setSelectedOption(option.value);
+  const handleSelectChange = async (option) => {
+    setSelectedOption(option.value);
+
+    if (!user || !user._id) {
+      navigate("/login", {
+        state: {
+          from: { pathname: `/buch/${bookId}` },
+          message: " Bitte anmelden um das Buch einer Leseliste hinzuzufügen.",
+        },
+      });
+      return;
+    }
+
+    try {
+      if (option.value === "remove") {
+        await backendAxiosConfig.delete(
+          `/readinglist/${user._id}/books/${bookId}`
+        );
+      } else {
+        await backendAxiosConfig.post(`/readinglist/${user._id}/books`, {
+          userId: user._id,
+          bookId,
+          listName: option.value,
+        });
+      }
+    } catch (error) {
+      console.log("Error updating reading list", error);
     }
   };
 
