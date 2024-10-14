@@ -73,7 +73,7 @@ const Book = () => {
             className="book-cover"
           />
         </div>
-        <SelectedReadingOption />
+        <SelectedReadingOption bookId={book.id} />
       </div>
 
       <BookDetails
