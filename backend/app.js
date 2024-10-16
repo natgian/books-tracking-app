@@ -36,7 +36,7 @@ passportConfig(app);
 
 // ROUTES
 app.use("/api/user", userRoutes);
-app.use("/api/readinglist", readinglistRoutes);
+app.use("/api/readinglists", readinglistRoutes);
 
 // LISTENING FOR REQUESTS & CONNECTING DO DATABASE
 app.listen(PORT, () => {
