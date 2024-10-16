@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import backendAxiosConfig from "../api/backendAxiosConfig";
 
 export const AuthContext = createContext();
@@ -18,6 +18,7 @@ export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, {
     user: null,
   });
+  const [loading, setLoading] = useState(true); // Add loading state
 
   const fetchCurrentUser = async () => {
     try {
@@ -28,12 +29,16 @@ export const AuthContextProvider = ({ children }) => {
       }
     } catch (error) {
       console.log("Benutzer ist nicht authentifiziert");
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchCurrentUser();
   }, []);
+
+  if (loading) return <div>Loading...</div>; // Optional loading state
 
   return (
     <AuthContext.Provider value={{ ...state, dispatch, fetchCurrentUser }}>
