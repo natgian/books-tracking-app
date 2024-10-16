@@ -1,4 +1,4 @@
-.booklist-container {
+.readinglist-container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 2rem;
@@ -7,7 +7,7 @@
 }
 
 @media screen and (max-width: 525px) {
-  .booklist-container {
+  .readinglist-container {
     margin: 0;
     padding: 1rem;
   }

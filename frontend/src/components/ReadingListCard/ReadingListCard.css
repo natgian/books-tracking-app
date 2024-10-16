@@ -1,26 +1,27 @@
-.booklist-card {
+.readinglist-card {
   display: flex;
   align-items: flex-start;
-  gap: 2rem;
+  gap: 4rem;
   margin: 2rem 0;
   padding: 2rem;
   max-width: 1000px;
   background-color: var(--secondary-color-bg);
 }
 
-.booklist-card-cover {
+.readinglist-card-cover {
   width: 5rem;
   min-width: 5rem;
 }
 
-.booklist-card-info-wrapper {
+.readinglist-card-info-wrapper {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  width: 30%;
   justify-content: space-between;
 }
 
-.booklist-card-progress-wrapper {
+.readinglist-card-progress-wrapper {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -30,59 +31,57 @@
   margin-top: 0.4rem;
 }
 
-.booklist-card-title {
+.readinglist-card-title {
   font-size: 1.125rem;
   font-weight: 700;
 }
 
-.booklist-card-author {
+.readinglist-card-author {
   font-size: 0.875rem;
 }
 
-.booklist-card-date {
+.readinglist-card-date {
   display: flex;
   gap: 0.25rem;
 }
 
-.booklist-card-date p,
-.booklist-card-date span {
+.readinglist-card-date p,
+.readinglist-card-date span {
   font-size: 0.75rem;
   white-space: nowrap;
 }
 
-.booklist-card-date span {
+.readinglist-card-date span {
   font-weight: 600;
 }
 
 /* MEDIA QUERIES */
 @media screen and (max-width: 815px) {
-  .booklist-card {
+  .readinglist-card {
     padding: 1.5rem;
     margin: 1rem;
   }
-  .booklist-card-author,
-  .booklist-card-date p,
-  .booklist-card-date span {
+  .readinglist-card-author,
+  .readinglist-card-date p,
+  .readinglist-card-date span {
     font-size: 0.75rem;
-  }
-  .booklist-card-title {
-    font-size: 1rem;
-  }
-  .booklist-card-date {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
   }
 }
 
-@media screen and (max-width: 618px) {
-  .booklist-card {
+@media screen and (max-width: 746px) {
+  .readinglist-card {
     margin: 2rem 0;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
   }
-  .booklist-card-info-wrapper {
+
+  .readinglist-card-info-wrapper {
     align-items: center;
+    max-width: 100%;
+  }
+
+  .readinglist-card-title {
+    text-align: center;
   }
 }
