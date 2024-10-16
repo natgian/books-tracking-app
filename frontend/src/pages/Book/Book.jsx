@@ -26,6 +26,7 @@ export const loader =
 const Book = () => {
   const initialData = useLoaderData();
   const { id } = initialData;
+
   const {
     data: book,
     isPending,
@@ -73,7 +74,14 @@ const Book = () => {
             className="book-cover"
           />
         </div>
-        <SelectedReadingOption bookId={book.id} />
+        <SelectedReadingOption
+          bookId={book.id}
+          bookTitle={book.volumeInfo.title}
+          bookAuthors={book.volumeInfo.authors}
+          bookPageCount={book.volumeInfo.pageCount}
+          bookAverageRating={book.volumeInfo.averageRating}
+          bookImage={secureImageURL(imageURL)}
+        />
       </div>
 
       <BookDetails
