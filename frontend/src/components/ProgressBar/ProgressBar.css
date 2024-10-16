@@ -41,7 +41,7 @@
   font-weight: 600;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 900px) {
   .progress-wrapper {
     display: flex;
     flex-direction: column;

@@ -370,7 +370,7 @@ p {
   margin: 2em auto;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1080px) {
   .section-container {
     width: min(1800px, 100% - 2em * 3);
   }
