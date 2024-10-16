@@ -1,6 +1,39 @@
 import mongoose from "mongoose";
 import passportLocalMongoose from "passport-local-mongoose";
 
+// SCHEMA TO STORE USER-SPECIFIC DATA FOR EACH BOOK
+const userBookDataSchema = new mongoose.Schema({
+  book: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Book",
+    required: true,
+  },
+  currentPage: {
+    type: Number,
+    default: 0,
+  },
+  userRating: {
+    type: Number,
+    min: 1,
+    max: 5,
+    default: null,
+  },
+  addedToListAt: {
+    type: Date,
+    default: Date.now,
+  },
+  finishedReadingAt: {
+    type: Date,
+  },
+});
+
+// SCHEMA FOR THE BOOK LISTS (tbr, reading, read)
+const readingListsSchema = new mongoose.Schema({
+  reading: [userBookDataSchema],
+  tbr: [userBookDataSchema],
+  read: [userBookDataSchema],
+});
+
 const userSchema = new mongoose.Schema(
   {
     username: {
@@ -18,6 +51,14 @@ const userSchema = new mongoose.Schema(
     },
     resetPasswordExpires: {
       type: Date,
+    },
+    readingLists: {
+      type: readingListsSchema,
+      default: () => ({
+        reading: [],
+        tbr: [],
+        read: [],
+      }),
     },
   },
   { timestamps: true }
