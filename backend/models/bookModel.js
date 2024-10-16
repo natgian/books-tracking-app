@@ -9,19 +9,19 @@ const bookSchema = new mongoose.Schema(
     },
     title: {
       type: String,
-      required: true,
     },
-    author: {
-      type: String,
-      required: true,
-    },
+    author: [
+      {
+        type: String,
+      },
+    ],
     pageCount: {
       type: Number,
     },
     imageURL: {
       type: String,
     },
-    GoogleAverageRating: {
+    googleAverageRating: {
       type: Number,
     },
   },
