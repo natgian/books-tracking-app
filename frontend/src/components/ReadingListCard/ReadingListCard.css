@@ -19,6 +19,7 @@
   flex-grow: 1;
   width: 30%;
   justify-content: space-between;
+  text-wrap: pretty;
 }
 
 .readinglist-card-progress-wrapper {
@@ -78,7 +79,7 @@
 
   .readinglist-card-info-wrapper {
     align-items: center;
-    max-width: 100%;
+    width: 100%;
   }
 
   .readinglist-card-title {
