@@ -12,7 +12,7 @@ export const useLogout = () => {
       dispatch({ type: "LOGOUT" });
       navigate("/");
     } catch (error) {
-      console.log("Error logging out:", error);
+      console.error("Error logging out:", error);
     }
   };
 

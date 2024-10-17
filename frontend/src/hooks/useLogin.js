@@ -22,7 +22,7 @@ export const useLogin = () => {
 
       return { success: true, user };
     } catch (error) {
-      console.log(error.response.data);
+      console.error(error.response.data);
       const errorMessage =
         error.response?.data?.error ||
         "Ein Fehler ist aufgetreten. Bitte erneut versuchen.";

@@ -21,7 +21,7 @@ export const useRegister = () => {
 
       return { success: true, user }; // Return success state and user data
     } catch (error) {
-      console.log(error.response.data);
+      console.error(error.response.data);
 
       const backendErrorMessage =
         error.response?.data?.message ||

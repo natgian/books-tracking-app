@@ -47,8 +47,6 @@ const registerUser = async (req, res, next) => {
       });
     });
   } catch (error) {
-    console.log(error);
-
     // Default error message
     let errorMessage = `Ein Fehler ist aufgetreten. Bitte erneut versuchen: ${error}`;
 
@@ -85,9 +83,19 @@ const loginUser = (req, res, next) => {
 };
 
 // CHECK CURRENT USER
-const currentUser = (req, res, next) => {
+const currentUser = async (req, res, next) => {
   if (req.isAuthenticated()) {
-    return res.json({ user: req.user });
+    try {
+      const userId = req.user._id;
+      const user = await User.findById(userId)
+        .populate("readingLists.read.book")
+        .populate("readingLists.tbr.book")
+        .populate("readingLists.reading.book");
+      return res.json({ user });
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      return res.status(500).json({ error: "Failed to fetch user" });
+    }
   } else {
     return res.status(200).json({ user: null });
   }
