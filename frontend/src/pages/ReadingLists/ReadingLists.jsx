@@ -1,18 +1,15 @@
 import "./ReadingLists.css";
 import { useState } from "react";
-
-import { ReadingListsNavbar, BookList, PageTitle } from "../../components";
+import { ReadingListsNavbar, ReadingList, PageTitle } from "../../components";
 
 const ReadingLists = () => {
   const [currentList, setCurrentList] = useState("reading");
+
   return (
     <section className="section-container">
       <PageTitle text="Deine Leselisten" lineWidth="14rem" />
-      <ReadingListsNavbar
-        currentList={currentList}
-        setCurrentList={setCurrentList}
-      />
-      <BookList />
+      <ReadingListsNavbar setCurrentList={setCurrentList} />
+      <ReadingList currentList={currentList} />
     </section>
   );
 };

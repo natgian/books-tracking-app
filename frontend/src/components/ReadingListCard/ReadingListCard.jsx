@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import StarRating from "../StarRating/StarRating";
 import "./ReadingListCard.css";
@@ -6,17 +7,14 @@ import { formatDate } from "../../utilities/formatDate";
 const ReadingListCard = ({
   showProgressBar = true,
   showReadDate = false,
-  readDate = "",
   book,
 }) => {
-  {
-    console.log(book);
-  }
-  const { addedToListAt, currentPage, userRating } = book;
+  const { addedToListAt, finishedReadingAt, currentPage, userRating } = book;
   const {
     title,
     author,
     imageURL,
+    googleBookId,
     pageCount,
     updatedAt,
     googleAverageRating,
@@ -26,14 +24,18 @@ const ReadingListCard = ({
     <div className="readinglist-card">
       {/* COVER */}
       <div>
-        <img className="readinglist-card-cover" src={imageURL} alt="title" />
+        <Link to={`/buch/${googleBookId}`}>
+          <img className="readinglist-card-cover" src={imageURL} alt="title" />
+        </Link>
       </div>
 
       <div className="readinglist-card-info-wrapper">
         {/* BOOK INFOS */}
 
-        <h2 className="readinglist-card-title">{title}</h2>
-        <h3 className="readinglist-card-author">{author}</h3>
+        <Link to={`/buch/${googleBookId}`}>
+          <h2 className="readinglist-card-title">{title}</h2>
+        </Link>
+        <h3 className="readinglist-card-author mt-05">{author}</h3>
         <StarRating
           averageRating={googleAverageRating}
           showRatingsCount={false}
@@ -51,12 +53,18 @@ const ReadingListCard = ({
         {showReadDate && (
           <div className="readinglist-card-date">
             <span>Zu Ende gelesen am:</span>
-            <p>15.08.2024</p>
+            <p>{finishedReadingAt}</p>
           </div>
         )}
 
         {/* PROGRESS */}
-        {showProgressBar && <ProgressBar />}
+        {showProgressBar && (
+          <ProgressBar
+            currentPage={currentPage}
+            pageCount={pageCount}
+            updatedAt={updatedAt}
+          />
+        )}
       </div>
     </div>
   );

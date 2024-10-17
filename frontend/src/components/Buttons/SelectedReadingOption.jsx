@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
-import backendAxiosConfig from "../../api/backendAxiosConfig.js";
+import { useManageReadingList } from "../../hooks/useManageReadingList.js";
 import Select from "react-select";
 import {
   FaBookOpenReader,
@@ -21,7 +21,7 @@ const options = [
     ),
   },
   {
-    value: "read",
+    value: "reading",
     label: (
       <div className="select-option-container">
         <FaBookOpenReader />
@@ -30,7 +30,7 @@ const options = [
     ),
   },
   {
-    value: "reading",
+    value: "read",
     label: (
       <div className="select-option-container">
         <FaCheck />
@@ -49,15 +49,34 @@ const options = [
   },
 ];
 
-const SelectedReadingOption = ({ bookId }) => {
+const SelectedReadingOption = ({
+  bookId,
+  bookTitle,
+  bookAuthors,
+  bookPageCount,
+  bookAverageRating,
+  bookImage,
+}) => {
   const { user } = useAuthContext();
   const navigate = useNavigate();
-  const location = useLocation();
   const [selectedOption, setSelectedOption] = useState(null);
+  const { addBookMutation, removeBookMutation } = useManageReadingList();
+
+  useEffect(() => {
+    if (user && user.readingLists) {
+      const listName = Object.keys(user.readingLists).find((list) => {
+        const currentList = user.readingLists[list];
+        return (
+          Array.isArray(currentList) &&
+          currentList.some((item) => item.book.googleBookId === bookId)
+        );
+      });
+
+      setSelectedOption(listName || null);
+    }
+  }, [user, bookId]);
 
   const handleSelectChange = async (option) => {
-    setSelectedOption(option.value);
-
     if (!user || !user._id) {
       navigate("/login", {
         state: {
@@ -68,21 +87,26 @@ const SelectedReadingOption = ({ bookId }) => {
       return;
     }
 
-    try {
-      if (option.value === "remove") {
-        await backendAxiosConfig.delete(
-          `/readinglist/${user._id}/books/${bookId}`
-        );
-      } else {
-        await backendAxiosConfig.post(`/readinglist/${user._id}/books`, {
-          userId: user._id,
-          bookId,
-          listName: option.value,
-        });
-      }
-    } catch (error) {
-      console.log("Error updating reading list", error);
+    const bookData = {
+      bookId,
+      bookTitle,
+      bookAuthors,
+      bookPageCount,
+      bookAverageRating,
+      bookImage,
+    };
+
+    if (option.value === "remove") {
+      removeBookMutation.mutate({ userId: user._id, bookId });
+    } else {
+      addBookMutation.mutate({
+        userId: user._id,
+        listName: option.value,
+        book: bookData,
+      });
     }
+
+    setSelectedOption(option.value);
   };
 
   const customStyles = {
