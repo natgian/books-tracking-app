@@ -9,19 +9,19 @@
 ### Currently Implemented:
 
 - **Search for Books**: Users can search for books by title and author using the Google Books API.
+- **Reading Lists**: Users can categorize books into _Reading_, _Read_, and _TBR_ lists.
 
 ### Upcoming Features:
 
-- **Reading Lists**: Users will be able to categorize books into _Currently Reading_, _Read_, and _Want to Read_ lists.
-- **Track Progress**: Users will have the ability to log their reading progress by entering the current page or percentage.
+- **Track Progress**: Users will have the ability to log their reading progress by entering the current page.
 - **Rate**: After finishing a book, users will be able to rate the book.
-- **User Profiles**: Save reading history, lists, and reviews under a personal profile.
+- **User Profiles**: User will be able to change the password and reading statistics will be available.
 
-## Technologies Used (for now)
+## Technologies Used (so far)
 
 - **Frontend**: HTML, CSS, JavaScript, React.js
 - **Backend**: Node.js, Express.js
-- **Database**: MongoDB
+- **Database**: MongoDB, Mongoose
 
 ## Contact
 
