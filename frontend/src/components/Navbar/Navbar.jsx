@@ -1,5 +1,7 @@
 // Navbar CSS
 import "./Navbar.css";
+// Logo
+import logo from "../../assets/logo_leseoase.png";
 // BoxIcons
 import {
   BiSolidHome,
@@ -54,7 +56,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="logo">
             <Link to="/" className="logo">
-              LESEOASE
+              <img src={logo} alt="logo" />
             </Link>
           </div>
           {/* Menu-Button */}

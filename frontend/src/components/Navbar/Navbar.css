@@ -23,8 +23,7 @@
 }
 
 .logo {
-  font-size: 2rem;
-  text-decoration: none;
+  width: 200px;
   cursor: pointer;
 }
 
@@ -95,9 +94,13 @@ nav .active {
     width: min(1800px, 100% - 2em * 2);
     margin: 0 auto;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
     padding: 1rem;
+  }
+
+  .logo {
+    width: 250px;
   }
 
   .links-container {
