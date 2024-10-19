@@ -71,7 +71,7 @@ nav .active {
 }
 
 /* MEDIA QUERIES - Desktop */
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 1000px) {
   .nav-header {
     margin: 1rem;
   }
