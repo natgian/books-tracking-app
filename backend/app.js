@@ -7,6 +7,7 @@ import { connectDB } from "./config/db.js";
 import mongoSanitize from "express-mongo-sanitize";
 import userRoutes from "./routes/userRoutes.js";
 import readinglistRoutes from "./routes/readinglistRoutes.js";
+import { isAuthenticated } from "./middleware/isAuthenticated.js";
 
 const PORT = process.env.PORT;
 const SECRET = process.env.SECRET;
@@ -36,7 +37,7 @@ passportConfig(app);
 
 // ROUTES
 app.use("/api/user", userRoutes);
-app.use("/api/readinglists", readinglistRoutes);
+app.use("/api/readinglists", isAuthenticated, readinglistRoutes);
 
 // LISTENING FOR REQUESTS & CONNECTING DO DATABASE
 app.listen(PORT, () => {

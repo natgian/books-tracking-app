@@ -4,7 +4,7 @@ import User from "../models/userModel.js";
 // GET USER'S READING LISTS
 const getReadingLists = async (req, res) => {
   try {
-    const userId = req.params.userId;
+    const userId = req.user._id;
 
     const user = await User.findById(userId)
       .populate("readingLists.read.book")
@@ -25,7 +25,6 @@ const getReadingLists = async (req, res) => {
 // ADD OR UPDATE A BOOK IN USER'S BOOK LIST
 const addOrUpdateBookToList = async (req, res) => {
   const {
-    userId,
     listName,
     bookId,
     bookTitle,
@@ -34,6 +33,7 @@ const addOrUpdateBookToList = async (req, res) => {
     bookAverageRating,
     bookImage,
   } = req.body;
+  const userId = req.user._id;
 
   try {
     // Check if the book exists; if not, create a new instance
@@ -103,7 +103,7 @@ const addOrUpdateBookToList = async (req, res) => {
 
 // REMOVE A BOOK FROM A USER'S BOOK LIST
 const removeBookFromList = async (req, res) => {
-  const { userId } = req.params;
+  const userId = req.user._id;
   const googleBookId = req.params.bookId;
 
   try {

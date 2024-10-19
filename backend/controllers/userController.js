@@ -76,14 +76,13 @@ const loginUser = (req, res, next) => {
       if (err) {
         return res.status(500).json({ error: "Login fehlgeschlagen" });
       }
-
       return res.json({ message: "User erfolgreich angemeldet", user });
     });
   })(req, res, next);
 };
 
 // CHECK CURRENT USER
-const currentUser = async (req, res, next) => {
+const currentUser = async (req, res) => {
   if (req.isAuthenticated()) {
     try {
       const userId = req.user._id;
@@ -91,6 +90,7 @@ const currentUser = async (req, res, next) => {
         .populate("readingLists.read.book")
         .populate("readingLists.tbr.book")
         .populate("readingLists.reading.book");
+
       return res.json({ user });
     } catch (error) {
       console.error("Error fetching user:", error);
