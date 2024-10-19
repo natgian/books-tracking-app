@@ -1,18 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import backendAxiosConfig from "../api/backendAxiosConfig";
 
-const fetchReadingLists = async ({ queryKey }) => {
-  const userId = queryKey[1];
-  const response = await backendAxiosConfig.get(
-    `/readinglists/${userId}/books`
-  );
+const fetchReadingLists = async () => {
+  const response = await backendAxiosConfig.get(`/readinglists/books`);
   return response.data;
 };
 
-export const useReadingLists = (userId) => {
+export const useReadingLists = () => {
   return useQuery({
-    queryKey: ["readingLists", userId], // Include userId in queryKey
+    queryKey: ["readingLists"], // Include userId in queryKey
     queryFn: fetchReadingLists,
-    enabled: !!userId, // Ensure query doesn't run without userId
   });
 };

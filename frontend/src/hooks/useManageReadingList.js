@@ -4,26 +4,23 @@ import { useAuthContext } from "./useAuthContext";
 
 // ADD BOOK TO A READING LIST
 const addBookToReadingList = async ({ userId, listName, book }) => {
-  const response = await backendAxiosConfig.post(
-    `/readinglists/${userId}/books`,
-    {
-      userId,
-      listName,
-      bookId: book.bookId,
-      bookTitle: book.bookTitle,
-      bookAuthors: book.bookAuthors,
-      bookPageCount: book.bookPageCount,
-      bookAverageRating: book.bookAverageRating,
-      bookImage: book.bookImage,
-    }
-  );
+  const response = await backendAxiosConfig.post(`/readinglists/books`, {
+    userId,
+    listName,
+    bookId: book.bookId,
+    bookTitle: book.bookTitle,
+    bookAuthors: book.bookAuthors,
+    bookPageCount: book.bookPageCount,
+    bookAverageRating: book.bookAverageRating,
+    bookImage: book.bookImage,
+  });
   return response.data;
 };
 
 // REMOVE BOOK FROM A READING LIST
-const removeBookFromReadingList = async ({ userId, bookId }) => {
+const removeBookFromReadingList = async ({ bookId }) => {
   const response = await backendAxiosConfig.delete(
-    `/readinglists/${userId}/books/${bookId}`
+    `/readinglists/books/${bookId}`
   );
   return response.data;
 };
@@ -35,8 +32,8 @@ export const useManageReadingList = () => {
   const addBookMutation = useMutation({
     mutationFn: addBookToReadingList,
     onSuccess: () => {
-      // Invalidate the reading lists query to refresh the data
-      queryClient.invalidateQueries(["readingLists"]);
+      // Invalidate the reading lists query to re-fetch the lists data
+      queryClient.invalidateQueries({ queryKey: ["readingLists"] });
       // Re-fetch the updated user data
       fetchCurrentUser();
     },
@@ -45,8 +42,8 @@ export const useManageReadingList = () => {
   const removeBookMutation = useMutation({
     mutationFn: removeBookFromReadingList,
     onSuccess: () => {
-      // Invalidate the reading lists query to refresh the data
-      queryClient.invalidateQueries(["readingLists"]);
+      // Invalidate the reading lists query to re-fetch the lists data
+      queryClient.invalidateQueries({ queryKey: ["readingLists"] });
       // Re-fetch the updated user data
       fetchCurrentUser();
     },
