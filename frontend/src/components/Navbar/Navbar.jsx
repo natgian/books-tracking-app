@@ -13,7 +13,7 @@ import { CgClose } from "react-icons/cg";
 // Components
 import Button from "../Buttons/Button";
 // React
-import { useState, useRef, useMemo, useContext } from "react";
+import { useState, useRef, useMemo, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 // Hooks
 import { useLogout } from "../../hooks/useLogout";
@@ -33,6 +33,29 @@ const Navbar = () => {
   const closeMenu = () => {
     setShowLinks(false);
   };
+
+  // Handle clicking outside the menu
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        menuContainerRef.current &&
+        !menuContainerRef.current.contains(event.target)
+      ) {
+        closeMenu();
+      }
+    };
+
+    if (showLinks) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    // Clean up the event listener when the component unmounts or showLinks changes
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showLinks]);
 
   // calculating the height of the menu container based on whether showLinks is true or false
   // using "useMemo" to ensure that linkStyles is only recalculated when showLinks changes

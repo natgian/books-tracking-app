@@ -384,7 +384,7 @@ p {
   min-width: 7.75rem;
   border-radius: var(--border-radius);
   border: transparent;
-  padding: 0.75rem 1.25rem;
+  padding: 0.5rem 1.25rem;
   margin: 0.5rem;
   border-color: transparent;
   background-color: var(--primary-color-100);
