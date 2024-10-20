@@ -56,11 +56,25 @@ const SelectedReadingOption = ({
   bookPageCount,
   bookAverageRating,
   bookImage,
+  isBlock = false,
 }) => {
   const { user } = useAuthContext();
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= false);
   const { addBookMutation, removeBookMutation } = useManageReadingList();
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 815);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     if (user && user.readingLists) {
@@ -112,9 +126,12 @@ const SelectedReadingOption = ({
   const customStyles = {
     control: (baseStyles) => ({
       ...baseStyles,
-      borderRadius: "0.75rem",
+      maxWidth: "260px",
+      minWidth: isBlock ? "260px" : "180px",
+      fontSize: isMobile ? "0.875rem" : "1rem",
+      borderRadius: "50px",
       marginTop: "1.25rem",
-      paddingLeft: "1rem",
+      paddingLeft: isMobile ? "0.25rem" : "1rem",
       backgroundColor: getBackgroundColor(selectedOption),
       color: "var(--text-color)",
       cursor: "pointer",
@@ -124,6 +141,7 @@ const SelectedReadingOption = ({
     }),
     placeholder: (baseStyles) => ({
       ...baseStyles,
+      maxWidth: "260px",
       color: "var(--text-color)",
     }),
     dropdownIndicator: (baseStyles) => ({
@@ -147,6 +165,20 @@ const SelectedReadingOption = ({
       ":hover": {
         backgroundColor: "var(--secondary-color-100)",
       },
+    }),
+    menu: (baseStyles) => ({
+      ...baseStyles,
+      maxWidth: "260px",
+      fontSize: isMobile ? "0.875rem" : "1rem",
+      borderBottomLeftRadius: "25px",
+      borderBottomRightRadius: "25px",
+    }),
+    menuList: (baseStyles) => ({
+      ...baseStyles,
+      maxWidth: "260px",
+      fontSize: isMobile ? "0.875rem" : "1rem",
+      borderBottomLeftRadius: "25px",
+      borderBottomRightRadius: "25px",
     }),
   };
 

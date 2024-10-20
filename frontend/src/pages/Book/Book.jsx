@@ -65,7 +65,7 @@ const Book = () => {
 
   return (
     <section className="book-details section-container">
-      <div>
+      <div className="book-cover-select-container">
         <div className="book-cover-container">
           {/* COVER */}
           <img
@@ -81,6 +81,7 @@ const Book = () => {
           bookPageCount={book.volumeInfo.pageCount}
           bookAverageRating={book.volumeInfo.averageRating}
           bookImage={secureImageURL(imageURL)}
+          isBlock={true}
         />
       </div>
 

@@ -120,7 +120,7 @@ summary {
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
   /* Border-radius */
-  --border-radius: 1.5rem;
+  --border-radius: 50px;
 
   /* Transitions */
   --transition: 0.3s ease-in-out all;
@@ -372,7 +372,7 @@ p {
 
 @media screen and (max-width: 1080px) {
   .section-container {
-    width: min(1800px, 100% - 2em * 3);
+    width: min(1800px, 100% - 2em * 2);
   }
 }
 

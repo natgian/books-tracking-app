@@ -23,7 +23,7 @@ const SortBtn = () => {
     control: (baseStyles) => ({
       ...baseStyles,
       maxWidth: "12rem",
-      borderRadius: "0.75rem",
+      borderRadius: "50px",
       marginTop: "1.25rem",
       paddingLeft: "1rem",
       cursor: "pointer",
@@ -48,6 +48,13 @@ const SortBtn = () => {
     menu: (baseStyles) => ({
       ...baseStyles,
       maxWidth: "12rem",
+      borderBottomLeftRadius: "25px",
+      borderBottomRightRadius: "25px",
+    }),
+    menuList: (baseStyles) => ({
+      ...baseStyles,
+      borderBottomLeftRadius: "25px",
+      borderBottomRightRadius: "25px",
     }),
     option: (baseStyles, state) => ({
       ...baseStyles,

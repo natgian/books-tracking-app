@@ -52,6 +52,7 @@ const ReadingList = ({ currentList }) => {
             book={book}
             showProgressBar={currentList === "reading" ? true : false}
             showReadDate={currentList === "read" ? true : false}
+            isReading={currentList === "reading" ? true : false}
           />
         );
       })}
