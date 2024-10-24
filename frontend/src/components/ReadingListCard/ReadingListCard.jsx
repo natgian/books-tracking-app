@@ -1,10 +1,14 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import ProgressBar from "../ProgressBar/ProgressBar";
-import StarRating from "../StarRating/StarRating";
 import "./ReadingListCard.css";
 import { formatDate } from "../../utilities/formatDate";
-import SelectedReadingOption from "../Buttons/SelectedReadingOption";
 import { secureImageURL } from "../../utilities/secureImageURL";
+import {
+  UpdateProgressModal,
+  ProgressBar,
+  StarRating,
+  SelectedReadingOption,
+} from "../../components";
 
 const ReadingListCard = ({
   showProgressBar = true,
@@ -14,6 +18,7 @@ const ReadingListCard = ({
 }) => {
   const { addedToListAt, finishedReadingAt, currentPage, userRating } = book;
   const {
+    _id,
     title,
     author,
     imageURL,
@@ -23,6 +28,12 @@ const ReadingListCard = ({
     googleAverageRating,
     googleRatingsCount,
   } = book.book;
+
+  // Modal state management
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <div className="readinglist-card">
       {/* COVER */}
@@ -35,7 +46,7 @@ const ReadingListCard = ({
       <div className="readinglist-card-container">
         {/* BOOK INFOS */}
         <div className="readinglist-card-info-wrapper">
-          <Link to={`/buch/${googleBookId}`}>
+          <Link to={`/buch/${googleBookId}`} className="no-text-decoration">
             <h2 className="readinglist-card-title">{title}</h2>
           </Link>
           <h3 className="readinglist-card-author mt-05">{author}</h3>
@@ -51,34 +62,35 @@ const ReadingListCard = ({
               bookPageCount={pageCount}
               bookAverageRating={googleAverageRating}
               bookImage={secureImageURL(imageURL)}
+              openModal={openModal}
             />
           )}
         </div>
+
         {/* DATES & PROGESS */}
         <div className="readinglist-card-progress-wrapper">
-          {/* DATE ADDED */}
+          {/* Date added */}
           <div className="readinglist-card-date">
             <span>Hinzugefügt am:</span>
             <p>{formatDate(addedToListAt)}</p>
           </div>
-          {/* DATE READ */}
+          {/* Date read */}
           {showReadDate && (
             <div className="readinglist-card-date">
               <span>Zu Ende gelesen am:</span>
               <p>{finishedReadingAt}</p>
             </div>
           )}
-
-          {/* PROGRESS */}
+          {/* Progress */}
           {showProgressBar && (
             <ProgressBar
               currentPage={currentPage}
               pageCount={pageCount}
               updatedAt={updatedAt}
+              openModal={openModal}
             />
           )}
-
-          {/* SELECT READING LIST */}
+          {/* Select Reading List */}
           {!isReading && (
             <SelectedReadingOption
               bookId={googleBookId}
@@ -87,10 +99,20 @@ const ReadingListCard = ({
               bookPageCount={pageCount}
               bookAverageRating={googleAverageRating}
               bookImage={secureImageURL(imageURL)}
+              openModal={openModal}
             />
           )}
         </div>
       </div>
+      {/* Modal to update current page */}
+      <UpdateProgressModal
+        bookPageCount={pageCount}
+        currentPage={currentPage}
+        bookId={_id}
+        bookEntryId={book._id}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      />
     </div>
   );
 };
