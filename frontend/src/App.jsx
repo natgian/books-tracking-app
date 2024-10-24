@@ -15,6 +15,7 @@ import {
   Registration,
   Profile,
   ReadingLists,
+  PrivacyPolicy,
 } from "./pages";
 
 const queryClient = new QueryClient({
@@ -28,6 +29,7 @@ const queryClient = new QueryClient({
 import { loader as searchResultsLoader } from "./pages/Searchresults/Searchresults";
 import { loader as singleBookLoader } from "./pages/Book/Book";
 
+// ROUTER
 const router = createBrowserRouter([
   {
     path: "/",
@@ -78,6 +80,10 @@ const router = createBrowserRouter([
     path: "/registration",
     element: <Registration />,
   },
+  {
+    path: "/datenschutz",
+    element: <PrivacyPolicy />,
+  },
 ]);
 
 function App() {
@@ -85,7 +91,7 @@ function App() {
     <AuthContextProvider>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
-        <ReactQueryDevtools initialIsOpen={true} />
+        {/* <ReactQueryDevtools initialIsOpen={true} /> */}
       </QueryClientProvider>
     </AuthContextProvider>
   );

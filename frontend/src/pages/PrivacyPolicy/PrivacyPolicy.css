@@ -1,0 +1,27 @@
+.privacypolicy-container {
+  margin: 4rem auto;
+  max-width: 1000px;
+}
+.privacypolicy-section-wrapper {
+  margin-bottom: 3rem;
+}
+
+.privacypolicy-section-wrapper h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.privacypolicy-section-wrapper h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+.privacypolicy-section-wrapper h4 {
+  font-style: italic;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+.privacypolicy-section-wrapper > p {
+  margin-bottom: 1rem;
+}
