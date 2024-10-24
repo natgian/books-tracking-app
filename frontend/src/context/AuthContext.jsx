@@ -38,7 +38,7 @@ export const AuthContextProvider = ({ children }) => {
     fetchCurrentUser();
   }, []);
 
-  if (loading) return <div>Loading...</div>; // Optional loading state
+  if (loading) return <div>Loading...</div>;
 
   return (
     <AuthContext.Provider value={{ ...state, dispatch, fetchCurrentUser }}>
