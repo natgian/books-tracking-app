@@ -1,7 +1,7 @@
 const Button = ({ text, block, onClick, type = "button" }) => {
   return (
     <button
-      className={`btn capitalize ${block ? "btn-block" : ""}`}
+      className={`btn ${block ? "btn-block" : ""}`}
       type={type}
       onClick={onClick}
     >
