@@ -11,6 +11,7 @@ export { default as FormInput } from "./Form/FormInput";
 export { default as Loading } from "./Loading";
 export { default as StarRating } from "./StarRating/StarRating";
 export { default as ProgressBar } from "./ProgressBar/ProgressBar";
+export { default as UpdateProgressModal } from "./Modals/UpdateProgressModal";
 export { default as ReadingList } from "./ReadingList/ReadingList";
 export { default as ReadingListCard } from "./ReadingListCard/ReadingListCard";
 export { default as ProtectedRoute } from "./ProtectedRoute";
