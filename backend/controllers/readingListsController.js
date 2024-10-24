@@ -148,4 +148,39 @@ const removeBookFromList = async (req, res) => {
   res.status(200).json({ message: "Book successfully removed" });
 };
 
-export { getReadingLists, addOrUpdateBookToList, removeBookFromList };
+// UPDATE READING PROGRESS OF A BOOK
+const updateReadingProgress = async (req, res) => {
+  const { userId, bookEntryId, currentPage } = req.body;
+
+  try {
+    const user = await User.findOneAndUpdate(
+      {
+        _id: userId,
+        "readingLists.reading._id": bookEntryId,
+      },
+      {
+        $set: {
+          "readingLists.reading.$.currentPage": currentPage,
+        },
+      },
+      { new: true }
+    );
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "Benutzer oder Buch nicht gefunden." });
+    }
+
+    return res.status(200).json({ message: "Fortschritt gespeichert.", user });
+  } catch (error) {
+    return res.status(500).json({ message: "Server Error", error });
+  }
+};
+
+export {
+  getReadingLists,
+  addOrUpdateBookToList,
+  removeBookFromList,
+  updateReadingProgress,
+};
