@@ -50,6 +50,7 @@ const ReadingList = ({ currentList }) => {
           <ReadingListCard
             key={book._id}
             book={book}
+            currentList={currentList}
             showProgressBar={currentList === "reading" ? true : false}
             showReadDate={currentList === "read" ? true : false}
             isReading={currentList === "reading" ? true : false}
