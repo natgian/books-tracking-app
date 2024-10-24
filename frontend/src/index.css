@@ -106,7 +106,7 @@ summary {
   --success: #82e0aa;
 
   /* Fonts */
-  --main-font: "Raleway", sans-serif;
+  --main-font: sans-serif;
   --main-font-size: 1rem;
   /* --main-font-size: clamp(1rem, 3vw, 1.125rem); */
 
@@ -146,9 +146,20 @@ p {
   font-size: var(--main-font-size);
 }
 
+.underline-link {
+  color: var(--primary-color-200);
+}
+.underline-link:hover {
+  color: var(--primary-color-300);
+}
+
 /*-----------*/
 /* UTILITIES */
 /*-----------*/
+
+.overflow-wrap-anywhere {
+  overflow-wrap: anywhere;
+}
 
 .mb-1 {
   margin-bottom: 1em;
@@ -179,6 +190,10 @@ p {
 
 .text-center {
   text-align: center;
+}
+
+.no-text-decoration {
+  text-decoration: none;
 }
 
 .flex-center {
