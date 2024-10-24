@@ -8,3 +8,4 @@ export { default as SearchresultsAuthor } from "./Searchresults/SearchresultsAut
 export { default as Error } from "./Error";
 export { default as Login } from "./Login";
 export { default as Registration } from "./Registration";
+export { default as PrivacyPolicy } from "./PrivacyPolicy/PrivacyPolicy";
