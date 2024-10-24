@@ -1,0 +1,56 @@
+.modal {
+  margin: auto;
+  width: 31.25rem;
+  border: 1px solid var(--bg-color);
+  border-radius: 0.875rem;
+  background-color: var(--bg-color);
+}
+
+.modal::backdrop {
+  background: hsl(0 0% 0% / 50%);
+}
+
+.modal-content {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pagenumber-input {
+  width: 4rem;
+  height: 1.625rem;
+  margin: 0 0.5rem;
+  padding: 0 0.25rem;
+}
+
+.close-btn {
+  position: absolute;
+  right: 0;
+  font-size: 2rem;
+  padding: 1rem;
+  background: transparent;
+  border: transparent;
+  cursor: pointer;
+  transition: var(--transition);
+  z-index: 100;
+}
+
+.close-btn:hover {
+  color: var(--primary-color-300);
+}
+
+@media screen and (max-width: 450px) {
+  .modal {
+    width: 18rem;
+    font-size: 0.75rem;
+  }
+  .modal-content {
+    padding: 4rem 2rem;
+  }
+  .close-btn {
+    font-size: 1.5rem;
+  }
+}
