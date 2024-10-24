@@ -18,7 +18,7 @@
 }
 
 .progress {
-  width: 5rem;
+  width: 0rem;
   height: 1.25rem;
   background-color: var(--secondary-color-300);
 }
