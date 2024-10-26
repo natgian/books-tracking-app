@@ -5,6 +5,7 @@ import {
   removeBookFromList,
   getReadingLists,
   updateReadingProgress,
+  updateBookStatusToFinished,
 } from "../controllers/readingListsController.js";
 
 // GET ALL USER'S BOOK LISTS
@@ -15,6 +16,9 @@ router.post("/books", addOrUpdateBookToList);
 
 // UPDATE READING PROGRESS OF A BOOK
 router.put("/books", updateReadingProgress);
+
+// UPDATE BOOK STATUS TO FINISHED READING
+router.put("/books/finished", updateBookStatusToFinished);
 
 // REMOVE A BOOK FROM USER'S BOOK LIST
 router.delete("/books/:bookId", removeBookFromList);
