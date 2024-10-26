@@ -78,7 +78,7 @@ const ReadingListCard = ({
           {showReadDate && (
             <div className="readinglist-card-date">
               <span>Zu Ende gelesen am:</span>
-              <p>{finishedReadingAt}</p>
+              <p>{formatDate(finishedReadingAt)}</p>
             </div>
           )}
           {/* Progress */}
