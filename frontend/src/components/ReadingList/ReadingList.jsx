@@ -1,21 +1,48 @@
 import "./ReadingList.css";
-import SortBtn from "../Buttons/SortBtn";
-import ReadingListCard from "../ReadingListCard/ReadingListCard";
-import Loading from "../Loading";
+import { useEffect, useState } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useReadingLists } from "../../hooks/useReadingLists";
 import { BiErrorCircle } from "react-icons/bi";
+import { SortBtn, ReadingListCard, Loading } from "../index";
 
 const ReadingList = ({ currentList }) => {
   const { user } = useAuthContext();
   const userId = user?._id;
 
+  // Fetch reading lists data
   const {
     data: readingLists,
     isPending,
     isError,
     error,
   } = useReadingLists(userId);
+
+  // Original list data for resetting
+  const [sortedReadingList, setSortedReadingList] = useState([]);
+
+  // Whenever "currentList" changes or new "readingLists" data is fetched, reset sorted list
+  useEffect(() => {
+    if (readingLists && readingLists[currentList]) {
+      // Initialize with the unsorted current list
+      setSortedReadingList([...readingLists[currentList]]);
+    }
+  }, [readingLists, currentList]);
+
+  const sortReadingList = (sortBy) => {
+    const sorted = [...sortedReadingList].sort((a, b) => {
+      if (sortBy === "title") {
+        return a.book.title.localeCompare(b.book.title);
+      } else if (sortBy === "author") {
+        const authorA = a.book.author.join(", ");
+        const authorB = b.book.author.join(", ");
+        return authorA.localeCompare(authorB);
+      } else if (sortBy === "addedToListAt") {
+        return new Date(b.addedToListAt) - new Date(a.addedToListAt);
+      }
+      return 0;
+    });
+    setSortedReadingList(sorted);
+  };
 
   // LOADING STATE //
   if (isPending) {
@@ -40,12 +67,10 @@ const ReadingList = ({ currentList }) => {
     );
   }
 
-  const currentListBooks = readingLists[currentList] || [];
-
   return (
     <section className="readinglist-container">
-      <SortBtn />
-      {currentListBooks.map((book) => {
+      <SortBtn onSort={sortReadingList} currentList={currentList} />
+      {sortedReadingList.map((book) => {
         return (
           <ReadingListCard
             key={book._id}

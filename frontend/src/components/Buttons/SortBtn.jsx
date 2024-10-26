@@ -1,23 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Select from "react-select";
 
 const options = [
   {
-    value: "Titel",
+    value: "title",
     label: "Titel",
   },
   {
-    value: "Autor",
+    value: "author",
     label: "Autor",
   },
   {
-    value: "hinzugefügt am",
+    value: "addedToListAt",
     label: "hinzugefügt am",
   },
 ];
 
-const SortBtn = () => {
+const SortBtn = ({ onSort, currentList }) => {
   const [selectedOption, setSelectedOption] = useState(null);
+
+  useEffect(() => {
+    setSelectedOption(null);
+  }, [currentList]);
 
   const customStyles = {
     control: (baseStyles) => ({
@@ -69,15 +73,18 @@ const SortBtn = () => {
     }),
   };
 
+  const handleSortChange = (option) => {
+    setSelectedOption(option.value);
+    onSort(option.value);
+  };
+
   return (
     <Select
       options={options}
       styles={customStyles}
       placeholder="Sortieren nach"
       aria-label="Sortieren nach"
-      onChange={(option) => {
-        setSelectedOption(option.value);
-      }}
+      onChange={handleSortChange}
       value={options.find((opt) => opt.value === selectedOption) || null}
       isSearchable={false}
     />
