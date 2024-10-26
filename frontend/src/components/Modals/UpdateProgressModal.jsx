@@ -2,6 +2,7 @@ import "./Modal.css";
 import { useRef, useEffect, useState } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useUpdateProgress } from "../../hooks/useUpdateProgress";
+import { useFinishedBook } from "../../hooks/useFinishedBook";
 import { Button } from "../../components";
 import { CgClose } from "react-icons/cg";
 
@@ -15,6 +16,7 @@ const updateProgressModal = ({
 }) => {
   const { user } = useAuthContext();
   const { updateProgressMutation } = useUpdateProgress();
+  const { finishedBookMutation } = useFinishedBook();
   const [updatedPageNumber, setUpdatedPageNumber] = useState(currentPage);
   const modalRef = useRef(null);
 
@@ -30,6 +32,13 @@ const updateProgressModal = ({
       currentPage: updatedPageNumber,
     });
     onClose();
+  };
+
+  const handleFinishedBook = () => {
+    finishedBookMutation.mutate({
+      userId: user._id,
+      bookEntryId,
+    });
   };
 
   // Use useEffect to handle the modal opening and closing when isOpen changes
@@ -100,7 +109,7 @@ const updateProgressModal = ({
         />
 
         {/* Finished Book Button */}
-        <button className="show-more-btn mt-1">
+        <button onClick={handleFinishedBook} className="show-more-btn mt-1">
           Ich habe das Buch zu Ende gelesen!
         </button>
       </div>
