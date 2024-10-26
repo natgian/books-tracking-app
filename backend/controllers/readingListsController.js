@@ -54,37 +54,47 @@ const addOrUpdateBookToList = async (req, res) => {
 
     // Find the user
     const user = await User.findById(userId);
-
     if (!user) {
       return res.status(404).json({ message: "Benutzer nicht gefunden." });
     }
 
-    // Check if the book already exists in the specified list
-    const bookInCurrentList = user.readingLists[listName].some(
-      (item) => item.book.toString() === book._id.toString()
-    );
+    const currentListNames = ["tbr", "reading", "read"];
+    const currentList = user.readingLists[listName];
 
-    // If the book is already in the selected list
-    if (bookInCurrentList) {
+    // Function to check if the book is already in the current list
+    const isBookInCurrentList = () => {
+      return currentList.some(
+        (item) => item.book.toString() === book._id.toString()
+      );
+    };
+
+    // Remove the book from other lists if it's being moved
+    currentListNames.forEach((otherListName) => {
+      if (otherListName !== listName) {
+        user.readingLists[otherListName] = user.readingLists[
+          otherListName
+        ].filter((item) => item.book.toString() !== book._id.toString());
+      }
+    });
+
+    // If the book is already in the current list
+    if (isBookInCurrentList()) {
       return res
         .status(400)
         .json({ message: "Das Buch ist bereits in der Liste." });
     }
 
-    // If the book is not in the current list, proceed to add it
-    user.readingLists[listName].push({ book: book._id });
+    // Prepare the new book entry
+    const newBookEntry = { book: book._id };
 
-    // Filter out the other lists
-    const otherListNames = ["tbr", "reading", "read"].filter(
-      (name) => name !== listName
-    );
-
-    // Remove the book from other lists
-    for (const otherListName of otherListNames) {
-      user.readingLists[otherListName] = user.readingLists[
-        otherListName
-      ].filter((item) => item.book.toString() !== book._id.toString());
+    // If adding to the "read" list, set currentPage and finishedReadingAt
+    if (listName === "read") {
+      newBookEntry.currentPage = bookPageCount; // Set currentPage to pageCount
+      newBookEntry.finishedReadingAt = new Date(); // Set the date when finished
     }
+
+    // Add the new book entry to the current list
+    currentList.push(newBookEntry);
 
     // Save changes to the user
     await user.save();
@@ -178,9 +188,56 @@ const updateReadingProgress = async (req, res) => {
   }
 };
 
+// UPDATE BOOK TO FINISHED READING
+const updateBookStatusToFinished = async (req, res) => {
+  const { userId, bookEntryId } = req.body;
+
+  try {
+    // Find the user and update the specific book entry in "reading"
+    const user = await User.findOne({
+      _id: userId,
+      "readingLists.reading._id": bookEntryId,
+    });
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "Benutzer oder Buch nicht gefunden." });
+    }
+
+    // Find the book entry in the "reading" list
+    const bookEntry = user.readingLists.reading.id(bookEntryId);
+
+    // Set currentPage to pageCount and add finishedReadingAt only once here
+    bookEntry.currentPage = bookEntry.book.pageCount;
+    bookEntry.finishedReadingAt = new Date();
+
+    // Move the book entry from "reading" to "read"
+    user.readingLists.read.push(bookEntry.toObject());
+
+    // Remove the book entry from "reading"
+    user.readingLists.reading.pull(bookEntryId); // Use pull instead of remove
+
+    // Save changes
+    await user.save();
+
+    return res.status(200).json({
+      message: "Buch wurde als 'gelesen' markiert.",
+      readingLists: user.readingLists,
+    });
+  } catch (error) {
+    console.error("Error marking book as finished:", error);
+    res.status(500).json({
+      message: "Fehler beim markieren des Buches als 'gelesen'.",
+      error,
+    });
+  }
+};
+
 export {
   getReadingLists,
   addOrUpdateBookToList,
   removeBookFromList,
   updateReadingProgress,
+  updateBookStatusToFinished,
 };
