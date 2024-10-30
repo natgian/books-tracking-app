@@ -80,7 +80,7 @@ const Login = () => {
             >
               Noch nicht registriert?
             </Link>
-            <Link to="#" className="form-link">
+            <Link to="/passwort-vergessen" className="form-link">
               Passwort vergessen?
             </Link>
           </div>
