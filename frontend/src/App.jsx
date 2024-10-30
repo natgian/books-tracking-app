@@ -13,6 +13,7 @@ import {
   SearchresultsAuthor,
   Login,
   Registration,
+  ForgotPassword,
   Profile,
   ReadingLists,
   PrivacyPolicy,
@@ -28,6 +29,7 @@ const queryClient = new QueryClient({
 
 import { loader as searchResultsLoader } from "./pages/Searchresults/Searchresults";
 import { loader as singleBookLoader } from "./pages/Book/Book";
+import ResetPassword from "./pages/ResetPassword";
 
 // ROUTER
 const router = createBrowserRouter([
@@ -81,6 +83,14 @@ const router = createBrowserRouter([
     element: <Registration />,
   },
   {
+    path: "/passwort-vergessen",
+    element: <ForgotPassword />,
+  },
+  {
+    path: "/user/reset/:token",
+    element: <ResetPassword />,
+  },
+  {
     path: "/datenschutz",
     element: <PrivacyPolicy />,
   },
@@ -91,7 +101,7 @@ function App() {
     <AuthContextProvider>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
-        {/* <ReactQueryDevtools initialIsOpen={true} /> */}
+        <ReactQueryDevtools initialIsOpen={true} />
       </QueryClientProvider>
     </AuthContextProvider>
   );
