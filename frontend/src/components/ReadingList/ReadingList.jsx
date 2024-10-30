@@ -23,7 +23,6 @@ const ReadingList = ({ currentList }) => {
   // Whenever "currentList" changes or new "readingLists" data is fetched, reset sorted list
   useEffect(() => {
     if (readingLists && readingLists[currentList]) {
-      // Initialize with the unsorted current list
       setSortedReadingList([...readingLists[currentList]]);
     }
   }, [readingLists, currentList]);
