@@ -1,5 +1,7 @@
 import User from "../models/userModel.js";
 import passport from "passport";
+import nodemailer from "nodemailer";
+import crypto from "crypto";
 
 const errorMessages = {
   "Missing credentials": "Fehlende Anmeldedaten",
@@ -121,4 +123,118 @@ const logoutUser = async (req, res, next) => {
   });
 };
 
-export { loginUser, registerUser, logoutUser, currentUser };
+// SEND RESET PASSWORD EMAIL
+const sendResetPasswordEmail = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const user = await User.findOne({ email: email });
+
+    if (!user) {
+      return res
+        .status(401)
+        .json({ message: "Kein Benutzer mit dieser E-Mail gefunden." });
+    }
+
+    // Generate a reset token
+    const resetToken = crypto.randomBytes(32).toString("hex");
+    user.resetPasswordToken = resetToken;
+    user.resetPasswordExpires = Date.now() + 3600000; // Token expires in 1 hour
+
+    await user.save();
+
+    // Set up nodemailer transport
+    const transporter = nodemailer.createTransport({
+      host: process.env.HOST,
+      port: process.env.SMTP_PORT,
+      secure: true,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PW,
+      },
+    });
+
+    const protocol = req.headers["x-forwarded-proto"] || req.protocol; // x-forwarded-proto is used by some reverse proxies
+    const link = `${protocol}://${req.headers.host}/user/reset/${resetToken}`;
+    const message = `Hallo ${user.username}
+
+Du erhältst diese Nachricht, weil das Zurücksetzen des Passworts für dein Konto beantragt wurde. Bitte klicke auf den folgenden Link oder füge diesen in deinen Browser ein, um den Vorgang abzuschliessen:
+
+${link}
+
+Wenn du dies nicht angefordert hast, ignoriere bitte diese E-Mail und dein Passwort bleibt unverändert.
+
+Freundliche Grüsse
+leseoase.com
+    `;
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: user.email,
+      subject: "LESEOASE.COM - Passwort zurücksetzen",
+      text: message,
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    res
+      .status(200)
+      .json({ message: "Link zum Zurücksetzen des Passworts wurde gesendet." });
+  } catch (error) {
+    console.error("Error requesting password reset:", error);
+    res.status(500).json({
+      message:
+        "Bei der Anforderung der Passwortrücksetzung ist ein Fehler aufgetreten.",
+    });
+  }
+};
+
+// RESET PASSWORD
+const resetPassword = async (req, res) => {
+  const { token, password } = req.body;
+
+  try {
+    const user = await User.findOne({
+      resetPasswordToken: token,
+      resetPasswordExpires: { $gt: Date.now() }, // Checks if the value of resetPasswordExpires is greater than the current date and time
+    });
+
+    if (!user) {
+      return res
+        .status(400)
+        .json({ message: "Link ist ungültig oder abgelaufen." });
+    }
+
+    user.setPassword(password, async (error) => {
+      if (error) {
+        return res.status(500).json({
+          message: "Ein Fehler ist aufgetreten. Bitte erneut versuchen.",
+        });
+      }
+
+      // Clear the resetPasswordToken and resetPasswordExpires fields
+      user.resetPasswordToken = undefined;
+      user.resetPasswordExpires = undefined;
+
+      await user.save();
+
+      return res
+        .status(200)
+        .json({ message: "Passwort erfolgreich zurückgesetzt." });
+    });
+  } catch (error) {
+    console.error("Error resetting password:", error);
+    return res
+      .status(500)
+      .json({ error: "Ein Fehler ist aufgetreten. Bitte erneut versuchen." });
+  }
+};
+
+export {
+  loginUser,
+  registerUser,
+  logoutUser,
+  currentUser,
+  sendResetPasswordEmail,
+  resetPassword,
+};
