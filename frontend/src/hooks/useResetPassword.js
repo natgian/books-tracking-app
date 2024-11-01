@@ -23,7 +23,7 @@ export const useResetPassword = () => {
         setErrorMessage("Ein Fehler ist aufgetreten. Bitte erneut versuchen.");
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setErrorMessage(
         error.response?.data?.message || "Ein Fehler ist aufgetreten."
       );
