@@ -1,15 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navbar, Footer, FormInput, Button, PageTitle } from "../components";
 import { Form, Link, useLocation, useNavigate } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
+  const [locationMessage, setLocationMessage] = useState("");
   const { login, error, isLoading } = useLogin();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const message = location.state?.message;
+
+  // Set location message initially from location state
+  useEffect(() => {
+    setLocationMessage(message || "");
+  }, [message]);
+
+  // Clear the location message after a few seconds
+  useEffect(() => {
+    if (locationMessage) {
+      const timer = setTimeout(() => setLocationMessage(""), 5000); // 5000 ms = 5 seconds
+      return () => clearTimeout(timer); // Clean up the timer if component unmounts
+    }
+  }, [locationMessage]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -33,10 +47,8 @@ const Login = () => {
 
       <section className="section-container form-container">
         {/* ERROR MESSAGE FROM LOCATION STATE */}
-        {message && (
-          <p className="mb-1" style={{ color: "red" }}>
-            {message}
-          </p>
+        {locationMessage && (
+          <p className="error-message mb-1">{locationMessage}</p>
         )}
 
         <Form method="POST" className="form" onSubmit={handleSubmit}>
@@ -44,12 +56,7 @@ const Login = () => {
 
           {/* LOGIN ERROR MESSAGE */}
           {errorMessage && (
-            <p
-              className="error-message text-center mt-1"
-              style={{ color: "red" }}
-            >
-              {errorMessage}
-            </p>
+            <p className="error-message text-center mt-1">{errorMessage}</p>
           )}
 
           {/* INPUTS */}
