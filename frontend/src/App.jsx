@@ -14,6 +14,7 @@ import {
   Login,
   Registration,
   ForgotPassword,
+  ChangePassword,
   Profile,
   ReadingLists,
   PrivacyPolicy,
@@ -89,6 +90,14 @@ const router = createBrowserRouter([
   {
     path: "/user/reset/:token",
     element: <ResetPassword />,
+  },
+  {
+    path: "/passwort-aktualisieren",
+    element: (
+      <ProtectedRoute>
+        <ChangePassword />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/datenschutz",
