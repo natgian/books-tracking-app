@@ -56,12 +56,7 @@ const ForgotPassword = () => {
           <>
             {/*  ERROR MESSAGE */}
             {errorMessage && (
-              <p
-                className="error-message text-center mt-1"
-                style={{ color: "red" }}
-              >
-                {errorMessage}
-              </p>
+              <p className="error-message text-center mt-1">{errorMessage}</p>
             )}
 
             <Form method="POST" className="form" onSubmit={handleSubmit}>
