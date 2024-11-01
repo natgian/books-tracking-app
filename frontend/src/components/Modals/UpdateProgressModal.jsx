@@ -19,6 +19,13 @@ const UpdateProgressModal = ({
   const { finishedBookMutation } = useFinishedBook();
   const [updatedPageNumber, setUpdatedPageNumber] = useState(currentPage);
   const modalRef = useRef(null);
+  const inputRef = useRef(null);
+
+  const handleInputClick = () => {
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
+  };
 
   const handleInputChange = (event) => {
     setUpdatedPageNumber(event.target.value);
@@ -96,6 +103,8 @@ const UpdateProgressModal = ({
             min="0"
             max={bookPageCount}
             defaultValue={currentPage}
+            ref={inputRef}
+            onClick={handleInputClick}
             onChange={handleInputChange}
             className="pagenumber-input"
           />
