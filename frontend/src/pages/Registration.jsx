@@ -74,6 +74,7 @@ const Registration = () => {
             name="username"
             type="text"
             autocomplete="username"
+            placeholder="Muss mindestens 2 Zeichen lang sein"
             onChange={() => setFrontendErrorMessage("")}
           />
           <FormInput
@@ -90,6 +91,7 @@ const Registration = () => {
             name="password"
             type="password"
             autocomplete="new-password"
+            placeholder="Muss mindestens 8 Zeichen lang sein"
             onChange={() => setFrontendErrorMessage("")}
           />
           <FormInput
@@ -98,21 +100,16 @@ const Registration = () => {
             name="confirm-password"
             type="password"
             autocomplete="new-password"
+            placeholder="Muss mindestens 8 Zeichen lang sein"
             onChange={() => setFrontendErrorMessage("")}
           />
 
           {/* DISPLAY FRONTEND OR BACKEND ERROR MESSAGE */}
           {frontendErrorMessage && (
-            <p className="error-message mt-1" style={{ color: "red" }}>
-              {frontendErrorMessage}
-            </p>
+            <p className="error-message mt-1">{frontendErrorMessage}</p>
           )}
           {/* BACKEND ERROR MESSAGE */}
-          {backendError && (
-            <p className="error-message mt-1" style={{ color: "red" }}>
-              {backendError}
-            </p>
-          )}
+          {backendError && <p className="error-message mt-1">{backendError}</p>}
 
           {/* REGISTER BUTTON */}
           <div className="flex-center mt-2">
