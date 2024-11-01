@@ -9,4 +9,5 @@ export { default as Error } from "./Error";
 export { default as Login } from "./Login";
 export { default as Registration } from "./Registration";
 export { default as ForgotPassword } from "./ForgotPassword";
+export { default as ChangePassword } from "./ChangePassword";
 export { default as PrivacyPolicy } from "./PrivacyPolicy/PrivacyPolicy";
