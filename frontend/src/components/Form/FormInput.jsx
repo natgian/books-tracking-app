@@ -1,6 +1,6 @@
 import "../Form/Form.css";
 
-const FormInput = ({ id, label, name, type, autocomplete }) => {
+const FormInput = ({ id, label, name, type, autocomplete, placeholder }) => {
   return (
     <div className="form-control">
       <label htmlFor={id} className="form-label">
@@ -11,6 +11,7 @@ const FormInput = ({ id, label, name, type, autocomplete }) => {
         type={type}
         name={name}
         autoComplete={autocomplete}
+        placeholder={placeholder}
         className="form-input"
         required
       />
