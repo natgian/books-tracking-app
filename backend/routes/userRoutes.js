@@ -1,5 +1,6 @@
 import express from "express";
 import { validateUser } from "../validations/validationsMiddleware.js";
+import { isAuthenticated } from "../middleware/isAuthenticated.js";
 import {
   loginUser,
   registerUser,
@@ -7,6 +8,7 @@ import {
   currentUser,
   sendResetPasswordEmail,
   resetPassword,
+  changePassword,
 } from "../controllers/userController.js";
 
 const router = express.Router();
@@ -28,5 +30,8 @@ router.post("/forgotPassword", sendResetPasswordEmail);
 
 // RESET PASSWORD
 router.post("/reset/:token", resetPassword);
+
+// CHANGE PASSWORD
+router.post("/changePassword", isAuthenticated, changePassword);
 
 export default router;

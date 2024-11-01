@@ -9,7 +9,7 @@ const errorMessages = {
 };
 
 // REGISTER USER
-const registerUser = async (req, res, next) => {
+const registerUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
@@ -104,7 +104,7 @@ const currentUser = async (req, res) => {
 };
 
 // LOGOUT USER
-const logoutUser = async (req, res, next) => {
+const logoutUser = async (req, res) => {
   req.logout(function (error) {
     if (error) {
       return next(error);
@@ -125,9 +125,8 @@ const logoutUser = async (req, res, next) => {
 
 // SEND RESET PASSWORD EMAIL
 const sendResetPasswordEmail = async (req, res) => {
-  const { email } = req.body;
-
   try {
+    const { email } = req.body;
     const user = await User.findOne({ email: email });
 
     if (!user) {
@@ -191,9 +190,8 @@ leseoase.com
 
 // RESET PASSWORD
 const resetPassword = async (req, res) => {
-  const { token, password } = req.body;
-
   try {
+    const { token, password } = req.body;
     const user = await User.findOne({
       resetPasswordToken: token,
       resetPasswordExpires: { $gt: Date.now() }, // Checks if the value of resetPasswordExpires is greater than the current date and time
@@ -207,6 +205,7 @@ const resetPassword = async (req, res) => {
 
     user.setPassword(password, async (error) => {
       if (error) {
+        console.error(error);
         return res.status(500).json({
           message: "Ein Fehler ist aufgetreten. Bitte erneut versuchen.",
         });
@@ -230,6 +229,48 @@ const resetPassword = async (req, res) => {
   }
 };
 
+// CHANGE PASSWORD
+const changePassword = async (req, res) => {
+  try {
+    const { currentPassword, password } = req.body;
+    const userId = req.session.passport.user;
+    const user = await User.findOne({ email: userId });
+
+    if (!user) {
+      return res.status(400).json({ message: "Benutzer nicht gefunden." });
+    }
+
+    // Authenticate the user with the current password
+    user.authenticate(currentPassword, async (error, authenticatedUser) => {
+      if (error || !authenticatedUser) {
+        return res
+          .status(401)
+          .json({ message: "Aktuelles Passwort ist falsch." });
+      }
+
+      // Change the password to the new password
+      user.setPassword(password, async (error) => {
+        if (error) {
+          return res.status(500).json({
+            message:
+              "Fehler beim Ändern des Passworts. Bitte erneut versuchen.",
+          });
+        }
+
+        await user.save();
+        return res
+          .status(200)
+          .json({ message: "Passwort erfolgreich geändert." });
+      });
+    });
+  } catch (error) {
+    console.error("Error changing password:", error);
+    return res
+      .status(500)
+      .json({ error: "Ein Fehler ist aufgetreten. Bitte erneut versuchen." });
+  }
+};
+
 export {
   loginUser,
   registerUser,
@@ -237,4 +278,5 @@ export {
   currentUser,
   sendResetPasswordEmail,
   resetPassword,
+  changePassword,
 };
