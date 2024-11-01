@@ -1,41 +1,21 @@
-import { useState } from "react";
 import { Navbar, Footer, FormInput, Button, PageTitle } from "../components";
 import { Form, useParams, Link } from "react-router-dom";
 import { useResetPassword } from "../hooks/useResetPassword";
+import { usePasswordValidation } from "../hooks/usePasswordValidation";
 
 const ResetPassword = () => {
   const { token } = useParams();
   const { resetPassword, isLoading, isSuccess, errorMessage } =
     useResetPassword();
-  const [frontendErrorMessage, setFrontendErrorMessage] = useState("");
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-    const password = formData.get("password");
-    const confirmPassword = formData.get("confirm-password");
-
-    // Reset any existing error messages
-    setFrontendErrorMessage("");
-
-    // Frontend validation
-    if (!password || password.length < 8) {
-      setFrontendErrorMessage(
-        "Das Passwort muss mindestens 8 Zeichen lang sein."
-      );
-      console.log("Password validation failed.");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setFrontendErrorMessage("Passwörter stimmen nicht überein.");
-      console.log("Password validation failed.");
-      return;
-    }
-
-    await resetPassword(token, password);
-  };
+  // Pass resetPassword function to the hook with token
+  const { handleSubmit, frontendErrorMessage, setFrontendErrorMessage } =
+    usePasswordValidation(
+      async (currentPassword, password) => {
+        await resetPassword(token, password);
+      },
+      { requireCurrentPassword: false }
+    );
 
   return (
     <main className="main-layout">
@@ -45,21 +25,14 @@ const ResetPassword = () => {
 
       <section className="section-container form-container">
         {errorMessage && (
-          <p
-            className="error-message mt-1 text-center"
-            style={{ color: "red" }}
-          >
-            {errorMessage}
-          </p>
+          <p className="error-message mt-1 text-center">{errorMessage}</p>
         )}
         {isSuccess ? (
-          <div className="text-center">
-            <p className="mb-1">
-              Das Password wurde erfolgreich zurückgesetzt.
+          <div className="text-center success-message">
+            <p>
+              Das Password wurde erfolgreich zurückgesetzt.{" "}
+              <Link to="/login">Jetzt einloggen</Link>
             </p>
-            <Link to="/login" className="underline-link">
-              Login
-            </Link>
           </div>
         ) : (
           <Form method="POST" className="form" onSubmit={handleSubmit}>
@@ -81,6 +54,7 @@ const ResetPassword = () => {
               name="password"
               type="password"
               autocomplete="new-password"
+              placeholder="Muss mindestens 8 Zeichen lang sein"
               onChange={() => setFrontendErrorMessage("")}
             />
             <FormInput
@@ -89,18 +63,16 @@ const ResetPassword = () => {
               name="confirm-password"
               type="password"
               autocomplete="new-password"
+              placeholder="Muss mindestens 8 Zeichen lang sein"
               onChange={() => setFrontendErrorMessage("")}
             />
             {/* FRONTEND ERROR MESSAGE */}
             {frontendErrorMessage && (
-              <p
-                className="error-message mt-1 text-center"
-                style={{ color: "red" }}
-              >
+              <p className="error-message mt-1 text-center">
                 {frontendErrorMessage}
               </p>
             )}
-            {/* LOGIN BUTTON */}
+            {/* SAVE BUTTON */}
             <div className="flex-center mt-2">
               <Button
                 text={isLoading ? "Wird zurückgesetzt..." : "Speichern"}
