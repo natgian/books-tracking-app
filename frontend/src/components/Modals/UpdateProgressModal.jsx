@@ -6,7 +6,7 @@ import { useFinishedBook } from "../../hooks/useFinishedBook";
 import { Button } from "../../components";
 import { CgClose } from "react-icons/cg";
 
-const updateProgressModal = ({
+const UpdateProgressModal = ({
   bookPageCount,
   currentPage,
   bookEntryId,
@@ -116,4 +116,4 @@ const updateProgressModal = ({
     </dialog>
   );
 };
-export default updateProgressModal;
+export default UpdateProgressModal;
