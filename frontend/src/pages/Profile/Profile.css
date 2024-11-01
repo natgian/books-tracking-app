@@ -1,0 +1,31 @@
+.profile-details {
+  margin: 0 2rem;
+}
+
+.profile-details h2 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--secondary-color-300);
+  margin-bottom: 1.5rem;
+}
+
+.profile-item {
+  display: flex;
+  gap: 4rem;
+  margin-bottom: 1rem;
+}
+
+.profile-item dt {
+  font-weight: 500;
+  width: 100px;
+}
+
+@media screen and (max-width: 550px) {
+  .profile-details {
+    margin: 0;
+  }
+  .profile-item {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
