@@ -39,6 +39,9 @@ const Book = () => {
   });
 
   const imageURL = getBestImage(book.volumeInfo.imageLinks);
+  const isbn = book.volumeInfo.industryIdentifiers.find(
+    (identifier) => identifier.type === "ISBN_13"
+  )?.identifier;
 
   // LOADING STATE //
   if (isPending) {
@@ -78,7 +81,12 @@ const Book = () => {
           bookId={book.id}
           bookTitle={book.volumeInfo.title}
           bookAuthors={book.volumeInfo.authors}
+          bookSBN={isbn}
+          bookCategories={book.volumeInfo.categories}
+          bookPublisher={book.volumeInfo.publisher}
+          bookPublishedDate={book.volumeInfo.publishedDate}
           bookPageCount={book.volumeInfo.pageCount}
+          bookLanguage={book.volumeInfo.language}
           bookAverageRating={book.volumeInfo.averageRating}
           bookImage={secureImageURL(imageURL)}
           isBlock={true}
@@ -90,7 +98,7 @@ const Book = () => {
         authors={book.volumeInfo.authors}
         categories={book.volumeInfo.categories}
         description={book.volumeInfo.description}
-        isbn={book.volumeInfo.industryIdentifiers}
+        isbn={isbn}
         publisher={book.volumeInfo.publisher}
         publishedDate={book.volumeInfo.publishedDate}
         pageCount={book.volumeInfo.pageCount}
