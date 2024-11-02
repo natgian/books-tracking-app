@@ -1,5 +1,6 @@
 import { createContext, useEffect, useReducer, useState } from "react";
 import backendAxiosConfig from "../api/backendAxiosConfig";
+import { Loading } from "../components";
 
 export const AuthContext = createContext();
 
@@ -38,7 +39,7 @@ export const AuthContextProvider = ({ children }) => {
     fetchCurrentUser();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loading />;
 
   return (
     <AuthContext.Provider value={{ ...state, dispatch, fetchCurrentUser }}>
