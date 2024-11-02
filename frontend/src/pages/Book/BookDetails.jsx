@@ -70,11 +70,7 @@ const BookDetails = ({
           <tbody>
             <tr>
               <th>ISBN:</th>
-              <td>
-                {(isbn &&
-                  isbn.find((id) => id.type === "ISBN_13")?.identifier) ||
-                  "-"}
-              </td>
+              <td>{isbn || "-"}</td>
             </tr>
             <tr>
               <th>Verlag:</th>
