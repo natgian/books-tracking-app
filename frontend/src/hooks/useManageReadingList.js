@@ -10,7 +10,12 @@ const addBookToReadingList = async ({ userId, listName, book }) => {
     bookId: book.bookId,
     bookTitle: book.bookTitle,
     bookAuthors: book.bookAuthors,
+    bookISBN: book.bookISBN,
+    bookCategories: book.bookCategories,
+    bookPublisher: book.bookPublisher,
+    bookPublishedDate: book.bookPublishedDate,
     bookPageCount: book.bookPageCount,
+    bookLanguage: book.bookLanguage,
     bookAverageRating: book.bookAverageRating,
     bookImage: book.bookImage,
   });

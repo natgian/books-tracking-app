@@ -53,7 +53,12 @@ const SelectedReadingOption = ({
   bookId,
   bookTitle,
   bookAuthors,
+  bookISBN,
+  bookCategories,
+  bookPublisher,
+  bookPublishedDate,
   bookPageCount,
+  bookLanguage,
   bookAverageRating,
   bookImage,
   isBlock = false,
@@ -64,6 +69,7 @@ const SelectedReadingOption = ({
   const [isMobile, setIsMobile] = useState(window.innerWidth <= false);
   const { addBookMutation, removeBookMutation } = useManageReadingList();
 
+  // Tracking if device format is mobile for component adjustments
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 815);
@@ -76,6 +82,7 @@ const SelectedReadingOption = ({
     };
   }, []);
 
+  // Sets the SelectedOption to the name of the list that contains the current book
   useEffect(() => {
     if (user && user.readingLists) {
       const listName = Object.keys(user.readingLists).find((list) => {
@@ -105,7 +112,12 @@ const SelectedReadingOption = ({
       bookId,
       bookTitle,
       bookAuthors,
+      bookISBN,
+      bookCategories,
+      bookPublisher,
+      bookPublishedDate,
       bookPageCount,
+      bookLanguage,
       bookAverageRating,
       bookImage,
     };
