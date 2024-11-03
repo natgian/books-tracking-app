@@ -20,7 +20,7 @@ const app = express();
 // Enable CORS for requests coming from frontend
 app.use(
   cors({
-    origin: FRONTEND_URL, // Set your frontend production domain
+    origin: "https://books-tracking-app-frontend.onrender.com", // Set your frontend production domain
     credentials: true,
   })
 );
