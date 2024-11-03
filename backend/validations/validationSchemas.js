@@ -53,7 +53,7 @@ const userSchema = Joi.object({
     .email()
     .escapeHTML()
     .messages({
-      "string.email": "E-Mail muss eine gültige E-Mail-Adresse sein",
+      "string.email": "E-Mail muss eine gültige E-Mail-Adresse sein.",
     })
     .required(),
   password: Joi.string()
@@ -68,4 +68,49 @@ const userSchema = Joi.object({
     .required(),
 });
 
-export { userSchema };
+const loginSchema = Joi.object({
+  email: Joi.string()
+    .email()
+    .escapeHTML()
+    .messages({
+      "string.email": "E-Mail muss eine gültige E-Mail-Adresse sein",
+    })
+    .required(),
+  password: Joi.string()
+    .escapeHTML()
+    .messages({
+      "string.base": "Das Passwort muss eine Zeichenfolge sein.",
+    })
+    .required(),
+});
+
+const contactFormSchema = Joi.object({
+  name: Joi.string()
+    .min(1)
+    .max(50)
+    .escapeHTML()
+    .messages({
+      "string.base": "Name muss eine Zeichenfolge sein.",
+      "string.min": "Name muss mindestens 2 Zeichen lang sein.",
+      "string.max": "Name darf nicht länger als 50 Zeichen lang sein.",
+    })
+    .required(),
+  email: Joi.string()
+    .email()
+    .escapeHTML()
+    .messages({
+      "string.email": "E-Mail muss eine gültige E-Mail-Adresse sein.",
+    })
+    .required(),
+  message: Joi.string()
+    .min(10)
+    .escapeHTML()
+    .messages({
+      "string.base": "Nachricht muss eine Zeichenfolge sein.",
+      "string.min": "Nachricht muss mindestens 10 Zeichen lang sein.",
+      "string.max": "Nachricht darf nicht länger als 500 Zeichen sein.",
+    })
+    .required(),
+});
+
+export { userSchema, loginSchema, contactFormSchema };

@@ -1,15 +1,26 @@
-import { userSchema } from "./validationSchemas.js";
+import {
+  userSchema,
+  loginSchema,
+  contactFormSchema,
+} from "./validationSchemas.js";
 
-// VALIDATION MIDDLEWARE
-const validateUser = (req, res, next) => {
-  const { error } = userSchema.validate(req.body);
+// VALIDATION FUNCTION
+const validateSchema = (schema) => {
+  return (req, res, next) => {
+    const { error } = schema.validate(req.body);
 
-  if (error) {
-    const msg = error.details[0].message;
-    return res.status(400).json({ status: "error", message: msg });
-  }
+    if (error) {
+      const msg = error.details[0].message;
+      return res
+        .status(400)
+        .json({ status: "error", type: "validation", message: msg });
+    }
 
-  next();
+    next();
+  };
 };
 
-export { validateUser };
+// EXPORT VALIDATION FUNCTIONS
+export const validateUser = validateSchema(userSchema);
+export const validateLogin = validateSchema(loginSchema);
+export const validateContactForm = validateSchema(contactFormSchema);
