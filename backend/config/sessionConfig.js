@@ -25,7 +25,7 @@ export const sessionConfig = (DB_URI, SECRET) => {
     cookie: {
       httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
       secure: true, // set to "true" for production
-      sameSite: "none", // "lax" on development
+      sameSite: "lax",
       maxAge: 1000 * 60 * 60 * 12, // Sets maximum age for the cookie to 12 hours
       expires: new Date(Date.now() + 1000 * 60 * 60 * 12), // Sets cookie expiration to 12 hours
     },
