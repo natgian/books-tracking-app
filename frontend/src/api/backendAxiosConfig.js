@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const backendURL = process.env.BACKEND_URL || "http://localhost:3000";
+const backendURL = process.env.BACKEND_URL;
 
 const backendAxiosConfig = axios.create({
   baseURL: `${backendURL}/api`,
