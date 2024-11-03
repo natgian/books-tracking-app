@@ -21,7 +21,7 @@ export const sessionConfig = (DB_URI, SECRET) => {
     name: "session",
     secret: SECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
       httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
       secure: true, // set to "true" for production
