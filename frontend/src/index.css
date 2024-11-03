@@ -101,9 +101,10 @@ summary {
   --secondary-color-200-light: #ebf0ef;
   --secondary-color-300-light: #d6e1df;
 
-  --info: #f9e79f;
-  --error: #f5b4ad;
-  --success: #82e0aa;
+  --info: rgb(250, 232, 158);
+  --error: 245, 180, 173;
+  /* rgb(245, 180, 173); */
+  --success: rgb(130, 224, 170);
 
   /* Fonts */
   --main-font: sans-serif;
@@ -215,7 +216,7 @@ p {
 
 .error-message {
   width: 100%;
-  background-color: var(--error);
+  background-color: rgba(var(--error), 0.5);
   color: var(--text-color);
   padding: 1rem;
   border-radius: 0.875rem;
@@ -237,7 +238,7 @@ p {
   margin: 2rem auto;
   padding: 1rem;
   max-width: 500px;
-  background-color: var(--error);
+  background-color: rgba(var(--error), 0.5);
 }
 
 .error-box svg {
