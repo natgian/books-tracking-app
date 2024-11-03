@@ -7,7 +7,7 @@ import {
   PageTitle,
   Loading,
 } from "../components";
-import { Form, Link } from "react-router-dom";
+import { Form } from "react-router-dom";
 import { useSendResetPasswordMail } from "../hooks/useSendResetPasswordMail";
 import { BiCheck } from "react-icons/bi";
 

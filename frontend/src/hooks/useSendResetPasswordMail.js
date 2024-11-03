@@ -1,6 +1,5 @@
 import { useState } from "react";
 import backendAxiosConfig from "../api/backendAxiosConfig.js";
-import { FaLessThan } from "react-icons/fa6";
 
 export const useSendResetPasswordMail = () => {
   const [isLoading, setIsLoading] = useState(null);
