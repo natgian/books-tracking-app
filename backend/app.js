@@ -9,7 +9,7 @@ import userRoutes from "./routes/userRoutes.js";
 import readinglistRoutes from "./routes/readinglistRoutes.js";
 import { isAuthenticated } from "./middleware/isAuthenticated.js";
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const SECRET = process.env.SECRET;
 const DB_URI = process.env.DB_URI;
 
