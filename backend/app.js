@@ -12,6 +12,7 @@ import { isAuthenticated } from "./middleware/isAuthenticated.js";
 const PORT = process.env.PORT || 3000;
 const SECRET = process.env.SECRET;
 const DB_URI = process.env.DB_URI;
+const FRONTEND_URL = process.env.FRONTEND_URL;
 
 // EXPRESS APP
 const app = express();
@@ -19,7 +20,7 @@ const app = express();
 // Enable CORS for requests coming from frontend
 app.use(
   cors({
-    origin: "http://localhost:5173", // Set your frontend production domain
+    origin: FRONTEND_URL, // Set your frontend production domain
     credentials: true,
   })
 );
