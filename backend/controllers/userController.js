@@ -1,6 +1,6 @@
 import User from "../models/userModel.js";
 import passport from "passport";
-import nodemailer from "nodemailer";
+import transporter from "../config/nodemailerTransporter.js";
 import crypto from "crypto";
 
 const errorMessages = {
@@ -71,12 +71,14 @@ const loginUser = (req, res, next) => {
 
     if (!user) {
       const translatedMessage = errorMessages[info.message] || info.message;
-      return res.status(401).json({ error: translatedMessage });
+      return res
+        .status(401)
+        .json({ status: "error", type: "login", message: translatedMessage });
     }
 
     req.logIn(user, (err) => {
       if (err) {
-        return res.status(500).json({ error: "Login fehlgeschlagen" });
+        return res.status(500).json({ error: "Login fehlgeschlagen." });
       }
       return res.json({ message: "User erfolgreich angemeldet", user });
     });
@@ -142,17 +144,6 @@ const sendResetPasswordEmail = async (req, res) => {
 
     await user.save();
 
-    // Set up nodemailer transport
-    const transporter = nodemailer.createTransport({
-      host: process.env.HOST,
-      port: process.env.SMTP_PORT,
-      secure: true,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PW,
-      },
-    });
-
     const protocol = req.headers["x-forwarded-proto"] || req.protocol; // x-forwarded-proto is used by some reverse proxies
     const link = `${protocol}://${req.headers.host}/user/reset/${resetToken}`;
     const message = `Hallo ${user.username}
@@ -164,13 +155,13 @@ ${link}
 Wenn du dies nicht angefordert hast, ignoriere bitte diese E-Mail und dein Passwort bleibt unverändert.
 
 Freundliche Grüsse
-leseoase.com
+${process.env.BASE_URL}
     `;
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: user.email,
-      subject: "LESEOASE.COM - Passwort zurücksetzen",
+      subject: "LESEOASE - Passwort zurücksetzen",
       text: message,
     };
 
@@ -271,6 +262,32 @@ const changePassword = async (req, res) => {
   }
 };
 
+// SEND CONTACT FORM
+const sendContactForm = async (req, res) => {
+  try {
+    const { name, email, message } = req.body;
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      replyTo: email,
+      to: process.env.EMAIL_USER,
+      subject: `LESEOASE - Nachricht von ${name}`,
+      text: message,
+    };
+
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({
+      message: "Nachricht erfolgreich versendet.",
+    });
+  } catch (error) {
+    console.error("Error sending contact form", error);
+    res.status(500).json({
+      message:
+        "Beim Versenden der Nachricht ist ein Fehler aufgetreten. Bitte erneut versuchen.",
+    });
+  }
+};
+
 export {
   loginUser,
   registerUser,
@@ -279,4 +296,5 @@ export {
   sendResetPasswordEmail,
   resetPassword,
   changePassword,
+  sendContactForm,
 };
