@@ -53,3 +53,12 @@
 .form-link:hover {
   color: var(--primary-color-200);
 }
+
+.form-textarea {
+  resize: none;
+  padding: 1rem;
+  border-width: 1px;
+  border: 1px solid var(--secondary-color-100);
+  background-color: var(--bg-color);
+  border-radius: 0.875rem;
+}

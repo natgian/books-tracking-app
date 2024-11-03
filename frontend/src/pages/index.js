@@ -11,3 +11,4 @@ export { default as Registration } from "./Registration";
 export { default as ForgotPassword } from "./ForgotPassword";
 export { default as ChangePassword } from "./ChangePassword";
 export { default as PrivacyPolicy } from "./PrivacyPolicy/PrivacyPolicy";
+export { default as Contact } from "./Contact/Contact";

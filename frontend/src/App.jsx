@@ -18,6 +18,7 @@ import {
   Profile,
   ReadingLists,
   PrivacyPolicy,
+  Contact,
 } from "./pages";
 
 const queryClient = new QueryClient({
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
     path: "/datenschutz",
     element: <PrivacyPolicy />,
   },
+  {
+    path: "/kontakt",
+    element: <Contact />,
+  },
 ]);
 
 function App() {
@@ -110,7 +115,7 @@ function App() {
     <AuthContextProvider>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
-        <ReactQueryDevtools initialIsOpen={true} />
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </AuthContextProvider>
   );

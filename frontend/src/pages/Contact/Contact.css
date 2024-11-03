@@ -1,0 +1,10 @@
+.contact-wrapper {
+  width: 40rem;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-4);
+  border-radius: 0.875rem;
+  background-color: var(--bg-color);
+}

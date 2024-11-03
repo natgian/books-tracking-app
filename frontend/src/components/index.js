@@ -8,6 +8,7 @@ export { default as SelectedReadingOption } from "./Buttons/SelectedReadingOptio
 export { default as UpdateBtn } from "./Buttons/UpdateBtn";
 export { default as Searchbar } from "./Searchbar/Searchbar";
 export { default as FormInput } from "./Form/FormInput";
+export { default as FormTextarea } from "./Form/FormTextarea";
 export { default as Loading } from "./Loading";
 export { default as StarRating } from "./StarRating/StarRating";
 export { default as ProgressBar } from "./ProgressBar/ProgressBar";
