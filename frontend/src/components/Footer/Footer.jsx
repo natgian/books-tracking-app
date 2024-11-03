@@ -7,7 +7,7 @@ const Footer = () => {
     <footer>
       <ul className="footer-links">
         <li>
-          <Link to="/">Kontakt</Link>
+          <Link to="/kontakt">Kontakt</Link>
         </li>
         <li>
           <Link to="/datenschutz">Datenschutzerklärung</Link>
