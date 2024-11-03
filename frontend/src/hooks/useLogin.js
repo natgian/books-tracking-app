@@ -16,20 +16,30 @@ export const useLogin = () => {
       const user = response.data;
 
       // Update auth context state
-
       dispatch({ type: "LOGIN", payload: user });
       await fetchCurrentUser();
 
       return { success: true, user };
     } catch (error) {
       console.error(error.response.data);
-      const errorMessage =
-        error.response?.data?.error ||
-        "Ein Fehler ist aufgetreten. Bitte erneut versuchen.";
+
+      // Check if it's a validation error or login error based on type
+      const errorType = error.response?.data?.type;
+      const msg = error.response?.data?.message;
+      console.log(msg);
+      let errorMessage;
+
+      if (errorType === "validation") {
+        // If validation error, join all messages into a single string
+        errorMessage = error.response?.data?.message;
+      } else {
+        // Default to login error message
+        errorMessage =
+          error.response?.data?.message ||
+          "Ein Fehler ist aufgetreten. Bitte erneut versuchen.";
+      }
 
       setError(errorMessage); // Set error state to display in UI
-
-      setIsLoading(false);
 
       return { success: false, error: errorMessage }; // Return failure state and error message
     } finally {
