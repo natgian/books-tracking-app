@@ -129,10 +129,10 @@ const Navbar = () => {
             {/* Login/Logout-Button */}
             {!user ? (
               <Link to="/login">
-                <Button text="Login" />
+                <Button text="Anmelden" />
               </Link>
             ) : (
-              <Button text="Logout" onClick={handleLogout} />
+              <Button text="Abmelden" onClick={handleLogout} />
             )}
           </div>
         </div>
