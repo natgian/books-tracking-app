@@ -10,12 +10,12 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const message = location.state?.message;
+  const fromMessage = location.state?.message;
 
   // Set location message initially from location state
   useEffect(() => {
-    setLocationMessage(message || "");
-  }, [message]);
+    setLocationMessage(fromMessage || "");
+  }, [fromMessage]);
 
   // Clear the location message after a few seconds
   useEffect(() => {
@@ -30,12 +30,12 @@ const Login = () => {
 
     const formData = new FormData(event.currentTarget);
 
-    const { success, error: loginError } = await login(formData);
+    const { success, error } = await login(formData);
 
     if (success) {
       navigate(from);
     } else {
-      setErrorMessage(loginError);
+      setErrorMessage(error);
     }
   };
 
@@ -48,13 +48,13 @@ const Login = () => {
       <section className="section-container form-container">
         {/* ERROR MESSAGE FROM LOCATION STATE */}
         {locationMessage && (
-          <p className="error-message mb-1">{locationMessage}</p>
+          <p className="error-message text-center mb-1">{locationMessage}</p>
         )}
 
         <Form method="POST" className="form" onSubmit={handleSubmit}>
           <PageTitle text="Anmelden" lineWidth="8rem" />
 
-          {/* LOGIN ERROR MESSAGE */}
+          {/* BACKEND ERROR MESSAGE */}
           {errorMessage && (
             <p className="error-message text-center mt-1">{errorMessage}</p>
           )}
@@ -76,7 +76,11 @@ const Login = () => {
           />
           {/* LOGIN BUTTON */}
           <div className="flex-center mt-2">
-            <Button text="anmelden" block={true} type="submit" />
+            <Button
+              text={isLoading ? "Wird angemeldet..." : "Anmelden"}
+              block={true}
+              type="submit"
+            />
           </div>
           {/* LINKS */}
           <div className="form-links-container">
