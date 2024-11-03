@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const backendURL = process.env.BACKEND_URL;
+const backendURL = import.meta.env.VITE_BACKEND_URL;
 
 const backendAxiosConfig = axios.create({
-  baseURL: `/api`,
+  baseURL: `${backendURL}/api`,
   headers: {
     "Content-Type": "application/json",
   },
