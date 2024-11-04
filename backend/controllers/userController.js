@@ -64,12 +64,14 @@ const registerUser = async (req, res) => {
 
 // LOGIN USER
 const loginUser = (req, res, next) => {
+  console.log("Session before authentication:", req.session);
   passport.authenticate("local", (err, user, info) => {
     if (err) {
       return res.status(500).json({ error: "Internal Server Error" });
     }
 
     if (!user) {
+      console.log("Authentication failed:", info);
       const translatedMessage = errorMessages[info.message] || info.message;
       return res
         .status(401)
@@ -89,9 +91,16 @@ const loginUser = (req, res, next) => {
 
 // CHECK CURRENT USER
 const currentUser = async (req, res) => {
+  console.log("User authenticated:", req.isAuthenticated());
+
   if (req.isAuthenticated()) {
     try {
-      const userId = req.user._id;
+      const userId = req.user?._id;
+      if (!userId) {
+        console.log("NO USER FOUND");
+        return res.status(401).json({ message: "User not found" });
+      }
+
       const user = await User.findById(userId)
         .populate("readingLists.read.book")
         .populate("readingLists.tbr.book")
