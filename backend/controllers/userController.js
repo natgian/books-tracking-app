@@ -78,8 +78,10 @@ const loginUser = (req, res, next) => {
 
     req.logIn(user, (err) => {
       if (err) {
+        console.log("Login error:", error);
         return res.status(500).json({ error: "Login fehlgeschlagen." });
       }
+      console.log("Session after login:", req.session);
       return res.json({ message: "User erfolgreich angemeldet", user });
     });
   })(req, res, next);
