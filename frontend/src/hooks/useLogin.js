@@ -11,8 +11,15 @@ export const useLogin = () => {
     setIsLoading(true);
     setError(null);
 
+    const data = {
+      email: formData.get("email"),
+      password: formData.get("password"),
+    };
+
     try {
-      const response = await backendAxiosConfig.post("/user/login", formData);
+      const response = await backendAxiosConfig.post("/user/login", data, {
+        headers: { "Content-Type": "application/json" },
+      });
       const user = response.data;
 
       // Update auth context state
