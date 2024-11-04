@@ -78,7 +78,7 @@ const loginUser = (req, res, next) => {
 
     req.logIn(user, (err) => {
       if (err) {
-        console.log("Login error:", error);
+        console.log("Login error:", err);
         return res.status(500).json({ error: "Login fehlgeschlagen." });
       }
       console.log("Session after login:", req.session);

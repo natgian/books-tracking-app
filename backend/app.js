@@ -33,6 +33,13 @@ app.use(mongoSanitize());
 // Sessions
 app.use(session(sessionConfig(DB_URI, SECRET)));
 
+// Log session ID for debugging
+app.use((req, res, next) => {
+  console.log("Session ID:", req.sessionID); // Should be the same for each client session
+  console.log("Session data:", req.session);
+  next();
+});
+
 // Passport
 passportConfig(app);
 
