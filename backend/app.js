@@ -9,18 +9,22 @@ import userRoutes from "./routes/userRoutes.js";
 import readinglistRoutes from "./routes/readinglistRoutes.js";
 import { isAuthenticated } from "./middleware/isAuthenticated.js";
 
+// EXPRESS APP
+const app = express();
+
+// Set trust proxy so that cookies and sessions work correctly behind a proxy
+app.set("trust proxy", 1);
+
+// ENVIRONMENT VARIABLES
 const PORT = process.env.PORT || 3000;
 const SECRET = process.env.SECRET;
 const DB_URI = process.env.DB_URI;
-const FRONTEND_URL = process.env.FRONTEND_URL;
-
-// EXPRESS APP
-const app = express();
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
 
 // Enable CORS for requests coming from frontend
 app.use(
   cors({
-    origin: FRONTEND_URL || "http://localhost:3000/", // Set your frontend production domain
+    origin: FRONTEND_URL, // Set your frontend production domain
     credentials: true,
   })
 );
@@ -32,13 +36,6 @@ app.use(mongoSanitize());
 
 // Sessions
 app.use(session(sessionConfig(DB_URI, SECRET)));
-
-// Log session ID for debugging
-app.use((req, res, next) => {
-  console.log("Session ID:", req.sessionID); // Should be the same for each client session
-  console.log("Session data:", req.session);
-  next();
-});
 
 // Passport
 passportConfig(app);
