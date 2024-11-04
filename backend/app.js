@@ -13,7 +13,7 @@ import { isAuthenticated } from "./middleware/isAuthenticated.js";
 const app = express();
 
 // Set trust proxy so that cookies and sessions work correctly behind a proxy
-app.set("trust proxy", 1);
+app.set("trust proxy", true);
 
 // ENVIRONMENT VARIABLES
 const PORT = process.env.PORT || 3000;
