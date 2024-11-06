@@ -64,7 +64,6 @@ const registerUser = async (req, res) => {
 
 // LOGIN USER
 const loginUser = (req, res, next) => {
-  console.log("Session before authentication:", req.session);
   passport.authenticate("local", (err, user, info) => {
     if (err) {
       return res.status(500).json({ error: "Internal Server Error" });
@@ -83,7 +82,6 @@ const loginUser = (req, res, next) => {
         console.log("Login error:", err);
         return res.status(500).json({ error: "Login fehlgeschlagen." });
       }
-      console.log("Session after login:", req.session);
       return res.json({ message: "User erfolgreich angemeldet", user });
     });
   })(req, res, next);
@@ -91,8 +89,6 @@ const loginUser = (req, res, next) => {
 
 // CHECK CURRENT USER
 const currentUser = async (req, res) => {
-  console.log("User authenticated:", req.isAuthenticated());
-
   if (req.isAuthenticated()) {
     try {
       const userId = req.user?._id;
