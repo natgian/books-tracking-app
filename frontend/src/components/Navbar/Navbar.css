@@ -1,17 +1,16 @@
 /*--------*/
 /* NAVBAR */
 /*--------*/
-
 .nav-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   margin: 2rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .nav-toggle {
   display: block;
   font-size: 2.5rem;
+  color: var(--text-color);
   background: transparent;
   border: transparent;
   cursor: pointer;
@@ -58,7 +57,6 @@ nav .active {
 
 .links-container {
   overflow: hidden;
-  /* background-color: rgb(153, 180, 175, 0.2); */
   box-shadow: var(--shadow-4);
   display: flex;
   flex-direction: column;
@@ -70,11 +68,26 @@ nav .active {
   padding-bottom: 3rem;
 }
 
+@media screen and (max-width: 450px) {
+  .logo {
+    width: 150px;
+  }
+}
+
 /* MEDIA QUERIES - Desktop */
 @media screen and (min-width: 1000px) {
   .nav-header {
     margin: 1rem;
   }
+
+  .nav-center {
+    width: min(1800px, 100% - 2em * 2);
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+  }
+
   .icon-text-wrapper {
     padding: 0.5rem 1rem;
   }
@@ -84,19 +97,6 @@ nav .active {
   }
   .nav-toggle {
     display: none;
-  }
-
-  .nav-header {
-    padding: 0;
-  }
-
-  .nav-center {
-    width: min(1800px, 100% - 2em * 2);
-    margin: 0 auto;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    padding: 1rem;
   }
 
   .logo {
