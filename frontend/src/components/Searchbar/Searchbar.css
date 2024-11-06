@@ -22,6 +22,8 @@
 .searchbar-btn {
   min-width: 4rem;
   max-width: 4rem;
+  color: var(--text-color);
+  background-color: var(--secondary-color-100);
   border-top-right-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
   border: transparent;

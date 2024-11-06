@@ -115,7 +115,7 @@ const Registration = () => {
           <div className="flex-center mt-2">
             <Button
               type="submit"
-              text="registrieren"
+              text="Registrieren"
               block={true}
               disabled={isLoading}
             />

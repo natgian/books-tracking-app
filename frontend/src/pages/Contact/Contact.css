@@ -1,5 +1,5 @@
 .contact-wrapper {
-  width: 40rem;
+  max-width: 40rem;
   display: flex;
   flex-direction: column;
   padding: 2rem;

@@ -21,6 +21,7 @@
   gap: 0.75rem;
   align-items: center;
   border: 1px solid var(--secondary-color-100);
+  color: var(--text-color);
   background-color: transparent;
   font-size: 1rem;
   cursor: pointer;
