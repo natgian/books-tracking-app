@@ -19,11 +19,7 @@ app.set("trust proxy", true);
 const PORT = process.env.PORT || 3000;
 const SECRET = process.env.SECRET;
 const DB_URI = process.env.DB_URI;
-const COOKIE_SECURE = process.env.COOKIE_SECURE;
 const FRONTEND_URL = process.env.FRONTEND_URL;
-
-// for development:
-// const FRONTEND_URL = "http://localhost:5173";
 
 // Enable CORS for requests coming from frontend
 app.use(
@@ -39,7 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(mongoSanitize());
 
 // Sessions
-app.use(session(sessionConfig(DB_URI, SECRET, COOKIE_SECURE)));
+app.use(session(sessionConfig(DB_URI, SECRET)));
 
 // Passport
 passportConfig(app);
