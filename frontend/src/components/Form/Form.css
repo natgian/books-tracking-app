@@ -37,6 +37,11 @@
   background-color: var(--bg-color);
   border-radius: var(--border-radius);
 }
+
+.form-input::placeholder {
+  font-size: 0.875rem;
+}
+
 .form-links-container {
   display: flex;
   flex-direction: column;
@@ -61,4 +66,10 @@
   border: 1px solid var(--secondary-color-100);
   background-color: var(--bg-color);
   border-radius: 0.875rem;
+}
+
+@media screen and (max-width: 450px) {
+  .form {
+    max-width: 20rem;
+  }
 }
