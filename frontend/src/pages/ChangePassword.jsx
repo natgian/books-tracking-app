@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import { Form, Link, useNavigate } from "react-router-dom";
-import { Navbar, Footer, FormInput, Button, PageTitle } from "../components";
+import {
+  Navbar,
+  Footer,
+  FormInput,
+  Button,
+  PageTitle,
+  ShowPasswordBtn,
+} from "../components";
 import { usePasswordValidation } from "../hooks/usePasswordValidation";
 import { useChangePassword } from "../hooks/useChangePassword";
 import { BiSolidHide, BiSolidShow } from "react-icons/bi";
@@ -74,14 +81,10 @@ const ChangePassword = () => {
                 onChange={() => setFrontendErrorMessage("")}
               />
               {/* show/hide Current Password Button */}
-              <button
-                aria-label="Passwort anzeigen oder verbergen"
-                type="button"
-                className="show-password-btn"
-                onClick={() => setShowCurrentPassword((prev) => !prev)}
-              >
-                {showCurrentPassword ? <BiSolidShow /> : <BiSolidHide />}
-              </button>
+              <ShowPasswordBtn
+                showState={showCurrentPassword}
+                setState={setShowCurrentPassword}
+              />
             </div>
 
             {/* New Password */}
@@ -96,14 +99,10 @@ const ChangePassword = () => {
                 onChange={() => setFrontendErrorMessage("")}
               />
               {/* show/hide Current Password Button */}
-              <button
-                aria-label="Passwort anzeigen oder verbergen"
-                type="button"
-                className="show-password-btn"
-                onClick={() => setShowNewPassword((prev) => !prev)}
-              >
-                {showNewPassword ? <BiSolidShow /> : <BiSolidHide />}
-              </button>
+              <ShowPasswordBtn
+                showState={showNewPassword}
+                setState={setShowNewPassword}
+              />
             </div>
 
             {/* New Password Confirmation */}
@@ -118,14 +117,10 @@ const ChangePassword = () => {
                 onChange={() => setFrontendErrorMessage("")}
               />
               {/* show/hide Current Password Button */}
-              <button
-                aria-label="Passwort anzeigen oder verbergen"
-                type="button"
-                className="show-password-btn"
-                onClick={() => setShowConfirmNewPassword((prev) => !prev)}
-              >
-                {showConfirmNewPassword ? <BiSolidShow /> : <BiSolidHide />}
-              </button>
+              <ShowPasswordBtn
+                showState={showConfirmNewPassword}
+                setState={setShowConfirmNewPassword}
+              />
             </div>
 
             {/* FRONTEND ERROR MESSAGE */}

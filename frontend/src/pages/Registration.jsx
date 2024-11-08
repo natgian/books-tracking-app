@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { useRegister } from "../hooks/useRegister";
-import { Navbar, Footer, FormInput, Button, PageTitle } from "../components";
+import {
+  Navbar,
+  Footer,
+  FormInput,
+  Button,
+  PageTitle,
+  ShowPasswordBtn,
+} from "../components";
 import { Form, Link, useNavigate, useLocation } from "react-router-dom";
 import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 
@@ -102,14 +109,10 @@ const Registration = () => {
               onChange={() => setFrontendErrorMessage("")}
             />
             {/* SHOW/HIDE PASSWORD BUTTON */}
-            <button
-              aria-label="Passwort anzeigen oder verbergen"
-              type="button"
-              className="show-password-btn"
-              onClick={() => setShowPassword((prev) => !prev)}
-            >
-              {showPassword ? <BiSolidShow /> : <BiSolidHide />}
-            </button>
+            <ShowPasswordBtn
+              showState={showPassword}
+              setState={setShowPassword}
+            />
           </div>
 
           <div className="password-input-container">
@@ -123,14 +126,10 @@ const Registration = () => {
               onChange={() => setFrontendErrorMessage("")}
             />
             {/* SHOW/HIDE PASSWORD BUTTON */}
-            <button
-              aria-label="Passwort anzeigen oder verbergen"
-              type="button"
-              className="show-password-btn"
-              onClick={() => setShowConfirmPassword((prev) => !prev)}
-            >
-              {showConfirmPassword ? <BiSolidShow /> : <BiSolidHide />}
-            </button>
+            <ShowPasswordBtn
+              showState={showConfirmPassword}
+              setState={setShowConfirmPassword}
+            />
           </div>
 
           {/* DISPLAY FRONTEND OR BACKEND ERROR MESSAGE */}

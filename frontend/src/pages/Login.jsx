@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
-import { Navbar, Footer, FormInput, Button, PageTitle } from "../components";
+import {
+  Navbar,
+  Footer,
+  FormInput,
+  Button,
+  PageTitle,
+  ShowPasswordBtn,
+} from "../components";
 import { Form, Link, useLocation, useNavigate } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
 import { BiSolidHide, BiSolidShow } from "react-icons/bi";
@@ -79,14 +86,10 @@ const Login = () => {
               autocomplete="current-password"
             />
             {/* SHOW/HIDE PASSWORD BUTTON */}
-            <button
-              aria-label="Passwort anzeigen oder verbergen"
-              type="button"
-              className="show-password-btn"
-              onClick={() => setShowPassword((prev) => !prev)}
-            >
-              {showPassword ? <BiSolidShow /> : <BiSolidHide />}
-            </button>
+            <ShowPasswordBtn
+              showState={showPassword}
+              setState={setShowPassword}
+            />
           </div>
 
           {/* LOGIN BUTTON */}

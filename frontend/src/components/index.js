@@ -6,6 +6,7 @@ export { default as ScrollToTopBtn } from "./Buttons/ScrollToTopBtn";
 export { default as SortBtn } from "./Buttons/SortBtn";
 export { default as SelectedReadingOption } from "./Buttons/SelectedReadingOption";
 export { default as UpdateBtn } from "./Buttons/UpdateBtn";
+export { default as ShowPasswordBtn } from "./Buttons/ShowPasswordBtn";
 export { default as Searchbar } from "./Searchbar/Searchbar";
 export { default as FormInput } from "./Form/FormInput";
 export { default as FormTextarea } from "./Form/FormTextarea";

@@ -1,4 +1,11 @@
-import { Navbar, Footer, FormInput, Button, PageTitle } from "../components";
+import {
+  Navbar,
+  Footer,
+  FormInput,
+  Button,
+  PageTitle,
+  ShowPasswordBtn,
+} from "../components";
 import { Form, useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import { useResetPassword } from "../hooks/useResetPassword";
@@ -64,14 +71,10 @@ const ResetPassword = () => {
                 onChange={() => setFrontendErrorMessage("")}
               />
               {/* show/hide Password Button */}
-              <button
-                aria-label="Passwort anzeigen oder verbergen"
-                type="button"
-                className="show-password-btn"
-                onClick={() => setShowNewPassword((prev) => !prev)}
-              >
-                {showNewPassword ? <BiSolidShow /> : <BiSolidHide />}
-              </button>
+              <ShowPasswordBtn
+                showState={showNewPassword}
+                setState={setShowNewPassword}
+              />
             </div>
 
             <div className="password-input-container">
