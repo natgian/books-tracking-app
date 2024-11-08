@@ -49,6 +49,11 @@ const registerUser = async (req, res) => {
       });
     });
   } catch (error) {
+    console.error("Registration error:", error);
+
+    // Clear session data in case of error to ensure clean state on retry
+    req.session = null;
+
     // Default error message
     let errorMessage = `Ein Fehler ist aufgetreten. Bitte erneut versuchen: ${error}`;
 
@@ -134,6 +139,11 @@ const logoutUser = async (req, res) => {
 
 // SEND RESET PASSWORD EMAIL
 const sendResetPasswordEmail = async (req, res) => {
+  // for production:
+  const frontendURL = process.env.FRONTEND_URL;
+  // for development:
+  // const frontendURL = "http://localhost:5173";
+
   try {
     const { email } = req.body;
     const user = await User.findOne({ email: email });
@@ -151,8 +161,7 @@ const sendResetPasswordEmail = async (req, res) => {
 
     await user.save();
 
-    const protocol = req.headers["x-forwarded-proto"] || req.protocol; // x-forwarded-proto is used by some reverse proxies
-    const link = `${protocol}://${req.headers.host}/user/reset/${resetToken}`;
+    const link = `${frontendURL}/user/reset/${resetToken}`;
     const message = `Hallo ${user.username}
 
 Du erhältst diese Nachricht, weil das Zurücksetzen des Passworts für dein Konto beantragt wurde. Bitte klicke auf den folgenden Link oder füge diesen in deinen Browser ein, um den Vorgang abzuschliessen:
@@ -162,13 +171,13 @@ ${link}
 Wenn du dies nicht angefordert hast, ignoriere bitte diese E-Mail und dein Passwort bleibt unverändert.
 
 Freundliche Grüsse
-${process.env.BASE_URL}
+LeseOase.app
     `;
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: user.email,
-      subject: "LESEOASE - Passwort zurücksetzen",
+      subject: "LeseOase - Passwort zurücksetzen",
       text: message,
     };
 
