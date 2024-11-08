@@ -68,7 +68,13 @@ const ReadingList = ({ currentList }) => {
 
   return (
     <section className="readinglist-container">
-      <SortBtn onSort={sortReadingList} currentList={currentList} />
+      <div className="readinglist-sort-container">
+        <SortBtn onSort={sortReadingList} currentList={currentList} />
+        <p>
+          ({sortedReadingList.length}{" "}
+          {sortedReadingList.length < 2 ? "Buch" : "Bücher"})
+        </p>
+      </div>
       {sortedReadingList.map((book) => {
         return (
           <ReadingListCard
