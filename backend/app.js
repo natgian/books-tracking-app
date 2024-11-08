@@ -19,13 +19,16 @@ app.set("trust proxy", true);
 const PORT = process.env.PORT || 3000;
 const SECRET = process.env.SECRET;
 const DB_URI = process.env.DB_URI;
+
+// for production:
 const FRONTEND_URL = process.env.FRONTEND_URL;
+// for development:
 // const FRONTEND_URL = "http://localhost:5173";
 
 // Enable CORS for requests coming from frontend
 app.use(
   cors({
-    origin: FRONTEND_URL, // Set your frontend production domain
+    origin: FRONTEND_URL,
     credentials: true,
   })
 );
