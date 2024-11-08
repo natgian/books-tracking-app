@@ -72,4 +72,8 @@
   .form {
     max-width: 20rem;
   }
+
+  .form-input::placeholder {
+    font-size: 0.75rem;
+  }
 }
