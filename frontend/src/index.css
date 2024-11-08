@@ -473,6 +473,7 @@ p {
 }
 
 .show-password-btn {
+  color: var(text-color);
   position: absolute;
   right: 1rem;
   top: 78%;
