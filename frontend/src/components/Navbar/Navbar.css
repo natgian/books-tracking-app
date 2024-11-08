@@ -5,6 +5,7 @@
   margin: 2rem;
   display: flex;
   justify-content: space-between;
+  /* align-items: normal; */
 }
 
 .nav-toggle {
@@ -69,6 +70,10 @@ nav .active {
 }
 
 @media screen and (max-width: 450px) {
+  .nav-header {
+    margin: 1rem;
+  }
+
   .logo {
     width: 150px;
   }
