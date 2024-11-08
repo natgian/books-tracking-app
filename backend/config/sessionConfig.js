@@ -1,6 +1,6 @@
 import MongoDBStore from "connect-mongo";
 
-export const sessionConfig = (DB_URI, SECRET) => {
+export const sessionConfig = (DB_URI, SECRET, COOKIE_SECURE) => {
   // Create a session store using MongoDB, updating sessions only once every 24 hours, and encrypting session data with a secret:
   const store = MongoDBStore.create({
     mongoUrl: DB_URI,
@@ -24,7 +24,7 @@ export const sessionConfig = (DB_URI, SECRET) => {
     saveUninitialized: false,
     cookie: {
       httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
-      secure: true, // set to "true" for production
+      secure: COOKIE_SECURE, // set to "true" for production
       sameSite: "lax",
       maxAge: 1000 * 60 * 60 * 12, // Sets maximum age for the cookie to 12 hours
       expires: new Date(Date.now() + 1000 * 60 * 60 * 12), // Sets cookie expiration to 12 hours
