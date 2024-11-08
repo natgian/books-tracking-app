@@ -2,9 +2,12 @@ import { useState } from "react";
 import { useRegister } from "../hooks/useRegister";
 import { Navbar, Footer, FormInput, Button, PageTitle } from "../components";
 import { Form, Link, useNavigate, useLocation } from "react-router-dom";
+import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 
 const Registration = () => {
   const [frontendErrorMessage, setFrontendErrorMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { register, backendError, setBackendError, isLoading } = useRegister();
   const navigate = useNavigate();
   const location = useLocation();
@@ -67,6 +70,7 @@ const Registration = () => {
       <section className="section-container form-container">
         <Form method="POST" className="form" onSubmit={handleSubmit}>
           <PageTitle text="Registrieren" lineWidth="10rem" />
+
           {/* INPUTS */}
           <FormInput
             id="username"
@@ -77,6 +81,7 @@ const Registration = () => {
             placeholder="Muss mindestens 2 Zeichen lang sein"
             onChange={() => setFrontendErrorMessage("")}
           />
+
           <FormInput
             id="email"
             label="E-Mail Adresse:"
@@ -85,24 +90,48 @@ const Registration = () => {
             autocomplete="email"
             onChange={() => setFrontendErrorMessage("")}
           />
-          <FormInput
-            id="password"
-            label="Passwort:"
-            name="password"
-            type="password"
-            autocomplete="new-password"
-            placeholder="Muss mindestens 8 Zeichen lang sein"
-            onChange={() => setFrontendErrorMessage("")}
-          />
-          <FormInput
-            id="confirm-password"
-            label="Passwort bestätigen:"
-            name="confirm-password"
-            type="password"
-            autocomplete="new-password"
-            placeholder="Muss mindestens 8 Zeichen lang sein"
-            onChange={() => setFrontendErrorMessage("")}
-          />
+
+          <div className="password-input-container">
+            <FormInput
+              id="password"
+              label="Passwort:"
+              name="password"
+              type={showPassword ? "text" : "password"}
+              autocomplete="new-password"
+              placeholder="Muss mindestens 8 Zeichen lang sein"
+              onChange={() => setFrontendErrorMessage("")}
+            />
+            {/* SHOW/HIDE PASSWORD BUTTON */}
+            <button
+              aria-label="Passwort anzeigen oder verbergen"
+              type="button"
+              className="show-password-btn"
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              {showPassword ? <BiSolidShow /> : <BiSolidHide />}
+            </button>
+          </div>
+
+          <div className="password-input-container">
+            <FormInput
+              id="confirm-password"
+              label="Passwort bestätigen:"
+              name="confirm-password"
+              type={showConfirmPassword ? "text" : "password"}
+              autocomplete="new-password"
+              placeholder="Muss mindestens 8 Zeichen lang sein"
+              onChange={() => setFrontendErrorMessage("")}
+            />
+            {/* SHOW/HIDE PASSWORD BUTTON */}
+            <button
+              aria-label="Passwort anzeigen oder verbergen"
+              type="button"
+              className="show-password-btn"
+              onClick={() => setShowConfirmPassword((prev) => !prev)}
+            >
+              {showConfirmPassword ? <BiSolidShow /> : <BiSolidHide />}
+            </button>
+          </div>
 
           {/* DISPLAY FRONTEND OR BACKEND ERROR MESSAGE */}
           {frontendErrorMessage && (

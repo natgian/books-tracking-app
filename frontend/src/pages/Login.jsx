@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { Navbar, Footer, FormInput, Button, PageTitle } from "../components";
 import { Form, Link, useLocation, useNavigate } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
+import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [locationMessage, setLocationMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const { login, error, isLoading } = useLogin();
   const navigate = useNavigate();
   const location = useLocation();
@@ -67,13 +69,26 @@ const Login = () => {
             type="email"
             autocomplete="email"
           />
-          <FormInput
-            id="password"
-            label="Passwort:"
-            name="password"
-            type="password"
-            autocomplete="current-password"
-          />
+
+          <div className="password-input-container">
+            <FormInput
+              id="password"
+              label="Passwort:"
+              name="password"
+              type={showPassword ? "text" : "password"}
+              autocomplete="current-password"
+            />
+            {/* SHOW/HIDE PASSWORD BUTTON */}
+            <button
+              aria-label="Passwort anzeigen oder verbergen"
+              type="button"
+              className="show-password-btn"
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              {showPassword ? <BiSolidShow /> : <BiSolidHide />}
+            </button>
+          </div>
+
           {/* LOGIN BUTTON */}
           <div className="flex-center mt-2">
             <Button

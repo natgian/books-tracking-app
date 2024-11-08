@@ -3,8 +3,12 @@ import { Form, Link, useNavigate } from "react-router-dom";
 import { Navbar, Footer, FormInput, Button, PageTitle } from "../components";
 import { usePasswordValidation } from "../hooks/usePasswordValidation";
 import { useChangePassword } from "../hooks/useChangePassword";
+import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 
 const ChangePassword = () => {
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
   const { changePassword, isLoading, isSuccess, errorMessage, successMessage } =
     useChangePassword();
   const navigate = useNavigate();
@@ -58,35 +62,71 @@ const ChangePassword = () => {
             />
 
             {/* INPUTS */}
+
             {/* Current Password */}
-            <FormInput
-              id="current-password"
-              label="Aktuelles Passwort:"
-              name="currentPassword"
-              type="password"
-              autocomplete="current-password"
-              onChange={() => setFrontendErrorMessage("")}
-            />
+            <div className="password-input-container">
+              <FormInput
+                id="current-password"
+                label="Aktuelles Passwort:"
+                name="currentPassword"
+                type={showCurrentPassword ? "text" : "password"}
+                autocomplete="current-password"
+                onChange={() => setFrontendErrorMessage("")}
+              />
+              {/* show/hide Current Password Button */}
+              <button
+                aria-label="Passwort anzeigen oder verbergen"
+                type="button"
+                className="show-password-btn"
+                onClick={() => setShowCurrentPassword((prev) => !prev)}
+              >
+                {showCurrentPassword ? <BiSolidShow /> : <BiSolidHide />}
+              </button>
+            </div>
+
             {/* New Password */}
-            <FormInput
-              id="password"
-              label="Neues Passwort:"
-              name="password"
-              type="password"
-              autocomplete="new-password"
-              placeholder="Muss mindestens 8 Zeichen lang sein"
-              onChange={() => setFrontendErrorMessage("")}
-            />
+            <div className="password-input-container">
+              <FormInput
+                id="password"
+                label="Neues Passwort:"
+                name="password"
+                type={showNewPassword ? "text" : "password"}
+                autocomplete="new-password"
+                placeholder="Muss mindestens 8 Zeichen lang sein"
+                onChange={() => setFrontendErrorMessage("")}
+              />
+              {/* show/hide Current Password Button */}
+              <button
+                aria-label="Passwort anzeigen oder verbergen"
+                type="button"
+                className="show-password-btn"
+                onClick={() => setShowNewPassword((prev) => !prev)}
+              >
+                {showNewPassword ? <BiSolidShow /> : <BiSolidHide />}
+              </button>
+            </div>
+
             {/* New Password Confirmation */}
-            <FormInput
-              id="confirm-password"
-              label="Neues Passwort bestätigen:"
-              name="confirm-password"
-              type="password"
-              autocomplete="new-password"
-              placeholder="Muss mindestens 8 Zeichen lang sein"
-              onChange={() => setFrontendErrorMessage("")}
-            />
+            <div className="password-input-container">
+              <FormInput
+                id="confirm-password"
+                label="Neues Passwort bestätigen:"
+                name="confirm-password"
+                type={showConfirmNewPassword ? "text" : "password"}
+                autocomplete="new-password"
+                placeholder="Muss mindestens 8 Zeichen lang sein"
+                onChange={() => setFrontendErrorMessage("")}
+              />
+              {/* show/hide Current Password Button */}
+              <button
+                aria-label="Passwort anzeigen oder verbergen"
+                type="button"
+                className="show-password-btn"
+                onClick={() => setShowConfirmNewPassword((prev) => !prev)}
+              >
+                {showConfirmNewPassword ? <BiSolidShow /> : <BiSolidHide />}
+              </button>
+            </div>
 
             {/* FRONTEND ERROR MESSAGE */}
             {frontendErrorMessage && (

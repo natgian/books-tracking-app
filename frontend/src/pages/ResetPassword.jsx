@@ -1,9 +1,13 @@
 import { Navbar, Footer, FormInput, Button, PageTitle } from "../components";
 import { Form, useParams, Link } from "react-router-dom";
+import { useState } from "react";
 import { useResetPassword } from "../hooks/useResetPassword";
 import { usePasswordValidation } from "../hooks/usePasswordValidation";
+import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 
 const ResetPassword = () => {
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
   const { token } = useParams();
   const { resetPassword, isLoading, isSuccess, errorMessage } =
     useResetPassword();
@@ -48,24 +52,49 @@ const ResetPassword = () => {
             />
 
             {/* INPUTS */}
-            <FormInput
-              id="password"
-              label="Neues Passwort:"
-              name="password"
-              type="password"
-              autocomplete="new-password"
-              placeholder="Muss mindestens 8 Zeichen lang sein"
-              onChange={() => setFrontendErrorMessage("")}
-            />
-            <FormInput
-              id="confirm-password"
-              label="Neues Passwort bestätigen:"
-              name="confirm-password"
-              type="password"
-              autocomplete="new-password"
-              placeholder="Muss mindestens 8 Zeichen lang sein"
-              onChange={() => setFrontendErrorMessage("")}
-            />
+
+            <div className="password-input-container">
+              <FormInput
+                id="password"
+                label="Neues Passwort:"
+                name="password"
+                type={showNewPassword ? "text" : "password"}
+                autocomplete="new-password"
+                placeholder="Muss mindestens 8 Zeichen lang sein"
+                onChange={() => setFrontendErrorMessage("")}
+              />
+              {/* show/hide Password Button */}
+              <button
+                aria-label="Passwort anzeigen oder verbergen"
+                type="button"
+                className="show-password-btn"
+                onClick={() => setShowNewPassword((prev) => !prev)}
+              >
+                {showNewPassword ? <BiSolidShow /> : <BiSolidHide />}
+              </button>
+            </div>
+
+            <div className="password-input-container">
+              <FormInput
+                id="confirm-password"
+                label="Neues Passwort bestätigen:"
+                name="confirm-password"
+                type={showConfirmNewPassword ? "text" : "password"}
+                autocomplete="new-password"
+                placeholder="Muss mindestens 8 Zeichen lang sein"
+                onChange={() => setFrontendErrorMessage("")}
+              />
+              {/* show/hide Password Button */}
+              <button
+                aria-label="Passwort anzeigen oder verbergen"
+                type="button"
+                className="show-password-btn"
+                onClick={() => setShowConfirmNewPassword((prev) => !prev)}
+              >
+                {showConfirmNewPassword ? <BiSolidShow /> : <BiSolidHide />}
+              </button>
+            </div>
+
             {/* FRONTEND ERROR MESSAGE */}
             {frontendErrorMessage && (
               <p className="error-message mt-1 text-center">
