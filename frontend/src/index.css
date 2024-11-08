@@ -153,6 +153,21 @@ p {
   color: var(--primary-color-300);
 }
 
+input[type="search"]::-webkit-search-cancel-button {
+  /* Remove default */
+  -webkit-appearance: none;
+  /* Custom styles */
+  height: 14px;
+  width: 14px;
+  display: block;
+  background-image: url("./assets/x.png");
+  /* setup all the background tweaks for our custom icon */
+  background-repeat: no-repeat;
+  /* icon size */
+  background-size: 12px;
+  cursor: pointer;
+}
+
 /*-----------*/
 /* UTILITIES */
 /*-----------*/
@@ -450,7 +465,7 @@ p {
 
 .btn-small {
   /* width: 6rem; */
-  font-size: 0.75rem;
+  font-size: 0.875rem;
 }
 
 .btn-block {
