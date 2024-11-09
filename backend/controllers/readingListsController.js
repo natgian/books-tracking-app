@@ -15,6 +15,17 @@ const getReadingLists = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
+    // Sort each list by 'addedToListAt' in descending order (newest first)
+    user.readingLists.read.sort(
+      (a, b) => new Date(b.addedToListAt) - new Date(a.addedToListAt)
+    );
+    user.readingLists.tbr.sort(
+      (a, b) => new Date(b.addedToListAt) - new Date(a.addedToListAt)
+    );
+    user.readingLists.reading.sort(
+      (a, b) => new Date(b.addedToListAt) - new Date(a.addedToListAt)
+    );
+
     return res.status(200).json(user.readingLists);
   } catch (error) {
     console.error("Error fetching reading lists:", error);
