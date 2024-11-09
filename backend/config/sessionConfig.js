@@ -15,6 +15,11 @@ export const sessionConfig = (DB_URI, SECRET) => {
     console.log("SESSION STORE ERROR", err);
   });
 
+  store.on("connect", () => console.log("MongoDB session store connected"));
+  store.on("disconnect", () =>
+    console.log("MongoDB session store disconnected")
+  );
+
   // Return session configuration object:
   return {
     store: store,
@@ -22,12 +27,12 @@ export const sessionConfig = (DB_URI, SECRET) => {
     secret: SECRET,
     resave: false,
     saveUninitialized: false,
+    rolling: true, // Reset session expiration on each request
     cookie: {
       httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
       secure: process.env.NODE_ENV === "production", // set to "true" for production
-      sameSite: "lax",
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
       maxAge: 1000 * 60 * 60 * 12, // Sets maximum age for the cookie to 12 hours
-      expires: new Date(Date.now() + 1000 * 60 * 60 * 12), // Sets cookie expiration to 12 hours
     },
   };
 };
