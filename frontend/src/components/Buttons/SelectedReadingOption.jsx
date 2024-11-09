@@ -43,7 +43,7 @@ const options = [
     label: (
       <div className="select-option-container">
         <FaTrashCan />
-        <span>aus Liste entfernen</span>
+        <span>löschen</span>
       </div>
     ),
   },

@@ -107,7 +107,7 @@ summary {
   --success: rgb(130, 224, 170);
 
   /* Fonts */
-  --main-font: "Roboto", sans-serif;
+  --main-font: "Quicksand", sans-serif;
   --main-font-size: 1rem;
 
   /* Box Shadows */
@@ -135,7 +135,7 @@ body {
   color: var(--text-color);
   font-family: var(--main-font);
   font-size: 100%;
-  font-weight: 300;
+  font-weight: 400;
   margin: 0 auto;
 }
 

@@ -26,7 +26,7 @@ const SortBtn = ({ onSort, currentList }) => {
   const customStyles = {
     control: (baseStyles) => ({
       ...baseStyles,
-      maxWidth: "12rem",
+      width: "12rem",
       borderRadius: "50px",
       marginTop: "1.25rem",
       paddingLeft: "1rem",
@@ -51,7 +51,7 @@ const SortBtn = ({ onSort, currentList }) => {
     }),
     menu: (baseStyles) => ({
       ...baseStyles,
-      maxWidth: "12rem",
+      width: "12rem",
       borderBottomLeftRadius: "25px",
       borderBottomRightRadius: "25px",
     }),

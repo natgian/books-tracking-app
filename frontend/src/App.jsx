@@ -1,5 +1,5 @@
 import "./index.css";
-import "./fonts/roboto.css";
+import "./fonts/quicksand.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { AuthContextProvider } from "./context/AuthContext";
