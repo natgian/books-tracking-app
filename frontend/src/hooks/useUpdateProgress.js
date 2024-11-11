@@ -3,18 +3,15 @@ import backendAxiosConfig from "../api/backendAxiosConfig";
 import { useAuthContext } from "./useAuthContext";
 
 // UPDATE THE READING PROGRSS
-const updateReadingProgress = async ({
-  userId,
-  bookEntryId,
-  currentPage,
-  bookId,
-}) => {
-  const response = await backendAxiosConfig.put(`/readinglists/books`, {
-    userId,
-    bookEntryId,
-    currentPage,
-    bookId,
-  });
+const updateReadingProgress = async ({ userId, bookEntryId, currentPage }) => {
+  const response = await backendAxiosConfig.put(
+    `/readinglists/books/progress`,
+    {
+      userId,
+      bookEntryId,
+      currentPage,
+    }
+  );
   return response.data;
 };
 

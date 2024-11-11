@@ -21,12 +21,14 @@ const UpdateProgressModal = ({
   const modalRef = useRef(null);
   const inputRef = useRef(null);
 
+  // Set empty value when clicked
   const handleInputClick = () => {
     if (inputRef.current) {
       inputRef.current.value = "";
     }
   };
 
+  // Set new page number
   const handleInputChange = (event) => {
     setUpdatedPageNumber(event.target.value);
   };
