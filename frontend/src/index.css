@@ -488,6 +488,16 @@ input[type="search"]::-webkit-search-cancel-button {
   background-color: var(--secondary-color-200);
 }
 
+.edit-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.125rem;
+}
+.edit-btn:hover {
+  color: var(--primary-color-300);
+}
+
 .show-password-btn {
   color: var(--text-color);
   position: absolute;
