@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import backendAxiosConfig from "../api/backendAxiosConfig";
 
 const fetchReadingLists = async () => {

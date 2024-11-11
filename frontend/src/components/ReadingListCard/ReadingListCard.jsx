@@ -5,18 +5,23 @@ import { formatDate } from "../../utilities/formatDate";
 import { secureImageURL } from "../../utilities/secureImageURL";
 import {
   UpdateProgressModal,
+  EditDateModal,
   ProgressBar,
   StarRating,
   SelectedReadingOption,
+  EditBtn,
 } from "../../components";
 
 const ReadingListCard = ({
   showProgressBar = true,
   showReadDate = false,
   isReading = false,
+  currentList,
   book,
 }) => {
+  // Book information in connection with the user
   const { addedToListAt, finishedReadingAt, currentPage, userRating } = book;
+  // Book information
   const {
     _id,
     title,
@@ -31,8 +36,15 @@ const ReadingListCard = ({
 
   // Modal state management
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const [modalType, setModalType] = useState(null);
+  const openModal = (type) => {
+    setModalType(type);
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalType(null);
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="readinglist-card">
@@ -43,8 +55,8 @@ const ReadingListCard = ({
         </Link>
       </div>
 
+      {/* BOOK INFOS */}
       <div className="readinglist-card-container">
-        {/* BOOK INFOS */}
         <div className="readinglist-card-info-wrapper">
           <Link to={`/buch/${googleBookId}`} className="no-text-decoration">
             <h2 className="readinglist-card-title">{title}</h2>
@@ -72,22 +84,50 @@ const ReadingListCard = ({
           {/* Date added */}
           <div className="readinglist-card-date">
             <span>Hinzugefügt am:</span>
-            <p>{formatDate(addedToListAt)}</p>
+            <div>
+              <p>{formatDate(addedToListAt)}</p>
+              <EditBtn
+                type="button"
+                ariaLabel="Hinzugefügt Datum ändern"
+                onClick={() => openModal("addedToListAt")}
+              />
+            </div>
           </div>
+
           {/* Date read */}
           {showReadDate && (
             <div className="readinglist-card-date">
               <span>Zu Ende gelesen am:</span>
-              <p>{formatDate(finishedReadingAt)}</p>
+              <div>
+                <p>{formatDate(finishedReadingAt)}</p>
+                <EditBtn
+                  type="button"
+                  ariaLabel="Zu Ende gelsen Datum ändern"
+                  onClick={() => openModal("finishedReadingAt")}
+                />
+              </div>
             </div>
           )}
+          {/* Modal to edit the date */}
+          <EditDateModal
+            isOpen={isModalOpen}
+            onClose={closeModal}
+            currentList={currentList}
+            bookId={_id}
+            bookEntryId={book._id}
+            dateType={modalType}
+            currentDate={
+              modalType === "addedToListAt" ? addedToListAt : finishedReadingAt
+            }
+          />
+
           {/* Progress */}
           {showProgressBar && (
             <ProgressBar
               currentPage={currentPage}
               pageCount={pageCount}
               updatedAt={updatedAt}
-              openModal={openModal}
+              openModal={() => openModal("progress")}
             />
           )}
           {/* Select Reading List */}
@@ -99,18 +139,17 @@ const ReadingListCard = ({
               bookPageCount={pageCount}
               bookAverageRating={googleAverageRating}
               bookImage={secureImageURL(imageURL)}
-              openModal={openModal}
             />
           )}
         </div>
       </div>
-      {/* Modal to update current page */}
+
+      {/* Modal to update current reading page */}
       <UpdateProgressModal
         bookPageCount={pageCount}
         currentPage={currentPage}
-        bookId={_id}
         bookEntryId={book._id}
-        isOpen={isModalOpen}
+        isOpen={isModalOpen && modalType === "progress"}
         onClose={closeModal}
       />
     </div>
