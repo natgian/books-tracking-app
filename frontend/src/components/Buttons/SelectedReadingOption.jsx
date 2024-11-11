@@ -213,7 +213,7 @@ const SelectedReadingOption = ({
     <Select
       options={options}
       styles={customStyles}
-      placeholder="Zu Leseliste hinzufügen +"
+      placeholder="Zu Leseliste hinzufügen"
       aria-label="Leseliste bearbeiten"
       onChange={handleSelectChange}
       value={options.find((opt) => opt.value === selectedOption) || null}
