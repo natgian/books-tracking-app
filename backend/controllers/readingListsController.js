@@ -255,10 +255,41 @@ const updateBookStatusToFinished = async (req, res) => {
   }
 };
 
+// UPDATE ADDED/FINISHED BOOK DATE
+const updateBookDate = async (req, res) => {
+  const { userId, bookEntryId, listType, dateType, newDate } = req.body;
+
+  try {
+    // Dynamically construct the path based on the provided listType and dateType
+    const listPath = `readingLists.${listType}._id`;
+    const updateField = {
+      [`readingLists.${listType}.$.${dateType}`]: new Date(newDate),
+    };
+
+    // Update in the specific list and date field
+    const user = await User.findOneAndUpdate(
+      { _id: userId, [listPath]: bookEntryId },
+      { $set: updateField },
+      { new: true }
+    );
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "Benutzer oder Buch nicht gefunden." });
+    }
+
+    return res.status(200).json({ message: "Neues Datum gespeichert.", user });
+  } catch (error) {
+    return res.status(500).json({ message: "Server Error", error });
+  }
+};
+
 export {
   getReadingLists,
   addOrUpdateBookToList,
   removeBookFromList,
   updateReadingProgress,
   updateBookStatusToFinished,
+  updateBookDate,
 };
