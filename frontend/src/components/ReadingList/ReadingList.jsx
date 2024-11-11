@@ -9,7 +9,7 @@ const ReadingList = ({ currentList }) => {
   const { user } = useAuthContext();
   const userId = user?._id;
 
-  // Fetch reading lists data
+  //Fetch reading lists data
   const {
     data: readingLists,
     isPending,
