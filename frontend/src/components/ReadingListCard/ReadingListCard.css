@@ -33,7 +33,7 @@
 .readinglist-card-progress-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
   flex-grow: 1;
   justify-content: flex-start;
   align-items: flex-start;
@@ -52,12 +52,18 @@
 .readinglist-card-date {
   display: flex;
   gap: 0.25rem;
+  align-items: center;
 }
 
 .readinglist-card-date p,
 .readinglist-card-date span {
   font-size: 0.75rem;
   white-space: nowrap;
+}
+
+.readinglist-card-date div {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .readinglist-card-date span {
@@ -122,7 +128,12 @@
     text-align: center;
     width: 100%;
   }
-  .readinglist-card-progress-wrapper {
-    gap: 0;
+}
+
+@media screen and (max-width: 360px) {
+  .readinglist-card-date {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
   }
 }
