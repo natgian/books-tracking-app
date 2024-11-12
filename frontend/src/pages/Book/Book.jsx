@@ -38,10 +38,11 @@ const Book = () => {
     initialData,
   });
 
-  const imageURL = getBestImage(book.volumeInfo.imageLinks);
-  const isbn = book.volumeInfo.industryIdentifiers.find(
-    (identifier) => identifier.type === "ISBN_13"
-  )?.identifier;
+  const imageURL = getBestImage(book.volumeInfo?.imageLinks);
+  const isbn =
+    book.volumeInfo?.industryIdentifiers?.find(
+      (identifier) => identifier.type === "ISBN_13"
+    )?.identifier ?? "-";
 
   // LOADING STATE //
   if (isPending) {
@@ -79,32 +80,32 @@ const Book = () => {
         </div>
         <SelectedReadingOption
           bookId={book.id}
-          bookTitle={book.volumeInfo.title}
+          bookTitle={book.volumeInfo?.title}
           bookAuthors={book.volumeInfo.authors}
           bookSBN={isbn}
-          bookCategories={book.volumeInfo.categories}
-          bookPublisher={book.volumeInfo.publisher}
-          bookPublishedDate={book.volumeInfo.publishedDate}
-          bookPageCount={book.volumeInfo.pageCount}
-          bookLanguage={book.volumeInfo.language}
-          bookAverageRating={book.volumeInfo.averageRating}
+          bookCategories={book.volumeInfo?.categories}
+          bookPublisher={book.volumeInfo?.publisher}
+          bookPublishedDate={book.volumeInfo?.publishedDate}
+          bookPageCount={book.volumeInfo?.pageCount}
+          bookLanguage={book.volumeInfo?.language}
+          bookAverageRating={book.volumeInfo?.averageRating}
           bookImage={secureImageURL(imageURL)}
           isBlock={true}
         />
       </div>
 
       <BookDetails
-        title={book.volumeInfo.title}
-        authors={book.volumeInfo.authors}
-        categories={book.volumeInfo.categories}
-        description={book.volumeInfo.description}
+        title={book.volumeInfo?.title}
+        authors={book.volumeInfo?.authors}
+        categories={book.volumeInfo?.categories}
+        description={book.volumeInfo?.description}
         isbn={isbn}
-        publisher={book.volumeInfo.publisher}
-        publishedDate={book.volumeInfo.publishedDate}
-        pageCount={book.volumeInfo.pageCount}
-        language={book.volumeInfo.language}
-        averageRating={book.volumeInfo.averageRating}
-        ratingsCount={book.volumeInfo.ratingsCount}
+        publisher={book.volumeInfo?.publisher}
+        publishedDate={book.volumeInfo?.publishedDate}
+        pageCount={book.volumeInfo?.pageCount}
+        language={book.volumeInfo?.language}
+        averageRating={book.volumeInfo?.averageRating}
+        ratingsCount={book.volumeInfo?.ratingsCount}
       />
     </section>
   );

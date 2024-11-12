@@ -6,21 +6,24 @@ import { Link } from "react-router-dom";
 import { StarRating } from "../../components";
 
 const BookDetails = ({
-  title,
-  authors,
+  title = "-",
+  authors = ["-"],
   categories,
   description,
   isbn,
-  publisher,
+  publisher = "-",
   publishedDate,
-  pageCount,
+  pageCount = "-",
   language,
   averageRating,
   ratingsCount,
 }) => {
   const [showText, setShowText] = useState("");
-  const cleanedDescription = stripHTMLtags(description);
+  const cleanedDescription = stripHTMLtags(description) || "-";
   const mapedLanguage = languageMap[language] || "-";
+  const formattedPublishedDate = publishedDate
+    ? formatDate(publishedDate)
+    : "-";
 
   return (
     <div className="book-details-container">
@@ -70,19 +73,19 @@ const BookDetails = ({
           <tbody>
             <tr>
               <th>ISBN:</th>
-              <td>{isbn || "-"}</td>
+              <td>{isbn}</td>
             </tr>
             <tr>
               <th>Verlag:</th>
-              <td>{publisher || "-"}</td>
+              <td>{publisher}</td>
             </tr>
             <tr>
               <th>Erscheinungsdatum:</th>
-              <td>{formatDate(publishedDate) || "-"}</td>
+              <td>{formattedPublishedDate}</td>
             </tr>
             <tr>
               <th>Seitenzahl:</th>
-              <td>{pageCount || "-"}</td>
+              <td>{pageCount}</td>
             </tr>
             <tr>
               <th>Sprache:</th>
