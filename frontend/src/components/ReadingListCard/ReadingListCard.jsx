@@ -61,11 +61,12 @@ const ReadingListCard = ({
           <Link to={`/buch/${googleBookId}`} className="no-text-decoration">
             <h2 className="readinglist-card-title">{title}</h2>
           </Link>
-          <h3 className="readinglist-card-author mt-05">{author}</h3>
+          <h3 className="readinglist-card-author">{author}</h3>
           <StarRating
             averageRating={googleAverageRating}
             showRatingsCount={false}
           />
+          <div className="mt-1"></div>
           {isReading && (
             <SelectedReadingOption
               bookId={googleBookId}
@@ -83,7 +84,7 @@ const ReadingListCard = ({
         <div className="readinglist-card-progress-wrapper">
           {/* Date added */}
           <div className="readinglist-card-date">
-            <span>Hinzugefügt am:</span>
+            <span>Hinzugefügt:</span>
             <div>
               <p>{formatDate(addedToListAt)}</p>
               <EditBtn
@@ -97,7 +98,7 @@ const ReadingListCard = ({
           {/* Date read */}
           {showReadDate && (
             <div className="readinglist-card-date">
-              <span>Zu Ende gelesen am:</span>
+              <span>Zu Ende gelesen:</span>
               <div>
                 <p>{formatDate(finishedReadingAt)}</p>
                 <EditBtn

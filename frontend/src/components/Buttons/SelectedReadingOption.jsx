@@ -72,7 +72,7 @@ const SelectedReadingOption = ({
   // Tracking if device format is mobile for component adjustments
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 815);
+      setIsMobile(window.innerWidth <= 768);
     };
 
     window.addEventListener("resize", handleResize);
@@ -138,11 +138,11 @@ const SelectedReadingOption = ({
   const customStyles = {
     control: (baseStyles) => ({
       ...baseStyles,
-      maxWidth: "260px",
-      minWidth: isBlock ? "260px" : "180px",
+      maxWidth: "20px",
+      minWidth: isBlock ? "240px" : "180px",
       fontSize: isMobile ? "0.875rem" : "1rem",
       borderRadius: "50px",
-      marginTop: "1.25rem",
+      // marginTop: "1.25rem",
       paddingLeft: isMobile ? "0.25rem" : "1rem",
       backgroundColor: getBackgroundColor(selectedOption),
       color: "var(--text-color)",
@@ -153,7 +153,7 @@ const SelectedReadingOption = ({
     }),
     placeholder: (baseStyles) => ({
       ...baseStyles,
-      maxWidth: "260px",
+      maxWidth: "240px",
       color: "var(--text-color)",
     }),
     dropdownIndicator: (baseStyles) => ({
@@ -180,14 +180,14 @@ const SelectedReadingOption = ({
     }),
     menu: (baseStyles) => ({
       ...baseStyles,
-      maxWidth: "260px",
+      maxWidth: "240px",
       fontSize: isMobile ? "0.875rem" : "1rem",
       borderBottomLeftRadius: "25px",
       borderBottomRightRadius: "25px",
     }),
     menuList: (baseStyles) => ({
       ...baseStyles,
-      maxWidth: "260px",
+      maxWidth: "240px",
       fontSize: isMobile ? "0.875rem" : "1rem",
       borderBottomLeftRadius: "25px",
       borderBottomRightRadius: "25px",

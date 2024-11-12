@@ -5,6 +5,7 @@
   margin: 2rem;
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
 }
 
 .nav-toggle {
@@ -68,6 +69,7 @@ nav .active {
   padding-bottom: 3rem;
 }
 
+/* MEDIA QUERIES - Mobile */
 @media screen and (max-width: 450px) {
   .nav-header {
     margin: 1rem;

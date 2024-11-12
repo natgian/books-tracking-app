@@ -15,6 +15,7 @@ const Button = ({ text, block, onClick, type = "button" }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   return (
     <button
       className={`${isMobile ? "btn btn-small" : "btn"} ${
