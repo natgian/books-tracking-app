@@ -5,7 +5,7 @@
   margin: 2rem;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
 }
 
 .nav-toggle {
@@ -106,7 +106,7 @@ nav .active {
   }
 
   .logo {
-    width: 250px;
+    width: 220px;
   }
 
   .links-container {
