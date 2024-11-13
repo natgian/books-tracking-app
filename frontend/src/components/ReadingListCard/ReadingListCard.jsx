@@ -61,22 +61,25 @@ const ReadingListCard = ({
           <Link to={`/buch/${googleBookId}`} className="no-text-decoration">
             <h2 className="readinglist-card-title">{title}</h2>
           </Link>
-          <h3 className="readinglist-card-author">{author}</h3>
+          <h3 className="readinglist-card-author mb-1">{author}</h3>
           <StarRating
             averageRating={googleAverageRating}
             showRatingsCount={false}
           />
-          <div className="mt-1"></div>
+
           {isReading && (
-            <SelectedReadingOption
-              bookId={googleBookId}
-              bookTitle={title}
-              bookAuthors={author}
-              bookPageCount={pageCount}
-              bookAverageRating={googleAverageRating}
-              bookImage={secureImageURL(imageURL)}
-              openModal={openModal}
-            />
+            <>
+              <SelectedReadingOption
+                bookId={googleBookId}
+                bookTitle={title}
+                bookAuthors={author}
+                bookPageCount={pageCount}
+                bookAverageRating={googleAverageRating}
+                bookImage={secureImageURL(imageURL)}
+                openModal={openModal}
+              />
+              <div className="mb-1"></div>
+            </>
           )}
         </div>
 
@@ -132,6 +135,7 @@ const ReadingListCard = ({
             />
           )}
           {/* Select Reading List */}
+          <div className="mt-1"></div>
           {!isReading && (
             <SelectedReadingOption
               bookId={googleBookId}

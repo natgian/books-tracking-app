@@ -95,7 +95,6 @@ summary {
   --secondary-color-100: #ccdad7;
   --secondary-color-200: #99b4af;
   --secondary-color-300: #5c6c69;
-  --secondary-color-bg: rgb(204, 218, 215, 0.5);
 
   --secondary-color-100-light: #f5f8f7;
   --secondary-color-200-light: #ebf0ef;
@@ -387,15 +386,21 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .home-img {
-  opacity: 60%;
   width: 1200px;
-  z-index: -1;
 }
 
 @media screen and (max-width: 768px) {
   .intro-text {
     max-width: 600px;
     font-size: 1.75rem;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .intro-text {
+    font-size: 1.25rem;
+    margin: 0 2.5rem;
+    text-wrap: balance;
   }
 }
 

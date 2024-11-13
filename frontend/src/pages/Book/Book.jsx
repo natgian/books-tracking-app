@@ -78,6 +78,7 @@ const Book = () => {
             className="book-cover"
           />
         </div>
+        <div className="mt-1"></div>
         <SelectedReadingOption
           bookId={book.id}
           bookTitle={book.volumeInfo?.title}
