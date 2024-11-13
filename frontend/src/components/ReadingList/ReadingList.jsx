@@ -72,7 +72,10 @@ const ReadingList = ({ currentList }) => {
         <SortBtn onSort={sortReadingList} currentList={currentList} />
         <p>
           ({sortedReadingList.length}{" "}
-          {sortedReadingList.length < 2 ? "Buch" : "Bücher"})
+          {sortedReadingList.length < 2 && sortedReadingList.length !== 0
+            ? "Buch"
+            : "Bücher"}
+          )
         </p>
       </div>
       {sortedReadingList.map((book) => {
