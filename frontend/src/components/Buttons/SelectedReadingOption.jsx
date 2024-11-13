@@ -139,10 +139,9 @@ const SelectedReadingOption = ({
     control: (baseStyles) => ({
       ...baseStyles,
       maxWidth: "20px",
-      minWidth: isBlock ? "240px" : "180px",
-      fontSize: isMobile ? "0.875rem" : "1rem",
+      minWidth: "180px",
+      fontSize: "1rem",
       borderRadius: "50px",
-      // marginTop: "1.25rem",
       paddingLeft: isMobile ? "0.25rem" : "1rem",
       backgroundColor: getBackgroundColor(selectedOption),
       color: "var(--text-color)",
@@ -153,7 +152,7 @@ const SelectedReadingOption = ({
     }),
     placeholder: (baseStyles) => ({
       ...baseStyles,
-      maxWidth: "240px",
+      maxWidth: "180px",
       color: "var(--text-color)",
     }),
     dropdownIndicator: (baseStyles) => ({
@@ -180,15 +179,15 @@ const SelectedReadingOption = ({
     }),
     menu: (baseStyles) => ({
       ...baseStyles,
-      maxWidth: "240px",
-      fontSize: isMobile ? "0.875rem" : "1rem",
+      maxWidth: "180px",
+      fontSize: "0.875rem",
       borderBottomLeftRadius: "25px",
       borderBottomRightRadius: "25px",
     }),
     menuList: (baseStyles) => ({
       ...baseStyles,
-      maxWidth: "240px",
-      fontSize: isMobile ? "0.875rem" : "1rem",
+      maxWidth: "180px",
+      fontSize: "0.875rem",
       borderBottomLeftRadius: "25px",
       borderBottomRightRadius: "25px",
     }),
@@ -213,8 +212,8 @@ const SelectedReadingOption = ({
     <Select
       options={options}
       styles={customStyles}
-      placeholder="Zu Leseliste hinzufügen"
-      aria-label="Leseliste bearbeiten"
+      placeholder="Leseliste +"
+      aria-label="Leseliste auswählen"
       onChange={handleSelectChange}
       value={options.find((opt) => opt.value === selectedOption) || null}
       isSearchable={false}
