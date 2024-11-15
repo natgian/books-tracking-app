@@ -14,7 +14,7 @@ const Homepage = () => {
           <source media="(min-width: 768px)" srcSet={largeHomeImage} />
           <img
             src={smallHomeImage}
-            alt="a woman sitting in a corner, in front of a window, reading a book"
+            alt="Eine Frau sitzt in einer gemütlichen Ecke, vor einem Fenster, und liest ein Buch."
             className="home-img"
             loading="lazy"
           />
