@@ -12,6 +12,7 @@
 .readinglist-card-cover {
   width: 6rem;
   min-width: 6rem;
+  box-shadow: var(--shadow-5);
 }
 
 .readinglist-card-container {
@@ -25,6 +26,7 @@
 .readinglist-card-info-wrapper {
   display: flex;
   flex-direction: column;
+  gap: 0.25rem;
   flex-grow: 1;
   width: 30%;
   justify-content: space-between;
@@ -34,7 +36,7 @@
 .readinglist-card-progress-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
   flex-grow: 1;
   justify-content: flex-start;
   align-items: flex-start;
@@ -42,12 +44,13 @@
 }
 
 .readinglist-card-title {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 700;
+  text-wrap: balance;
 }
 
 .readinglist-card-author {
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 .readinglist-card-date {
@@ -58,7 +61,7 @@
 
 .readinglist-card-date p,
 .readinglist-card-date span {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   white-space: nowrap;
 }
 
@@ -73,15 +76,10 @@
 
 /* MEDIA QUERIES */
 
-/* @media screen and (max-width: 665px) {
-  .readinglist-card {
-    padding: 1rem;
-  }
-} */
-
 @media screen and (max-width: 665px) {
   .readinglist-card {
-    padding: 2rem;
+    padding: 2rem 3rem;
+    gap: 3rem;
   }
   .readinglist-card-container {
     width: 100%;
@@ -98,17 +96,13 @@
   .readinglist-card-info-wrapper {
     width: 100%;
   }
-
-  .readinglist-card-title {
-    font-size: 1rem;
-  }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 485px) {
   .readinglist-card {
     width: 90%;
     margin: 2rem auto;
-    gap: 2rem;
+    gap: 1rem;
     flex-direction: column;
     align-items: center;
   }
@@ -127,5 +121,10 @@
     align-items: center;
     text-align: center;
     width: 100%;
+  }
+
+  .readinglist-card-progress-wrapper {
+    justify-content: center;
+    align-items: center;
   }
 }
