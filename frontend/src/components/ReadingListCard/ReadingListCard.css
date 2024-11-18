@@ -78,7 +78,6 @@
 
 @media screen and (max-width: 665px) {
   .readinglist-card {
-    padding: 2rem 3rem;
     gap: 3rem;
   }
   .readinglist-card-container {
@@ -126,5 +125,6 @@
   .readinglist-card-progress-wrapper {
     justify-content: center;
     align-items: center;
+    gap: 0.5rem;
   }
 }
