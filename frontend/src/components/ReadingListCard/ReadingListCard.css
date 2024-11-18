@@ -128,3 +128,15 @@
     gap: 0.5rem;
   }
 }
+
+@media screen and (max-width: 399px) {
+  .readinglist-card {
+    width: 100%;
+    padding: 2rem 1rem;
+  }
+
+  .readinglist-card-date p,
+  .readinglist-card-date span {
+    font-size: 0.75rem;
+  }
+}
