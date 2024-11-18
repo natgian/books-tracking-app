@@ -30,7 +30,16 @@ const UpdateProgressModal = ({
 
   // Set new page number
   const handleInputChange = (event) => {
-    setUpdatedPageNumber(event.target.value);
+    let value = parseInt(event.target.value, 10);
+
+    // Ensure the value is within the specified range
+    if (value > bookPageCount) {
+      value = bookPageCount;
+    } else if (value < 0) {
+      value = 0;
+    }
+
+    setUpdatedPageNumber(value);
   };
 
   const handleSaveProgress = () => {
