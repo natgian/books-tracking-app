@@ -51,7 +51,12 @@ const ReadingListCard = ({
       {/* COVER */}
       <div>
         <Link to={`/buch/${googleBookId}`}>
-          <img className="readinglist-card-cover" src={imageURL} alt="title" />
+          <img
+            className="readinglist-card-cover"
+            loading="lazy"
+            src={imageURL}
+            alt="title"
+          />
         </Link>
       </div>
 
@@ -61,11 +66,16 @@ const ReadingListCard = ({
           <Link to={`/buch/${googleBookId}`} className="no-text-decoration">
             <h2 className="readinglist-card-title">{title}</h2>
           </Link>
-          <h3 className="readinglist-card-author mb-1">{author}</h3>
-          <StarRating
-            averageRating={googleAverageRating}
-            showRatingsCount={false}
-          />
+          <h3 className="readinglist-card-author">
+            {author &&
+              author.map((person, index) => (
+                <span key={index}>
+                  {person}
+                  {index < author.length - 1 && ", "}
+                </span>
+              ))}
+          </h3>
+          <div className="mb-1"></div>
 
           {isReading && (
             <>
