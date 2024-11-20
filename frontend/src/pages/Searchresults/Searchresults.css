@@ -31,8 +31,9 @@
   display: flex;
   justify-content: center;
   align-self: center;
-  max-height: 250px;
-  max-width: 200px;
+  max-height: 200px;
+  max-width: 128px;
+  box-shadow: var(--shadow-4);
 }
 
 searchresult-cover-wrapper img {
@@ -46,12 +47,13 @@ searchresult-cover-wrapper img {
 }
 
 .searchresult-author {
-  font-size: 1.125rem;
-  font-weight: 300;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 .searchresult-language {
   font-size: 0.875rem;
+  font-weight: 100;
 }
 
 .pagination {
