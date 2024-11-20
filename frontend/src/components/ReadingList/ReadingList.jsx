@@ -1,5 +1,6 @@
 import "./ReadingList.css";
 import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useReadingLists } from "../../hooks/useReadingLists";
 import { BiErrorCircle } from "react-icons/bi";
@@ -7,44 +8,64 @@ import { SortBtn, ReadingListCard, Loading } from "../index";
 
 const ReadingList = ({ currentList }) => {
   const { user } = useAuthContext();
-  const userId = user?._id;
+  const booksTotal = user.readingLists[currentList]?.length || 0; // Number of books
+  const [currentSortBy, setCurrentSortBy] = useState(null);
+  const [sortedReadingList, setSortedReadingList] = useState([]); // Visible sorted books
+  const { ref, inView } = useInView({ threshold: 1.0 }); // Trigger only when fully visible
 
-  //Fetch reading lists data
+  // Fetch paginated books from current list
   const {
-    data: readingLists,
-    isPending,
-    isError,
+    allBooks,
     error,
-  } = useReadingLists(userId);
+    isError,
+    isLoading,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    refetch,
+  } = useReadingLists({ currentList, user });
 
-  // Original list data for resetting
-  const [sortedReadingList, setSortedReadingList] = useState([]);
-
-  // Whenever "currentList" changes or new "readingLists" data is fetched, reset sorted list
+  // Reset pagination and refetch data whenever currentList changes
   useEffect(() => {
-    if (readingLists && readingLists[currentList]) {
-      setSortedReadingList([...readingLists[currentList]]);
-    }
-  }, [readingLists, currentList]);
+    refetch(); // Triggers a refetch for the new list type
+  }, [user, currentList, refetch]);
 
-  const sortReadingList = (sortBy) => {
-    const sorted = [...sortedReadingList].sort((a, b) => {
-      if (sortBy === "title") {
-        return a.book.title.localeCompare(b.book.title);
-      } else if (sortBy === "author") {
-        const authorA = a.book.author.join(", ");
-        const authorB = b.book.author.join(", ");
-        return authorA.localeCompare(authorB);
-      } else if (sortBy === "addedToListAt") {
-        return new Date(b.addedToListAt) - new Date(a.addedToListAt);
+  // Apply sorting whenever books or sort criteria change
+  useEffect(() => {
+    const sortBooks = () => {
+      if (!currentSortBy) {
+        setSortedReadingList(allBooks); // Default: no sorting
+        return;
       }
-      return 0;
-    });
-    setSortedReadingList(sorted);
-  };
 
-  // LOADING STATE //
-  if (isPending) {
+      const sorted = [...allBooks].sort((a, b) => {
+        if (currentSortBy === "title") {
+          return a.book.title.localeCompare(b.book.title);
+        } else if (currentSortBy === "author") {
+          const authorA = a.book.author.join(", ");
+          const authorB = b.book.author.join(", ");
+          return authorA.localeCompare(authorB);
+        } else if (currentSortBy === "addedToListAt") {
+          return new Date(b.addedToListAt) - new Date(a.addedToListAt);
+        }
+        return 0;
+      });
+
+      setSortedReadingList(sorted);
+    };
+
+    sortBooks();
+  }, [allBooks, currentSortBy]);
+
+  // Fetch next page of books
+  useEffect(() => {
+    if (inView && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, fetchNextPage, isFetchingNextPage]);
+
+  // LOADING STATE
+  if (isLoading) {
     return (
       <section className="text-center section-container">
         <Loading />
@@ -53,7 +74,7 @@ const ReadingList = ({ currentList }) => {
     );
   }
 
-  // ERROR STATE //
+  // ERROR STATE
   if (isError) {
     return (
       <section className="text-center section-container">
@@ -69,27 +90,40 @@ const ReadingList = ({ currentList }) => {
   return (
     <section className="readinglist-container">
       <div className="readinglist-sort-container">
-        <SortBtn onSort={sortReadingList} currentList={currentList} />
+        {/* Sort Button */}
+        <SortBtn
+          onSort={(sortBy) => setCurrentSortBy(sortBy)}
+          currentList={currentList}
+          currentSortBy={currentSortBy}
+        />
+        {/* Number of Books */}
         <p>
-          ({sortedReadingList.length}{" "}
-          {sortedReadingList.length < 2 && sortedReadingList.length !== 0
-            ? "Buch"
-            : "Bücher"}
+          ({booksTotal} {booksTotal < 2 && booksTotal !== 0 ? "Buch" : "Bücher"}
           )
         </p>
       </div>
-      {sortedReadingList.map((book) => {
-        return (
-          <ReadingListCard
-            key={book._id}
-            book={book}
-            currentList={currentList}
-            showProgressBar={currentList === "reading" ? true : false}
-            showReadDate={currentList === "read" ? true : false}
-            isReading={currentList === "reading" ? true : false}
-          />
-        );
-      })}
+
+      {/* Render Sorted List */}
+      {sortedReadingList.map((book) => (
+        <ReadingListCard
+          key={book._id}
+          book={book}
+          currentList={currentList}
+          showProgressBar={currentList === "reading"}
+          showReadDate={currentList === "read"}
+          isReading={currentList === "reading"}
+        />
+      ))}
+
+      {/* Loading Indicator for Infinite Scrolling */}
+      {isFetchingNextPage && (
+        <div className="text-center section-container">
+          <Loading />
+        </div>
+      )}
+
+      {/* Invisible Observer Target for Intersection */}
+      <div ref={ref} style={{ height: "1px" }}></div>
     </section>
   );
 };

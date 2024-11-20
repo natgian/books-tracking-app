@@ -16,12 +16,15 @@ const options = [
   },
 ];
 
-const SortBtn = ({ onSort, currentList }) => {
+const SortBtn = ({ onSort, currentList, currentSortBy }) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
+  // Update the selected option when currentList or currentSortBy changes
   useEffect(() => {
-    setSelectedOption(null);
-  }, [currentList]);
+    const matchedOption =
+      options.find((opt) => opt.value === currentSortBy) || null;
+    setSelectedOption(matchedOption);
+  }, [currentSortBy, currentList]);
 
   const customStyles = {
     control: (baseStyles) => ({
@@ -74,8 +77,8 @@ const SortBtn = ({ onSort, currentList }) => {
   };
 
   const handleSortChange = (option) => {
-    setSelectedOption(option.value);
-    onSort(option.value);
+    setSelectedOption(option.value); // Update selected option
+    onSort(option.value); // Trigger parent sorting function
   };
 
   return (
@@ -85,7 +88,7 @@ const SortBtn = ({ onSort, currentList }) => {
       placeholder="Sortieren nach"
       aria-label="Sortieren nach"
       onChange={handleSortChange}
-      value={options.find((opt) => opt.value === selectedOption) || null}
+      value={selectedOption}
       isSearchable={false}
     />
   );
