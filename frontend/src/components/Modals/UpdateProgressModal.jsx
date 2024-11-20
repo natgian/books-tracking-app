@@ -110,7 +110,6 @@ const UpdateProgressModal = ({
           <input
             type="number"
             name="pageNumber"
-            id="pageNumber"
             min="0"
             max={bookPageCount}
             defaultValue={currentPage}
