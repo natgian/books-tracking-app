@@ -86,12 +86,13 @@ const EditDateModal = ({
       </button>
 
       <div className="modal-content">
-        <label>{`${
+        <label htmlFor={bookId}>{`${
           dateType === "addedToListAt" ? "Hinzugefügt" : "Zu Ende gelesen"
         } Datum ändern auf:`}</label>
         <input
           type="date"
           name="date"
+          id={bookId}
           defaultValue={formattedCurrentDate}
           onChange={handleInputChange}
         />
