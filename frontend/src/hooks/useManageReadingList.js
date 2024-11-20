@@ -38,9 +38,14 @@ export const useManageReadingList = () => {
     mutationFn: addBookToReadingList,
     onSuccess: () => {
       // Invalidate the reading lists query to re-fetch the lists data
-      queryClient.invalidateQueries({ queryKey: ["readingLists"] });
+      queryClient.invalidateQueries({
+        queryKey: ["readingLists"],
+      });
       // Re-fetch the updated user data
       fetchCurrentUser();
+    },
+    onError: (error) => {
+      console.error("Error adding book to reading list:", error);
     },
   });
 
@@ -48,9 +53,14 @@ export const useManageReadingList = () => {
     mutationFn: removeBookFromReadingList,
     onSuccess: () => {
       // Invalidate the reading lists query to re-fetch the lists data
-      queryClient.invalidateQueries({ queryKey: ["readingLists"] });
+      queryClient.invalidateQueries({
+        queryKey: ["readingLists"],
+      });
       // Re-fetch the updated user data
       fetchCurrentUser();
+    },
+    onError: (error) => {
+      console.error("Error removing book from reading list:", error);
     },
   });
 
