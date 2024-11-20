@@ -3,14 +3,10 @@ const router = express.Router();
 import {
   addOrUpdateBookToList,
   removeBookFromList,
-  getReadingLists,
   updateReadingProgress,
   updateBookStatusToFinished,
   updateBookDate,
 } from "../controllers/readingListsController.js";
-
-// GET ALL USER'S BOOK LISTS
-router.get("/books", getReadingLists);
 
 // ADD OR UPDATE A BOOK IN USER LIST
 router.post("/books", addOrUpdateBookToList);
