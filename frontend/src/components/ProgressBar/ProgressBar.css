@@ -62,3 +62,14 @@
     margin-bottom: 0;
   }
 }
+
+@media screen and (max-width: 399px) {
+  .progress-bar-pagecount,
+  .progress-wrapper span {
+    font-size: 0.75rem;
+  }
+
+  .progress-bar-container {
+    align-items: center;
+  }
+}
