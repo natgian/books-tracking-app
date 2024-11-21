@@ -83,7 +83,7 @@ const addOrUpdateBookToList = async (req, res) => {
     }
 
     // Add the new book entry to the current list
-    currentList.push(newBookEntry);
+    currentList.unshift(newBookEntry);
 
     // Save changes to the user
     await user.save();
