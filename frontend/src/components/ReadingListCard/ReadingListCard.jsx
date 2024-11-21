@@ -145,7 +145,7 @@ const ReadingListCard = ({
             />
           )}
           {/* Select Reading List */}
-          <div className="mt-1"></div>
+          <div className="mt-05"></div>
           {!isReading && (
             <SelectedReadingOption
               bookId={googleBookId}

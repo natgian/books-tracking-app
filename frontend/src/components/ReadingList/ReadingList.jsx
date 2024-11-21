@@ -115,15 +115,15 @@ const ReadingList = ({ currentList }) => {
         />
       ))}
 
-      {/* Loading Indicator for Infinite Scrolling */}
-      {isFetchingNextPage && (
-        <div className="text-center section-container">
-          <Loading />
-        </div>
-      )}
-
       {/* Invisible Observer Target for Intersection */}
-      <div ref={ref} style={{ height: "1px" }}></div>
+      <div ref={ref}>
+        {/* Loading Indicator for Infinite Scrolling */}
+        {isFetchingNextPage && (
+          <div className="text-center section-container">
+            <Loading />
+          </div>
+        )}
+      </div>
     </section>
   );
 };

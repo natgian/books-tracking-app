@@ -66,13 +66,13 @@ const SelectedReadingOption = ({
   const { user } = useAuthContext();
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState(null);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 468);
   const { addBookMutation, removeBookMutation } = useManageReadingList();
 
   // Tracking if device format is mobile for component adjustments
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 468);
     };
 
     window.addEventListener("resize", handleResize);
@@ -139,8 +139,8 @@ const SelectedReadingOption = ({
     control: (baseStyles) => ({
       ...baseStyles,
       maxWidth: "20px",
-      minWidth: "180px",
-      fontSize: "1rem",
+      minWidth: isMobile ? "160px" : "180px",
+      fontSize: isMobile ? "0.75rem" : "1rem",
       borderRadius: "50px",
       paddingLeft: isMobile ? "0.25rem" : "1rem",
       backgroundColor: getBackgroundColor(selectedOption),
@@ -152,7 +152,7 @@ const SelectedReadingOption = ({
     }),
     placeholder: (baseStyles) => ({
       ...baseStyles,
-      maxWidth: "180px",
+      minWidth: isMobile ? "160px" : "180px",
       color: "var(--text-color)",
     }),
     dropdownIndicator: (baseStyles) => ({
@@ -179,14 +179,14 @@ const SelectedReadingOption = ({
     }),
     menu: (baseStyles) => ({
       ...baseStyles,
-      maxWidth: "180px",
-      fontSize: "0.875rem",
+      minWidth: isMobile ? "160px" : "180px",
+      fontSize: isMobile ? "0.75rem" : "1rem",
       borderBottomLeftRadius: "25px",
       borderBottomRightRadius: "25px",
     }),
     menuList: (baseStyles) => ({
       ...baseStyles,
-      maxWidth: "180px",
+      maxWidth: isMobile ? "160px" : "180px",
       fontSize: "0.875rem",
       borderBottomLeftRadius: "25px",
       borderBottomRightRadius: "25px",

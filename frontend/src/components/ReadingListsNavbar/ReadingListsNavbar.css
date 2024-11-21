@@ -32,7 +32,7 @@
   transition: background-color 0.3s ease;
 }
 
-@media screen and (max-width: 340px) {
+@media screen and (max-width: 342px) {
   .reading-list-tab {
     font-size: 0.75rem;
   }
