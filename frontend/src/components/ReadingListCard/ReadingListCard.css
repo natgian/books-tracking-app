@@ -75,7 +75,6 @@
 }
 
 /* MEDIA QUERIES */
-
 @media screen and (max-width: 684px) {
   .readinglist-card {
     gap: 3rem;
@@ -103,7 +102,7 @@
   }
 
   .readinglist-card {
-    padding: 1rem;
+    padding: 1rem auto;
     gap: 1rem;
   }
 
@@ -140,46 +139,9 @@
   }
 }
 
-/* @media screen and (max-width: 485px) {
-  .readinglist-card {
-    width: 90%;
-    margin: 2rem auto;
-    gap: 1.5rem;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .readinglist-card-cover {
-    width: 8rem;
-    min-width: 8rem;
-  }
-
-  .readinglist-card-container {
-    align-items: center;
-    width: 100%;
-  }
-
-  .readinglist-card-info-wrapper {
-    align-items: center;
-    text-align: center;
-    width: 100%;
-  }
-
-  .readinglist-card-progress-wrapper {
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-  }
-}
-
-@media screen and (max-width: 399px) {
+@media screen and (max-width: 350px) {
   .readinglist-card {
     width: 100%;
     padding: 2rem 1rem;
   }
-
-  .readinglist-card-date p,
-  .readinglist-card-date span {
-    font-size: 0.75rem;
-  }
-} */
+}
