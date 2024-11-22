@@ -54,7 +54,7 @@ const ReadingListCard = ({
           <img
             className="readinglist-card-cover"
             loading="lazy"
-            src={imageURL}
+            src={secureImageURL(imageURL)}
             alt="title"
           />
         </Link>
