@@ -107,6 +107,20 @@ const currentUser = async (req, res) => {
         .populate("readingLists.tbr.book")
         .populate("readingLists.reading.book");
 
+      if (user && user.readingLists) {
+        // Sort lists manually
+        user.readingLists.read = user.readingLists.read.sort(
+          (a, b) =>
+            new Date(b.finishedReadingAt) - new Date(a.finishedReadingAt)
+        );
+        user.readingLists.tbr = user.readingLists.tbr.sort(
+          (a, b) => new Date(b.addedToListAt) - new Date(a.addedToListAt)
+        );
+        user.readingLists.reading = user.readingLists.reading.sort(
+          (a, b) => new Date(b.addedToListAt) - new Date(a.addedToListAt)
+        );
+      }
+
       return res.json({ user });
     } catch (error) {
       console.error("Error fetching user:", error);

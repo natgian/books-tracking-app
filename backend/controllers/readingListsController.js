@@ -34,7 +34,7 @@ const addOrUpdateBookToList = async (req, res) => {
         publishedDate: bookPublishedDate || "-",
         pageCount: bookPageCount || null,
         language: bookLanguage || "-",
-        imageURL: bookImage || "",
+        imageURL: bookImage || null,
         googleAverageRating: bookAverageRating || null,
       });
 
