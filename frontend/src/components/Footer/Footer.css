@@ -9,6 +9,7 @@ footer {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  font-weight: 500;
 }
 
 .footer-links {
@@ -23,7 +24,7 @@ footer {
 
 .footer-links a:hover,
 .external-link:hover {
-  color: var(--primary-color-300);
+  font-weight: 800;
 }
 
 .external-link {
