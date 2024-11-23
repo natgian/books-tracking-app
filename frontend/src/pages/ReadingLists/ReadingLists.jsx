@@ -7,7 +7,7 @@ const ReadingLists = () => {
 
   return (
     <section className="section-container">
-      <PageTitle text="Deine Leselisten" lineWidth="14rem" />
+      <PageTitle text="Deine Leselisten" lineWidth="13rem" />
       <ReadingListsNavbar setCurrentList={setCurrentList} />
       <ReadingList currentList={currentList} />
     </section>

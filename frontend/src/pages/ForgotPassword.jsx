@@ -60,7 +60,7 @@ const ForgotPassword = () => {
             )}
 
             <Form method="POST" className="form" onSubmit={handleSubmit}>
-              <PageTitle text="Passwort vergessen" lineWidth="17rem" />
+              <PageTitle text="Passwort vergessen" lineWidth="16rem" />
               <p className="mt-2">
                 Gib deine registrierte E-Mail Adresse ein und klicke auf
                 "Passwort zurücksetzen".

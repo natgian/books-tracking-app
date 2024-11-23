@@ -14,7 +14,7 @@ const PrivacyPolicy = () => {
       </header>
 
       <section className="section-container">
-        <PageTitle text="Datenschutzerklärung" lineWidth={"18rem"} />
+        <PageTitle text="Datenschutzerklärung" lineWidth={"17rem"} />
 
         <section className="privacypolicy-container mt-4">
           <section className="privacypolicy-section-wrapper">

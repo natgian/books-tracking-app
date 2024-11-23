@@ -13,3 +13,9 @@
   height: 2px;
   margin: -1.1rem auto 1rem auto;
 }
+
+@media screen and (max-width: 450px) {
+  .page-title {
+    font-size: 1.625rem;
+  }
+}
