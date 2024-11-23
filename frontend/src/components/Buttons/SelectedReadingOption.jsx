@@ -179,7 +179,7 @@ const SelectedReadingOption = ({
     }),
     menu: (baseStyles) => ({
       ...baseStyles,
-      minWidth: isMobile ? "160px" : "180px",
+      maxWidth: isMobile ? "160px" : "180px",
       fontSize: isMobile ? "0.75rem" : "1rem",
       borderBottomLeftRadius: "25px",
       borderBottomRightRadius: "25px",
@@ -200,9 +200,7 @@ const SelectedReadingOption = ({
       case "read":
         return "#98c379";
       case "reading":
-        return "#BBDEFB";
-      case "remove":
-        return "#7fb3d5";
+        return "#F4D36F";
       default:
         return "hsl(0, 0%, 100%)";
     }
