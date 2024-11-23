@@ -21,6 +21,8 @@
 - **Statistics**: User will be able find reading statistics in their profile.
 - **Reading Goal**: User will be able to set a reading goal.
 - **Share Button**: User will be able to share book links.
+- **Advanced Search**: User will be able to make more specific searches.
+- **Filter Results**: User will be able filter the search results by language.
 
 ## Technologies Used (so far)
 
