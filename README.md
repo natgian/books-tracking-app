@@ -1,5 +1,7 @@
 # LESEOASE: Book Tracker
 
+![LeseOase Desktop Table Mobile Mockup](./frontend/public/leseoase_desktop-tablet-mobile.png)
+
 **LESEOASE** is a user-friendly Book Tracking App designed for book enthusiasts to manage and organize their reading journey.
 
 **IMPORTANT: The app is in german**
