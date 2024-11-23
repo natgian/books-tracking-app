@@ -70,8 +70,8 @@ const Contact = () => {
               kann?
             </p>
             <p className="mt-1">
-              Schreib mir über das Formular unten, und ich melde mich so schnell
-              wie möglich bei dir.
+              Nutze einfach das Formular unten, und ich werde mich so schnell
+              wie möglich bei dir melden.
             </p>
 
             {/*  ERROR MESSAGE */}
