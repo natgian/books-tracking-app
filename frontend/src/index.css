@@ -149,10 +149,10 @@ p {
 }
 
 .underline-link {
-  color: var(--primary-color-200);
+  color: var(--primary-color-300);
 }
 .underline-link:hover {
-  color: var(--primary-color-300);
+  font-weight: 600;
 }
 
 input[type="search"]::-webkit-search-cancel-button {

@@ -105,11 +105,14 @@ const Login = () => {
             <Link
               to="/registration"
               state={{ from: location.state?.from }}
-              className="form-link"
+              className="underline-link text-center"
             >
               Noch nicht registriert?
             </Link>
-            <Link to="/passwort-vergessen" className="form-link">
+            <Link
+              to="/passwort-vergessen"
+              className="underline-link text-center mt-05"
+            >
               Passwort vergessen?
             </Link>
           </div>

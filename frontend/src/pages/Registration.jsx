@@ -151,7 +151,7 @@ const Registration = () => {
 
           {/* LINKS */}
           <div className="form-links-container">
-            <Link to="/login" className="form-link">
+            <Link to="/login" className="underline-link text-center">
               Schon registriert?
             </Link>
           </div>
