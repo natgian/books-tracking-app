@@ -117,7 +117,7 @@ const currentUser = async (req, res) => {
           (a, b) => new Date(b.addedToListAt) - new Date(a.addedToListAt)
         );
         user.readingLists.reading = user.readingLists.reading.sort(
-          (a, b) => new Date(b.addedToListAt) - new Date(a.addedToListAt)
+          (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
         );
       }
 
