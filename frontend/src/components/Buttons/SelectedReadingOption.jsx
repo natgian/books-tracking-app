@@ -144,10 +144,12 @@ const SelectedReadingOption = ({
       borderRadius: "50px",
       paddingLeft: isMobile ? "0.25rem" : "1rem",
       backgroundColor: getBackgroundColor(selectedOption),
+      border: getBorderColor(selectedOption),
       color: "var(--text-color)",
       cursor: "pointer",
       ":hover": {
         backgroundColor: "var(--secondary-color-200-light)",
+        border: "1px solid hsl(0, 0%, 80%)",
       },
     }),
     placeholder: (baseStyles) => ({
@@ -203,6 +205,19 @@ const SelectedReadingOption = ({
         return "#F4D36F";
       default:
         return "hsl(0, 0%, 100%)";
+    }
+  };
+
+  const getBorderColor = (value) => {
+    switch (value) {
+      case "tbr":
+        return "1px solid #f4a460";
+      case "read":
+        return "1px solid #98c379";
+      case "reading":
+        return "1px solid #F4D36F";
+      default:
+        return "1px solid hsl(0, 0%, 80%)";
     }
   };
 
