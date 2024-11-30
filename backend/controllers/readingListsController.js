@@ -160,6 +160,7 @@ const updateReadingProgress = async (req, res) => {
       {
         $set: {
           "readingLists.reading.$.currentPage": currentPage,
+          "readingLists.reading.$.updatedAt": new Date(),
         },
       },
       { new: true }
