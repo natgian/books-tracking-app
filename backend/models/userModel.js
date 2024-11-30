@@ -25,6 +25,9 @@ const userBookDataSchema = new mongoose.Schema({
   finishedReadingAt: {
     type: Date,
   },
+  updatedAt: {
+    type: Date,
+  },
 });
 
 // SCHEMA FOR THE BOOK LISTS (tbr, reading, read)
@@ -32,6 +35,22 @@ const readingListsSchema = new mongoose.Schema({
   reading: [userBookDataSchema],
   tbr: [userBookDataSchema],
   read: [userBookDataSchema],
+});
+
+// SCHEMA TO STORE INDIVIDUAL READING GOALS FOR EACH YEAR
+const readingGoalSchema = new mongoose.Schema({
+  year: {
+    type: Number,
+    required: true,
+  },
+  goal: {
+    type: Number,
+    default: 0,
+  },
+  progress: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const userSchema = new mongoose.Schema(
@@ -60,6 +79,7 @@ const userSchema = new mongoose.Schema(
         read: [],
       }),
     },
+    readingGoals: [readingGoalSchema],
   },
   { timestamps: true }
 );
