@@ -113,7 +113,7 @@ const Book = () => {
         categories={book.volumeInfo?.categories}
         description={book.volumeInfo?.description}
         isbn={isbn}
-        format={book.salesInfo?.isEbook ? "E-Book" : "Druckausgabe"}
+        format={book.saleInfo?.isEbook ? "E-Book" : "Druckausgabe"}
         publisher={book.volumeInfo?.publisher}
         publishedDate={book.volumeInfo?.publishedDate}
         pageCount={book.volumeInfo?.pageCount}
