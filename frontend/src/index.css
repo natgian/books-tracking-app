@@ -440,6 +440,7 @@ input[type="search"]::-webkit-search-cancel-button {
   margin: 3rem auto;
   padding: 2rem;
   border: 1px solid var(--secondary-color-100);
+  border-radius: 15px;
 }
 
 .password-input-container {
@@ -488,8 +489,9 @@ input[type="search"]::-webkit-search-cancel-button {
 .update-btn {
   color: var(text-color);
   font-size: 0.75rem;
+  font-weight: 500;
   color: var(--text-color);
-  background-color: var(--secondary-color-300-light);
+  background-color: var(--secondary-color-200-light);
   border-radius: var(--border-radius);
   border: 1px solid hsl(0, 0%, 70%);
   padding: 0.5rem 1.25rem;
@@ -504,6 +506,8 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .update-btn:hover {
   background-color: var(--secondary-color-200);
+  box-shadow: var(--shadow-1);
+  transform: scale(1.02);
 }
 
 .edit-btn {
