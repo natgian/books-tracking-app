@@ -9,7 +9,7 @@ export const getBestImage = (imageLinks) => {
   } else if (imageLinks.small) {
     return imageLinks.small;
   } else if (imageLinks.thumbnail) {
-    return imageLinks.thumbnail; // Replace with your default fallback image URL
+    return imageLinks.thumbnail;
   } else {
     return defaultCover; // Replace with your default fallback image URL
   }
