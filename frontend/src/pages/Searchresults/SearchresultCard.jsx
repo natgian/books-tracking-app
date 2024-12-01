@@ -7,6 +7,7 @@ import { languageMap } from "../../utilities/languageMap";
 const SearchresultCard = ({ book }) => {
   const imageUrl = book.volumeInfo?.imageLinks?.smallThumbnail;
   const language = languageMap[book.volumeInfo?.language] || "-";
+  const bookFormat = book.saleInfo?.isEbook ? "E-Book" : "Druckausgabe";
   return (
     <Link to={`/buch/${book.id}`}>
       <div className="searchresult-wrapper">
@@ -24,7 +25,9 @@ const SearchresultCard = ({ book }) => {
                 ? book.volumeInfo.authors.join(", ")
                 : book.volumeInfo.authors)}
           </p>
-          <p className="searchresult-language">({language})</p>
+          <p className="searchresult-language">
+            {bookFormat} ({language})
+          </p>
         </div>
       </div>
     </Link>

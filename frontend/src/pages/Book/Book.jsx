@@ -1,4 +1,5 @@
 import "./Book.css";
+import defaultCover from "../../assets/no-cover.jpg";
 import { BiErrorCircle } from "react-icons/bi";
 import { fetchSingleBook } from "../../api/fetchSingleBook";
 import { useLoaderData } from "react-router-dom";
@@ -38,7 +39,14 @@ const Book = () => {
     initialData,
   });
 
+  // Image URL for displaying best quality image
   const imageURL = getBestImage(book.volumeInfo?.imageLinks);
+
+  // Thumbnail image URL for saving to database
+  const imageThumbnailURL =
+    book.volumeInfo?.imageLinks?.thumbnail || defaultCover;
+
+  // Getting the ISBN
   const isbn =
     book.volumeInfo?.industryIdentifiers?.find(
       (identifier) => identifier.type === "ISBN_13"
@@ -83,14 +91,18 @@ const Book = () => {
           bookId={book.id}
           bookTitle={book.volumeInfo?.title}
           bookAuthors={book.volumeInfo.authors}
-          bookSBN={isbn}
+          bookISBN={isbn}
           bookCategories={book.volumeInfo?.categories}
           bookPublisher={book.volumeInfo?.publisher}
           bookPublishedDate={book.volumeInfo?.publishedDate}
           bookPageCount={book.volumeInfo?.pageCount}
           bookLanguage={book.volumeInfo?.language}
           bookAverageRating={book.volumeInfo?.averageRating}
-          bookImage={secureImageURL(imageURL)}
+          bookImage={
+            imageThumbnailURL === defaultCover
+              ? defaultCover
+              : secureImageURL(imageThumbnailURL)
+          }
           isBlock={true}
         />
       </div>
@@ -101,6 +113,7 @@ const Book = () => {
         categories={book.volumeInfo?.categories}
         description={book.volumeInfo?.description}
         isbn={isbn}
+        format={book.salesInfo?.isEbook ? "E-Book" : "Druckausgabe"}
         publisher={book.volumeInfo?.publisher}
         publishedDate={book.volumeInfo?.publishedDate}
         pageCount={book.volumeInfo?.pageCount}

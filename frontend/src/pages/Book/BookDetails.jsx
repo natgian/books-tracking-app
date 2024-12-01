@@ -11,6 +11,7 @@ const BookDetails = ({
   categories,
   description,
   isbn,
+  format,
   publisher = "-",
   publishedDate,
   pageCount = "-",
@@ -74,6 +75,10 @@ const BookDetails = ({
             <tr>
               <th>ISBN:</th>
               <td>{isbn}</td>
+            </tr>
+            <tr>
+              <th>Format:</th>
+              <td>{format}</td>
             </tr>
             <tr>
               <th>Verlag:</th>
