@@ -1,11 +1,6 @@
 import { Outlet, useNavigation } from "react-router-dom";
-import {
-  Navbar,
-  Footer,
-  Searchbar,
-  ScrollToTopBtn,
-  Loading,
-} from "../components";
+import { Navbar, Footer, Searchbar, ScrollToTopBtn, Loading } from "../components";
+import CookieBanner from "../components/CookieBanner";
 
 const MainLayout = () => {
   const navigation = useNavigation();
@@ -29,6 +24,7 @@ const MainLayout = () => {
       </div>
       <ScrollToTopBtn />
       <Footer />
+      <CookieBanner />
     </main>
   );
 };

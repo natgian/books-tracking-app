@@ -1,12 +1,13 @@
 import largeHomeImage from "../assets/large-home-image.jpg";
 import smallHomeImage from "../assets/small-home-image.jpg";
+import CookieBanner from "../components/CookieBanner";
 
 const Homepage = () => {
   return (
     <div className="home-container">
       <p className="intro-text">
-        Finde <strong>Bücher</strong>, erstelle <strong>Leselisten</strong> und
-        behalte den Überblick mit dem <strong>Lesetracker</strong>.
+        Finde <strong>Bücher</strong>, erstelle <strong>Leselisten</strong> und behalte den Überblick mit dem{" "}
+        <strong>Lesetracker</strong>.
       </p>
 
       <div className="image-wrapper">
