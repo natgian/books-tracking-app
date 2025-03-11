@@ -16,9 +16,7 @@ export const sessionConfig = (DB_URI, SECRET) => {
   });
 
   store.on("connect", () => console.log("MongoDB session store connected"));
-  store.on("disconnect", () =>
-    console.log("MongoDB session store disconnected")
-  );
+  store.on("disconnect", () => console.log("MongoDB session store disconnected"));
 
   // Return session configuration object:
   return {
@@ -32,7 +30,7 @@ export const sessionConfig = (DB_URI, SECRET) => {
       httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
       secure: process.env.NODE_ENV === "production", // set to "true" for production
       sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
-      maxAge: 1000 * 60 * 60 * 12, // Sets maximum age for the cookie to 12 hours
+      maxAge: 1000 * 60 * 60 * 24 * 7, // Sets maximum age for the cookie to 12 hours
     },
   };
 };
