@@ -10,6 +10,9 @@ export const fetchAuthorBooks = async (
       q: `inauthor:${author}`,
       startIndex,
       maxResults,
+      orderBy: "relevance",
+      printType: "books",
+      showPreorders: true,
     },
   });
   return result.data.items || [];

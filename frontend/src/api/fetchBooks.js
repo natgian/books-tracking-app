@@ -1,11 +1,7 @@
 import googleAxiosConfig from "./googleAxiosConfig";
 import { isValidISBN } from "../utilities/isValidISBN";
 
-export const fetchBooks = async (
-  searchTerm,
-  startIndex = 0,
-  maxResults = 12
-) => {
+export const fetchBooks = async (searchTerm, startIndex = 0, maxResults = 12) => {
   const isISBN = isValidISBN(searchTerm);
   const query = isISBN ? `isbn:${searchTerm}` : searchTerm;
 
@@ -14,6 +10,9 @@ export const fetchBooks = async (
       q: query,
       startIndex,
       maxResults,
+      orderBy: "relevance",
+      printType: "books",
+      showPreorders: true,
     },
   });
   return result.data.items || [];
