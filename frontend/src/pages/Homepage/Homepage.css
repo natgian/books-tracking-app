@@ -1,0 +1,39 @@
+.home-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  margin: 3rem 0;
+}
+
+.intro-text {
+  max-width: 800px;
+  font-size: 2.75rem;
+  font-weight: 300;
+  margin: 0 3.25rem;
+}
+
+.intro-text strong {
+  font-weight: 600;
+}
+
+.home-img {
+  width: 1200px;
+}
+
+@media screen and (max-width: 768px) {
+  .intro-text {
+    max-width: 600px;
+    font-size: 1.75rem;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .intro-text {
+    font-size: 1.25rem;
+    margin: 0 2.5rem;
+    text-wrap: balance;
+  }
+}

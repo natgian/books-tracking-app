@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import "./CookieBanner.css";
 
 const CookieBanner = () => {
   const cookieName = "agreedCookie";
@@ -38,9 +39,8 @@ const CookieBanner = () => {
         <div className="medium-dark-wrapper">
           <div className="cookies-banner">
             <p>
-              Hey! Diese Website nutzt ausschliesslich notwendige Cookies, um dir eine sichere Anmeldung und
-              grundlegende Funktionen zu ermöglichen. Da diese Cookies technisch erforderlich sind, können sie nicht
-              deaktiviert werden. Mehr Infos findest du in der{" "}
+              Hey! Diese Website nutzt ausschliesslich notwendige Cookies, um dir eine sichere Anmeldung und grundlegende Funktionen zu ermöglichen. Da diese Cookies technisch erforderlich sind,
+              können sie nicht deaktiviert werden. Mehr Infos findest du in der{" "}
               <Link to="/datenschutz" target="_blank">
                 Datenschutzerklärung
               </Link>

@@ -1,26 +1,9 @@
-import "./index.css";
-import "./fonts/quicksand.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { AuthContextProvider } from "./context/AuthContext";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ProtectedRoute } from "./components";
-import {
-  MainLayout,
-  Homepage,
-  Book,
-  Error,
-  Searchresults,
-  SearchresultsAuthor,
-  Login,
-  Registration,
-  ForgotPassword,
-  ChangePassword,
-  Profile,
-  ReadingLists,
-  PrivacyPolicy,
-  Contact,
-} from "./pages";
+import { MainLayout, Homepage, Book, Error, Searchresults, SearchresultsAuthor, Login, Registration, ForgotPassword, ChangePassword, Profile, ReadingLists, PrivacyPolicy, Contact } from "./pages";
 
 const queryClient = new QueryClient({
   defaultOptions: {

@@ -1,0 +1,36 @@
+.main-layout {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.section-container {
+  position: relative;
+  width: min(1800px, 100% - 2em * 8);
+  margin: 2em auto;
+}
+
+@media screen and (max-width: 1080px) {
+  .section-container {
+    width: min(1800px, 100% - 2em * 2);
+  }
+}
+@media screen and (max-width: 485px) {
+  .section-container {
+    width: min(1800px, 100% - 1em * 2);
+  }
+}
+
+.border-container {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border: 1px solid var(--secondary-color-100);
+  border-radius: 15px;
+}
+
+.password-input-container {
+  position: relative;
+  width: 100%;
+}

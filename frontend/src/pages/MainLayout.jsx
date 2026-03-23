@@ -1,6 +1,6 @@
 import { Outlet, useNavigation } from "react-router-dom";
 import { Navbar, Footer, Searchbar, ScrollToTopBtn, Loading } from "../components";
-import CookieBanner from "../components/CookieBanner";
+import CookieBanner from "../components/CookieBanner/CookieBanner";
 
 const MainLayout = () => {
   const navigation = useNavigation();
