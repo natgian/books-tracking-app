@@ -1,7 +1,5 @@
 import googleAxiosConfig from "./googleAxiosConfig";
-
-const DEFAULT_START_INDEX = 0;
-const DEFAULT_MAX_RESULTS = 12;
+import { DEFAULT_START_INDEX, DEFAULT_MAX_RESULTS } from "./googleAxiosConfig";
 
 /**
  * Fetches books by author.
@@ -9,7 +7,7 @@ const DEFAULT_MAX_RESULTS = 12;
  * @param {string} author - The author the user is searching
  * @param {number} startIndex - The start search index
  * @param {number} maxResults - The maximum number of results to return
- * @returns {Promise<Array>} - A list of book items or an empty array
+ * @returns {Promise<Array>} - A list of books or an empty array
  */
 export const fetchAuthorBooks = async (author, startIndex = DEFAULT_START_INDEX, maxResults = DEFAULT_MAX_RESULTS) => {
   try {

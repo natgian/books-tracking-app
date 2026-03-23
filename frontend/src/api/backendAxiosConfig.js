@@ -7,7 +7,7 @@ const backendAxiosConfig = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  withCredentials: true,
+  withCredentials: true, // withCredentials: true is required to send cookies with cross-origin requests (sessions
 });
 
 export default backendAxiosConfig;
