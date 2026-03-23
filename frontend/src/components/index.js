@@ -15,7 +15,7 @@ export { default as Loading } from "./Loading";
 export { default as StarRating } from "./StarRating/StarRating";
 export { default as ProgressBar } from "./ProgressBar/ProgressBar";
 export { default as UpdateProgressModal } from "./Modals/UpdateProgressModal";
-export { default as UpdateReadingGoalModal } from "./Modals/UpdateReadingGoalModal";
+// export { default as UpdateReadingGoalModal } from "./Modals/UpdateReadingGoalModal";
 export { default as EditDateModal } from "./Modals/EditDateModal";
 export { default as ReadingList } from "./ReadingList/ReadingList";
 export { default as ReadingListCard } from "./ReadingListCard/ReadingListCard";
