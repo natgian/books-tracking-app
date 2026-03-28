@@ -1,13 +1,13 @@
 import MongoDBStore from "connect-mongo";
 
-export const sessionConfig = (DB_URI, SECRET) => {
+export const sessionConfig = (DB_URI, SESSION_COOKIE_SECRET) => {
   // Create a session store using MongoDB, updating sessions only once every 24 hours, and encrypting session data with a secret:
   const store = MongoDBStore.create({
     mongoUrl: DB_URI,
     touchAfter: 24 * 60 * 60,
-    crypto: {
-      secret: SECRET,
-    },
+    // crypto: {
+    //   secret: SESSION_DB_CRYPTO_SECRET,
+    // },
   });
 
   // Listening for errors on the session store:
@@ -22,7 +22,7 @@ export const sessionConfig = (DB_URI, SECRET) => {
   return {
     store: store,
     name: "session",
-    secret: SECRET,
+    secret: SESSION_COOKIE_SECRET,
     resave: false,
     saveUninitialized: false,
     rolling: true, // Reset session expiration on each request
@@ -30,7 +30,7 @@ export const sessionConfig = (DB_URI, SECRET) => {
       httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
       secure: process.env.NODE_ENV === "production", // set to "true" for production
       sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
-      maxAge: 1000 * 60 * 60 * 24 * 7, // Sets maximum age for the cookie to 12 hours
+      maxAge: 1000 * 60 * 60 * 24 * 7, // Sets maximum age for the cookie to 7 days
     },
   };
 };

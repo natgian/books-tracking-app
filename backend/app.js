@@ -17,7 +17,8 @@ app.set("trust proxy", true);
 
 // ENVIRONMENT VARIABLES
 const PORT = process.env.PORT || 3000;
-const SECRET = process.env.SECRET;
+// const SESSION_DB_CRYPTO_SECRET = process.env.SESSION_DB_CRYPTO_SECRET;
+const SESSION_COOKIE_SECRET = process.env.SESSION_COOKIE_SECRET;
 const DB_URI = process.env.DB_URI;
 const FRONTEND_URL = process.env.FRONTEND_URL;
 
@@ -26,7 +27,7 @@ app.use(
   cors({
     origin: FRONTEND_URL,
     credentials: true,
-  })
+  }),
 );
 
 // MIDDLEWARE SETUP
@@ -35,7 +36,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(mongoSanitize());
 
 // Sessions
-app.use(session(sessionConfig(DB_URI, SECRET)));
+app.use(session(sessionConfig(DB_URI, SESSION_COOKIE_SECRET)));
 
 // Passport
 passportConfig(app);
