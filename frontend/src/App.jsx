@@ -13,11 +13,9 @@ const queryClient = new QueryClient({
   },
 });
 
-import { loader as searchResultsLoader } from "./pages/Searchresults/Searchresults";
 import { loader as singleBookLoader } from "./pages/Book/Book";
 import ResetPassword from "./pages/ResetPassword";
 
-// ROUTER
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,7 +34,6 @@ const router = createBrowserRouter([
       {
         path: "/suchresultate",
         element: <Searchresults />,
-        loader: searchResultsLoader(queryClient),
       },
       {
         path: "/suchresultate/autor/:author",

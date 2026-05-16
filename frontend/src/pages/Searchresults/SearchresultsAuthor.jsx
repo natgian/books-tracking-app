@@ -1,49 +1,23 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
 import { fetchAuthorBooks } from "../../api/fetchAuthorBooks";
 import { BiErrorCircle } from "react-icons/bi";
 import { useParams } from "react-router-dom";
 import "./Searchresults.css";
 import SearchresultCard from "./SearchresultCard";
 import { Loading } from "../../components";
+import { useBookSearch } from "../../hooks/useBookSearch";
 
-// SEARCHRESULTS COMPONENT //
-const AuthorSearchresults = () => {
+const SearchresultsAuthor = () => {
   const { author } = useParams();
-  const maxResultsPerPage = 12;
 
-  const {
-    data,
-    error,
-    isError,
-    isPending,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useInfiniteQuery({
-    queryKey: ["authorBooks", author],
-    queryFn: ({ pageParam = 0 }) =>
-      fetchAuthorBooks(
-        author,
-        pageParam * maxResultsPerPage,
-        maxResultsPerPage
-      ),
-    getNextPageParam: (lastPage, allPages) => {
-      return lastPage.length === maxResultsPerPage
-        ? allPages.length
-        : undefined;
-    },
-    enabled: !!author,
-  });
-
-  // Flatten the pages to get the list of books
-  const books = data?.pages.flat() || [];
-
-  // Check for duplicates and create a new array without duplicates
-  const uniqueBooks = books.filter(
-    (book, index, self) => index === self.findIndex((b) => b.id === book.id)
+  const { uniqueBooks, error, isError, isPending, fetchNextPage, hasNextPage, isFetchingNextPage } = useBookSearch(
+    ["authorBooks", author],
+    (startIndex, maxResults) => fetchAuthorBooks(author, startIndex, maxResults),
+    !!author,
   );
 
-  // LOADING STATE //
+  /**
+   * LOADING STATE
+   */
   if (isPending) {
     return (
       <section className="text-center section-container">
@@ -53,7 +27,9 @@ const AuthorSearchresults = () => {
     );
   }
 
-  // ERROR STATE //
+  /**
+   * ERROR STATE
+   */
   if (isError) {
     return (
       <section className="text-center section-container">
@@ -66,13 +42,11 @@ const AuthorSearchresults = () => {
     );
   }
 
-  // NO SEARCH RESULTS //
+  /**
+   * NO SEARCH RESULTS
+   */
   if (uniqueBooks.length < 1) {
-    return (
-      <section className="text-center section-container">
-        Die Suche ergab leider keine Treffer.
-      </section>
-    );
+    return <section className="text-center section-container">Die Suche ergab leider keine Treffer.</section>;
   }
 
   return (
@@ -84,19 +58,12 @@ const AuthorSearchresults = () => {
       </div>
       {hasNextPage && (
         <div className="flex-center mt-2 mb-4">
-          <button
-            type="button"
-            onClick={() => fetchNextPage()}
-            disabled={!hasNextPage || isFetchingNextPage}
-            className="show-more-btn flex-center"
-          >
-            {isFetchingNextPage
-              ? "Werden geladen..."
-              : "Weitere Ergebnisse anzeigen"}
+          <button type="button" onClick={() => fetchNextPage()} disabled={!hasNextPage || isFetchingNextPage} className="show-more-btn flex-center">
+            {isFetchingNextPage ? "Werden geladen..." : "Weitere Ergebnisse anzeigen"}
           </button>
         </div>
       )}
     </section>
   );
 };
-export default AuthorSearchresults;
+export default SearchresultsAuthor;
