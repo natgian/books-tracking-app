@@ -4,7 +4,9 @@
 
 **LESEOASE** is a user-friendly Book Tracking App designed for book enthusiasts to manage and organize their reading journey.
 
-**IMPORTANT: The app is in german**
+*IMPORTANT: The app is in german*
+
+👉 Live Demo: https://leseoase.app
 
 ## Features (work in progress)
 
