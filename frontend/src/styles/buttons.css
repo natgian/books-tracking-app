@@ -34,12 +34,13 @@
 
 .update-btn {
   color: var(text-color);
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 500;
   color: var(--text-color);
   background-color: var(--secondary-color-200-light);
   border-radius: var(--border-radius);
   border: 1px solid hsl(0, 0%, 70%);
+  box-shadow: var(--shadow-2);
   padding: 0.5rem 1.25rem;
   white-space: nowrap;
   transition: all 0.2s ease-in-out;
@@ -52,8 +53,7 @@
 
 .update-btn:hover {
   background-color: var(--secondary-color-200);
-  box-shadow: var(--shadow-1);
-  transform: scale(1.02);
+  transform: translateY(-1px);
 }
 
 .edit-btn {
@@ -62,6 +62,7 @@
   color: var(--text-color);
   font-size: 1.125rem;
 }
+
 .edit-btn:hover {
   color: var(--primary-color-300);
 }
