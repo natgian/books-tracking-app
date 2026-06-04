@@ -2,14 +2,13 @@ import "./Book.css";
 import defaultCover from "../../assets/no-cover.jpg";
 import { BiErrorCircle } from "react-icons/bi";
 import { fetchSingleBook } from "../../api/fetchSingleBook";
-import { useLoaderData } from "react-router-dom";
+import { useParams, useLoaderData } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { secureImageURL } from "../../utilities/secureImageURL";
 import { getBestImage } from "../../utilities/getBestImage";
 import BookDetails from "./BookDetails";
 import { Loading, SelectedReadingOption } from "../../components";
 
-// LOADER //
 export const loader =
   (queryClient) =>
   async ({ params }) => {
@@ -20,13 +19,13 @@ export const loader =
       queryFn: () => fetchSingleBook(id),
     });
 
-    return queryClient.getQueryData(["book", id]);
+    return queryClient.getQueryData(["book", id]) ?? null;
   };
 
-// BOOK //
 const Book = () => {
+  const { id } = useParams();
   const initialData = useLoaderData();
-  const { id } = initialData;
+  // const { id } = initialData;
 
   const {
     data: book,
@@ -36,24 +35,13 @@ const Book = () => {
   } = useQuery({
     queryKey: ["book", id],
     queryFn: () => fetchSingleBook(id),
-    initialData,
+    initialData: initialData ?? undefined,
   });
 
-  // Image URL for displaying best quality image
-  const imageURL = getBestImage(book.volumeInfo?.imageLinks);
-
-  // Thumbnail image URL for saving to database
-  const imageThumbnailURL =
-    book.volumeInfo?.imageLinks?.thumbnail || defaultCover;
-
-  // Getting the ISBN
-  const isbn =
-    book.volumeInfo?.industryIdentifiers?.find(
-      (identifier) => identifier.type === "ISBN_13"
-    )?.identifier ?? "-";
-
-  // LOADING STATE //
-  if (isPending) {
+  /**
+   * LOADING STATE
+   */
+  if (isPending && !book) {
     return (
       <section className="text-center section-container">
         <Loading />
@@ -62,7 +50,9 @@ const Book = () => {
     );
   }
 
-  // ERROR STATE //
+  /**
+   * ERROR STATE
+   */
   if (isError) {
     return (
       <section className="text-center section-container">
@@ -75,16 +65,21 @@ const Book = () => {
     );
   }
 
+  // Image URL for displaying best quality image
+  const imageURL = getBestImage(book.volumeInfo?.imageLinks);
+
+  // Thumbnail image URL for saving to database
+  const imageThumbnailURL = book.volumeInfo?.imageLinks?.thumbnail || defaultCover;
+
+  // Getting the ISBN
+  const isbn = book.volumeInfo?.industryIdentifiers?.find((identifier) => identifier.type === "ISBN_13")?.identifier ?? "-";
+
   return (
     <section className="book-details section-container">
       <div className="book-cover-select-container">
         <div className="book-cover-container">
           {/* COVER */}
-          <img
-            src={secureImageURL(imageURL)}
-            alt={book.volumeInfo.title}
-            className="book-cover"
-          />
+          <img src={secureImageURL(imageURL)} alt={book.volumeInfo.title} className="book-cover" />
         </div>
         <div className="mt-1"></div>
         <SelectedReadingOption
@@ -98,11 +93,7 @@ const Book = () => {
           bookPageCount={book.volumeInfo?.pageCount}
           bookLanguage={book.volumeInfo?.language}
           bookAverageRating={book.volumeInfo?.averageRating}
-          bookImage={
-            imageThumbnailURL === defaultCover
-              ? defaultCover
-              : secureImageURL(imageThumbnailURL)
-          }
+          bookImage={imageThumbnailURL === defaultCover ? defaultCover : secureImageURL(imageThumbnailURL)}
           isBlock={true}
         />
       </div>
