@@ -22,14 +22,12 @@ const registerUser = async (req, res) => {
     if (existingUser) {
       if (existingUser.username === username) {
         return res.status(400).json({
-          message:
-            "Ein Benutzer mit diesem Benutzernamen existiert bereits. Bitte einen anderen Benutzernamen verwenden.",
+          message: "Ein Benutzer mit diesem Benutzernamen existiert bereits. Bitte einen anderen Benutzernamen verwenden.",
         });
       }
       if (existingUser.email === email) {
         return res.status(400).json({
-          message:
-            "Ein Benutzer mit der angegebenen E-Mail-Adresse ist bereits registriert.",
+          message: "Ein Benutzer mit der angegebenen E-Mail-Adresse ist bereits registriert.",
         });
       }
     }
@@ -59,8 +57,7 @@ const registerUser = async (req, res) => {
 
     // Username already exist error message
     if (error.name === "UserExistsError") {
-      errorMessage =
-        "Ein Benutzer mit der angegebenen E-Mail-Adresse ist bereits registriert.";
+      errorMessage = "Ein Benutzer mit der angegebenen E-Mail-Adresse ist bereits registriert.";
     }
 
     res.status(400).json({ error: errorMessage });
@@ -77,9 +74,7 @@ const loginUser = (req, res, next) => {
     if (!user) {
       console.log("Authentication failed:", info);
       const translatedMessage = errorMessages[info.message] || info.message;
-      return res
-        .status(401)
-        .json({ status: "error", type: "login", message: translatedMessage });
+      return res.status(401).json({ status: "error", type: "login", message: translatedMessage });
     }
 
     req.logIn(user, (err) => {
@@ -102,23 +97,13 @@ const currentUser = async (req, res) => {
         return res.status(401).json({ message: "User not found" });
       }
 
-      const user = await User.findById(userId)
-        .populate("readingLists.read.book")
-        .populate("readingLists.tbr.book")
-        .populate("readingLists.reading.book");
+      const user = await User.findById(userId).populate("readingLists.read.book").populate("readingLists.tbr.book").populate("readingLists.reading.book");
 
       if (user && user.readingLists) {
         // Sort lists manually
-        user.readingLists.read = user.readingLists.read.sort(
-          (a, b) =>
-            new Date(b.finishedReadingAt) - new Date(a.finishedReadingAt)
-        );
-        user.readingLists.tbr = user.readingLists.tbr.sort(
-          (a, b) => new Date(b.addedToListAt) - new Date(a.addedToListAt)
-        );
-        user.readingLists.reading = user.readingLists.reading.sort(
-          (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
-        );
+        user.readingLists.read = user.readingLists.read.sort((a, b) => new Date(b.finishedReadingAt) - new Date(a.finishedReadingAt));
+        user.readingLists.tbr = user.readingLists.tbr.sort((a, b) => new Date(b.addedToListAt) - new Date(a.addedToListAt));
+        user.readingLists.reading = user.readingLists.reading.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
       }
 
       return res.json({ user });
@@ -163,9 +148,7 @@ const sendResetPasswordEmail = async (req, res) => {
     const user = await User.findOne({ email: email });
 
     if (!user) {
-      return res
-        .status(401)
-        .json({ message: "Kein Benutzer mit dieser E-Mail gefunden." });
+      return res.status(401).json({ message: "Kein Benutzer mit dieser E-Mail gefunden." });
     }
 
     // Generate a reset token
@@ -197,14 +180,11 @@ LeseOase.app
 
     await transporter.sendMail(mailOptions);
 
-    res
-      .status(200)
-      .json({ message: "Link zum Zurücksetzen des Passworts wurde gesendet." });
+    res.status(200).json({ message: "Link zum Zurücksetzen des Passworts wurde gesendet." });
   } catch (error) {
     console.error("Error requesting password reset:", error);
     res.status(500).json({
-      message:
-        "Bei der Anforderung der Passwortrücksetzung ist ein Fehler aufgetreten.",
+      message: "Bei der Anforderung der Passwortrücksetzung ist ein Fehler aufgetreten.",
     });
   }
 };
@@ -219,9 +199,7 @@ const resetPassword = async (req, res) => {
     });
 
     if (!user) {
-      return res
-        .status(400)
-        .json({ message: "Link ist ungültig oder abgelaufen." });
+      return res.status(400).json({ message: "Link ist ungültig oder abgelaufen." });
     }
 
     user.setPassword(password, async (error) => {
@@ -238,15 +216,11 @@ const resetPassword = async (req, res) => {
 
       await user.save();
 
-      return res
-        .status(200)
-        .json({ message: "Passwort erfolgreich zurückgesetzt." });
+      return res.status(200).json({ message: "Passwort erfolgreich zurückgesetzt." });
     });
   } catch (error) {
     console.error("Error resetting password:", error);
-    return res
-      .status(500)
-      .json({ error: "Ein Fehler ist aufgetreten. Bitte erneut versuchen." });
+    return res.status(500).json({ error: "Ein Fehler ist aufgetreten. Bitte erneut versuchen." });
   }
 };
 
@@ -264,31 +238,24 @@ const changePassword = async (req, res) => {
     // Authenticate the user with the current password
     user.authenticate(currentPassword, async (error, authenticatedUser) => {
       if (error || !authenticatedUser) {
-        return res
-          .status(401)
-          .json({ message: "Aktuelles Passwort ist falsch." });
+        return res.status(401).json({ message: "Aktuelles Passwort ist falsch." });
       }
 
       // Change the password to the new password
       user.setPassword(password, async (error) => {
         if (error) {
           return res.status(500).json({
-            message:
-              "Fehler beim Ändern des Passworts. Bitte erneut versuchen.",
+            message: "Fehler beim Ändern des Passworts. Bitte erneut versuchen.",
           });
         }
 
         await user.save();
-        return res
-          .status(200)
-          .json({ message: "Passwort erfolgreich geändert." });
+        return res.status(200).json({ message: "Passwort erfolgreich geändert." });
       });
     });
   } catch (error) {
     console.error("Error changing password:", error);
-    return res
-      .status(500)
-      .json({ error: "Ein Fehler ist aufgetreten. Bitte erneut versuchen." });
+    return res.status(500).json({ error: "Ein Fehler ist aufgetreten. Bitte erneut versuchen." });
   }
 };
 
@@ -312,19 +279,9 @@ const sendContactForm = async (req, res) => {
   } catch (error) {
     console.error("Error sending contact form", error);
     res.status(500).json({
-      message:
-        "Beim Versenden der Nachricht ist ein Fehler aufgetreten. Bitte erneut versuchen.",
+      message: "Beim Versenden der Nachricht ist ein Fehler aufgetreten. Bitte erneut versuchen.",
     });
   }
 };
 
-export {
-  loginUser,
-  registerUser,
-  logoutUser,
-  currentUser,
-  sendResetPasswordEmail,
-  resetPassword,
-  changePassword,
-  sendContactForm,
-};
+export { loginUser, registerUser, logoutUser, currentUser, sendResetPasswordEmail, resetPassword, changePassword, sendContactForm };
