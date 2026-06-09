@@ -5,26 +5,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { StarRating } from "../../components";
 
-const BookDetails = ({
-  title = "-",
-  authors = ["-"],
-  categories,
-  description,
-  isbn,
-  format,
-  publisher = "-",
-  publishedDate,
-  pageCount = "-",
-  language,
-  averageRating,
-  ratingsCount,
-}) => {
+const BookDetails = ({ title = "-", authors = ["-"], categories, description, isbn, format, publisher = "-", publishedDate, pageCount = "-", language, averageRating, ratingsCount }) => {
   const [showText, setShowText] = useState("");
   const cleanedDescription = stripHTMLtags(description) || "-";
   const mapedLanguage = languageMap[language] || "-";
-  const formattedPublishedDate = publishedDate
-    ? formatDate(publishedDate)
-    : "-";
+  const formattedPublishedDate = publishedDate ? formatDate(publishedDate) : "-";
 
   return (
     <div className="book-details-container">
@@ -34,10 +19,7 @@ const BookDetails = ({
           {authors &&
             authors.map((author, index) => (
               <span key={index} className="book-author">
-                <Link
-                  to={`/suchresultate/autor/${author}`}
-                  className="book-author"
-                >
+                <Link to={`/suchresultate/autor/${author}`} className="book-author">
                   {author}
                 </Link>
                 {index < authors.length - 1 && ", "}
@@ -57,14 +39,8 @@ const BookDetails = ({
 
       {description && (
         <p className="book-text">
-          {showText
-            ? `${cleanedDescription}`
-            : `${cleanedDescription.substring(0, 500)}... `}
-          <button
-            type="button"
-            className="show-more-btn"
-            onClick={() => setShowText(!showText)}
-          >
+          {showText ? `${cleanedDescription}` : `${cleanedDescription.substring(0, 500)}... `}
+          <button type="button" className="show-more-btn" onClick={() => setShowText(!showText)}>
             {showText ? "weniger anzeigen" : "mehr anzeigen"}
           </button>
         </p>
@@ -85,7 +61,7 @@ const BookDetails = ({
               <td>{publisher}</td>
             </tr>
             <tr>
-              <th>Erscheinungsdatum:</th>
+              <th>Erscheinungs&shy;datum:</th>
               <td>{formattedPublishedDate}</td>
             </tr>
             <tr>
