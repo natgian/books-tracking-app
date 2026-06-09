@@ -6,14 +6,7 @@ import { useFinishedBook } from "../../hooks/useFinishedBook";
 import { Button } from "../../components";
 import { CgClose } from "react-icons/cg";
 
-const UpdateProgressModal = ({
-  bookPageCount,
-  currentPage,
-  bookEntryId,
-  bookId,
-  isOpen,
-  onClose,
-}) => {
+const UpdateProgressModal = ({ bookPageCount, currentPage, bookEntryId, bookId, isOpen, onClose }) => {
   const { user } = useAuthContext();
   const { updateProgressMutation } = useUpdateProgress();
   const { finishedBookMutation } = useFinishedBook();
@@ -95,18 +88,13 @@ const UpdateProgressModal = ({
   return (
     <dialog ref={modalRef} className="modal">
       {/* Close Modal Button */}
-      <button
-        type="button"
-        className="close-btn"
-        aria-label="Fenster schliessen"
-        onClick={onClose}
-      >
+      <button type="button" className="close-btn" aria-label="Fenster schliessen" onClick={onClose}>
         <CgClose />
       </button>
 
       <div className="modal-content">
         <span>
-          Derzait auf Seite
+          Ich bin auf Seite
           <input
             type="number"
             name="pageNumber"
@@ -120,12 +108,7 @@ const UpdateProgressModal = ({
           />
           von {bookPageCount}
         </span>
-        <Button
-          text="Fortschritt speichern"
-          block={false}
-          type="submit"
-          onClick={handleSaveProgress}
-        />
+        <Button text="Fortschritt speichern" block={false} type="submit" onClick={handleSaveProgress} />
 
         {/* Finished Book Button */}
         <button onClick={handleFinishedBook} className="show-more-btn mt-1">

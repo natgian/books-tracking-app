@@ -11,12 +11,12 @@
 }
 
 .modal-content {
-  padding: 4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  padding: 6rem 4rem 4rem 4rem;
 }
 
 .pagenumber-input {
@@ -42,15 +42,8 @@
   color: var(--primary-color-300);
 }
 
-@media screen and (max-width: 450px) {
-  .modal {
-    width: 18rem;
-    font-size: 0.75rem;
-  }
+@media screen and (max-width: 420px) {
   .modal-content {
-    padding: 4rem 2rem;
-  }
-  .close-btn {
-    font-size: 1.5rem;
+    padding: 6rem 1rem 4rem 1rem;
   }
 }
