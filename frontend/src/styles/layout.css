@@ -7,20 +7,24 @@
 
 .section-container {
   position: relative;
-  width: min(1800px, 100% - 2em * 8);
+  width: clamp(280px, 100% - 4em, 1800px);
   margin: 2em auto;
+  /* position: relative;
+  width: min(1800px, 100% - 4em);
+  margin: 2em auto; */
 }
 
-@media screen and (max-width: 1080px) {
+/* @media screen and (max-width: 1080px) {
   .section-container {
-    width: min(1800px, 100% - 2em * 2);
+    width: min(1800px, 100% - 2em * 4);
   }
 }
+
 @media screen and (max-width: 485px) {
   .section-container {
     width: min(1800px, 100% - 1em * 2);
   }
-}
+} */
 
 .border-container {
   max-width: 1000px;
