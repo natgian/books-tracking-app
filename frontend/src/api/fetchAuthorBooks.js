@@ -18,6 +18,7 @@ export const fetchAuthorBooks = async (author, startIndex = DEFAULT_START_INDEX,
         maxResults,
         orderBy: "relevance",
         printType: "books",
+        fields: "items(id,volumeInfo(title,authors,imageLinks,language),saleInfo(isEbook))",
         showPreorders: true,
       },
     });

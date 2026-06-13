@@ -6,7 +6,8 @@ const DEFAULT_MAX_RESULTS = 12;
 
 /**
  * Fetches books by search term or ISBN.
- * If the search term is a valid ISBN, it searches by ISBN directly, otherwise it performs a general search.
+ * If the search term is a valid ISBN, it searches by ISBN directly, otherwise it performs
+ * a search in title or author.
  *
  * @param {string} searchTerm - The search term or ISBN to search for
  * @param {number} startIndex - The start search index
@@ -15,7 +16,7 @@ const DEFAULT_MAX_RESULTS = 12;
  */
 export const fetchBooks = async (searchTerm, startIndex = DEFAULT_START_INDEX, maxResults = DEFAULT_MAX_RESULTS) => {
   const isISBN = isValidISBN(searchTerm);
-  const query = isISBN ? `isbn:${searchTerm}` : searchTerm;
+  const query = isISBN ? `isbn:${searchTerm}` : `intitle:"${searchTerm}" OR inauthor:"${searchTerm}"`;
 
   try {
     const result = await googleAxiosConfig.get("/volumes", {
@@ -25,6 +26,7 @@ export const fetchBooks = async (searchTerm, startIndex = DEFAULT_START_INDEX, m
         maxResults,
         orderBy: "relevance",
         printType: "books",
+        fields: "items(id,volumeInfo(title,authors,imageLinks,language),saleInfo(isEbook))",
         showPreorders: true,
       },
     });
