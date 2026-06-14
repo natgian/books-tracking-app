@@ -16,7 +16,7 @@ const DEFAULT_MAX_RESULTS = 12;
  */
 export const fetchBooks = async (searchTerm, startIndex = DEFAULT_START_INDEX, maxResults = DEFAULT_MAX_RESULTS) => {
   const isISBN = isValidISBN(searchTerm);
-  const query = isISBN ? `isbn:${searchTerm}` : `intitle:"${searchTerm}" OR inauthor:"${searchTerm}"`;
+  const query = isISBN ? `isbn:${searchTerm}` : searchTerm;
 
   try {
     const result = await googleAxiosConfig.get("/volumes", {
