@@ -9,10 +9,11 @@ import { useBookSearch } from "../../hooks/useBookSearch";
 const Searchresults = () => {
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get("q");
+  const searchType = searchParams.get("type") || "all";
 
   const { uniqueBooks, error, isError, isPending, fetchNextPage, hasNextPage, isFetchingNextPage } = useBookSearch(
-    ["books", searchTerm],
-    (startIndex, maxResults) => fetchBooks(searchTerm, startIndex, maxResults),
+    ["books", searchTerm, searchType],
+    (startIndex, maxResults) => fetchBooks(searchTerm, searchType, startIndex, maxResults),
     !!searchTerm,
   );
 
