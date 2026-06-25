@@ -5,17 +5,25 @@ import "./Searchbar.css";
 
 const Searchbar = () => {
   const [inputValue, setInputValue] = useState("");
+  const [searchType, setSearchType] = useState("all");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputValue.trim()) {
-      navigate(`/suchresultate?q=${inputValue.trim()}`);
+      navigate(`/suchresultate?q=${inputValue.trim()}&type=${searchType}`);
     }
   };
 
   return (
     <Form onSubmit={handleSubmit} className="searchbar-form">
+      <select className="searchbar-select" value={searchType} onChange={(e) => setSearchType(e.target.value)}>
+        <option value="all">Alles</option>
+        <option value="title">Titel</option>
+        <option value="author">Autor</option>
+        <option value="isbn">ISBN</option>
+      </select>
+
       <input
         type="search"
         id="search"
