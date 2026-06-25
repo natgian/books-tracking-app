@@ -3,6 +3,13 @@ import { Form, useNavigate } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
 import "./Searchbar.css";
 
+const placeholders = {
+  all: "Titel, Autor oder ISBN eingeben",
+  title: "Titel eingeben",
+  author: "Autor eingeben",
+  isbn: "ISBN eingeben",
+};
+
 const Searchbar = () => {
   const [inputValue, setInputValue] = useState("");
   const [searchType, setSearchType] = useState("all");
@@ -28,7 +35,7 @@ const Searchbar = () => {
         type="search"
         id="search"
         name="search"
-        placeholder="Titel / Autor / ISBN ..."
+        placeholder={placeholders[searchType]}
         aria-label="Suchbegriff eingeben"
         className="searchbar-input"
         value={inputValue}
