@@ -4,7 +4,7 @@ import { BiSearch } from "react-icons/bi";
 import "./Searchbar.css";
 
 const placeholders = {
-  all: "Titel, Autor oder ISBN eingeben",
+  all: "Titel / Autor / ISBN",
   title: "Titel eingeben",
   author: "Autor eingeben",
   isbn: "ISBN eingeben",
@@ -31,20 +31,22 @@ const Searchbar = () => {
         <option value="isbn">ISBN</option>
       </select>
 
-      <input
-        type="search"
-        id="search"
-        name="search"
-        placeholder={placeholders[searchType]}
-        aria-label="Suchbegriff eingeben"
-        className="searchbar-input"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-      />
+      <div className="input-btn-wrapper">
+        <input
+          type="search"
+          id="search"
+          name="search"
+          placeholder={placeholders[searchType]}
+          aria-label="Suchbegriff eingeben"
+          className="searchbar-input"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
 
-      <button type="submit" className="searchbar-btn" aria-label="suchen">
-        <BiSearch className="searchbar-icon" />
-      </button>
+        <button type="submit" className="searchbar-btn" aria-label="suchen">
+          <BiSearch className="searchbar-icon" />
+        </button>
+      </div>
     </Form>
   );
 };
