@@ -10,6 +10,9 @@ const Footer = () => {
           <Link to="/kontakt">Kontakt</Link>
         </li>
         <li>
+          <Link to="/impressum">Impressum</Link>
+        </li>
+        <li>
           <Link to="/datenschutz">Datenschutzerklärung</Link>
         </li>
       </ul>
