@@ -15,12 +15,8 @@ const Footer = () => {
       </ul>
       <p>
         Copyright &#169; {currentYear} -{" "}
-        <a
-          href="https://www.natgian.com/de"
-          target="blank"
-          className="external-link"
-        >
-          natgian.com
+        <a href="https://www.natgian.dev" target="blank" className="external-link">
+          natgian.dev
         </a>
       </p>
     </footer>
