@@ -40,8 +40,9 @@ const Imprint = () => {
             <p className="mt-1">
               Informationen zum Umgang mit Personendaten sind in der{" "}
               <a href="/datenschutz" className="underline-link">
-                Datenschutzerklärung.
+                Datenschutzerklärung
               </a>
+              .
             </p>
           </section>
         </section>
